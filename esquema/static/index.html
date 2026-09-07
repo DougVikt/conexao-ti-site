@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Hub da comunidade universitária." />
+    <title>Comunidade Universitária</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="tech-background" aria-hidden="true">
+      <div class="tech-grid"></div><div class="tech-scanline"></div>
+      <span class="tech-node node-one"></span><span class="tech-node node-two"></span>
+      <span class="tech-node node-three"></span><span class="tech-node node-four"></span>
+      <span class="tech-orbit orbit-one"></span><span class="tech-orbit orbit-two"></span>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top site-nav">
+      <div class="container py-2">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_com_fundo-uE0cCv7Go0AWc5R8DKyxo48u4oiESp.jpeg" alt="Logo da comunidade" class="brand-logo" />
+          <span>COMUNIDADE<span class="brand-dot">.</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link active" href="#inicio">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#avisos">Avisos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#biblioteca">Biblioteca</a></li>
+            <li class="nav-item ms-lg-3"><a class="btn btn-gradient btn-sm px-3" href="#redes">Conectar-se <span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="inicio" class="container position-relative">
+      <section class="hero min-vh-100 d-flex align-items-center justify-content-center text-center">
+        <div class="hero-content">
+          <div class="eyebrow mb-4"><span class="eyebrow-line"></span> UM ESPAÇO PARA TODOS <span class="eyebrow-line"></span></div>
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_com_fundo-uE0cCv7Go0AWc5R8DKyxo48u4oiESp.jpeg" alt="Identidade visual da comunidade universitária" class="hero-logo mb-4" />
+          <h1>Ideias que <span>conectam.</span><br />Pessoas que transformam.</h1>
+          <p class="hero-copy mx-auto mt-4 mb-4">O ponto de encontro da nossa comunidade universitária.<br />Acompanhe, participe e faça parte.</p>
+          <a href="#eventos" class="btn btn-gradient px-4 py-3">Explorar comunidade <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section id="redes" class="section-block pt-5 pb-5">
+        <div class="section-heading d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4"><div><p class="section-kicker">CONECTE-SE</p><h2>Onde a comunidade acontece</h2></div><p class="section-intro mb-0">Informação, conversa e oportunidades<br class="d-none d-md-block" /> em um só lugar.</p></div>
+        <div class="row g-3">
+          <div class="col-md-4"><a class="social-card h-100" href="https://instagram.com" target="_blank" rel="noreferrer"><span class="social-icon">◎</span><span><strong>Instagram</strong><small>Veja o dia a dia</small></span><span class="arrow">↗</span></a></div>
+          <div class="col-md-4"><a class="social-card h-100" href="https://linkedin.com" target="_blank" rel="noreferrer"><span class="social-icon">in</span><span><strong>LinkedIn</strong><small>Oportunidades e carreira</small></span><span class="arrow">↗</span></a></div>
+          <div class="col-md-4"><a class="social-card h-100" href="https://wa.me/5500000000000" target="_blank" rel="noreferrer"><span class="social-icon">◌</span><span><strong>WhatsApp</strong><small>Entre para o grupo</small></span><span class="arrow">↗</span></a></div>
+        </div>
+      </section>
+
+      <section id="eventos" class="section-block py-5"><div class="section-heading d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4"><div><p class="section-kicker">AGENDA</p><h2>Próximos eventos</h2></div><a class="text-link" href="#eventos">Ver todos <span>→</span></a></div><div class="row g-3"><div class="col-md-6"><article class="event-card"><div class="date-block"><strong>18</strong><span>JUN<br />2025</span></div><div><p class="card-label">ENCONTRO</p><h3>Roda de conversa: futuros possíveis</h3><p class="card-meta">19h · Auditório Central</p></div><span class="arrow">→</span></article></div><div class="col-md-6"><article class="event-card"><div class="date-block blue"><strong>26</strong><span>JUN<br />2025</span></div><div><p class="card-label">WORKSHOP</p><h3>Portfólio e presença digital</h3><p class="card-meta">14h · Laboratório 03</p></div><span class="arrow">→</span></article></div></div></section>
+
+      <section id="avisos" class="section-block py-5"><div class="section-heading mb-4"><p class="section-kicker">FIQUE POR DENTRO</p><h2>Avisos recentes</h2></div><div class="notice-list"><article class="notice-item"><span class="notice-status"></span><div><p class="card-label">COMUNIDADE · 12 JUN 2025</p><h3>Inscrições abertas para os grupos de estudo do semestre</h3></div><span class="arrow">→</span></article><article class="notice-item"><span class="notice-status"></span><div><p class="card-label">OPORTUNIDADE · 09 JUN 2025</p><h3>Programa de mentoria busca novos participantes</h3></div><span class="arrow">→</span></article></div></section>
+
+      <section id="biblioteca" class="section-block library-section py-5"><div class="section-heading d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4"><div><p class="section-kicker">MATERIAIS</p><h2>Biblioteca da comunidade</h2></div><div class="search-box"><span>⌕</span><input id="librarySearch" type="search" placeholder="Buscar arquivo..." aria-label="Buscar arquivo" /></div></div><div id="libraryList" class="row g-3"><div class="col-md-4 library-item" data-search="manual comunidade pdf"><article class="file-card"><span class="file-type">PDF</span><h3>Manual da comunidade</h3><p>Guia de boas-vindas · 2.4 MB</p><a href="#" class="file-link">Baixar arquivo ↓</a></article></div><div class="col-md-4 library-item" data-search="calendario academico pdf"><article class="file-card"><span class="file-type blue-type">PDF</span><h3>Calendário acadêmico</h3><p>Datas importantes · 1.1 MB</p><a href="#" class="file-link">Baixar arquivo ↓</a></article></div><div class="col-md-4 library-item" data-search="guia identidade zip"><article class="file-card"><span class="file-type purple-type">ZIP</span><h3>Kit de identidade</h3><p>Logos e materiais · 8.7 MB</p><a href="#" class="file-link">Baixar arquivo ↓</a></article></div></div><p id="emptySearch" class="empty-search d-none">Nenhum arquivo encontrado.</p></section>
+    </main>
+
+    <footer class="site-footer"><div class="container d-flex justify-content-between flex-wrap gap-3"><span>COMUNIDADE UNIVERSITÁRIA<span class="brand-dot">.</span></span><span>Feito para conectar pessoas e ideias.</span></div></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="./script.js"></script>
+  </body>
+</html>
