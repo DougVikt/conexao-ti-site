@@ -1,3 +1,6 @@
+/*
+=========== variaveis e cores globais =============
+*/
 :root {
     --bg: oklch(21% 0.045 256);
     --surface: oklch(27% 0.05 256);
@@ -14,8 +17,15 @@
     --bs-primary-rgb: 70, 140, 235;
     --bs-emphasis-color: var(--fg);
     --bs-secondary-color: var(--muted);
+    /* cores */
+    --cyan: #16cbe2;
+    --blue: #147cf5;
+    --violet: #7c4dff
 }
 
+/*
+============= body ================
+*/
 body {
     background:
         radial-gradient(1100px 560px at 90% -10%, oklch(45% 0.10 250 / 0.16), transparent 60%),
@@ -23,6 +33,51 @@ body {
         var(--bg);
     min-height: 100vh;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/*
+============== navbar ==============
+*/
+.nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted) !important;
+    letter-spacing: 0.01em
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--fg) !important
+}
+
+.btn-accent {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid oklch(78% 0.14 244);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 18px 40px -24px oklch(10% 0.06 256 / .8);
+    transition: transform .14s, filter .14s;
+}
+
+.btn-accent:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    color: var(--accent-ink)
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+}
+
+.btn-ghost:hover {
+    border-color: oklch(100% 0 0 / .18);
+    color: var(--fg);
+    background: oklch(100% 0 0 / .04)
 }
 
 .brand-mark {
@@ -83,18 +138,32 @@ body {
     max-width: 62ch;
 }
 
-.globe-hero {
-    font-size: clamp(120px, 22vw, 220px);
-    line-height: 1;
-    color: var(--blue-tint);
-    opacity: 0.92;
-    display: inline-block;
-    transform-origin: center;
-    filter: drop-shadow(0 16px 40px oklch(45% 0.12 250 / 0.35));
-    animation: globe-spin 16s linear infinite;
+.logo-hero {
+    width: 20rem;
+    height: 20rem;
+    padding: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(22, 203, 226, .2), 0 0 55px rgba(20, 124, 245, .24)
 }
 
-@keyframes globe-spin {
+.eyebrow{
+    font-size: .68rem;
+    letter-spacing: .19em;
+    font-weight: 700;
+    color: var(--cyan)
+}
+.eyebrow-line {
+    display: inline-block;
+    width: 34px;
+    height: 1px;
+    background: var(--cyan);
+    vertical-align: middle;
+    margin: 0 10px;
+    opacity: .55
+}
+
+@keyframes logo-spin {
     from {
         transform: perspective(900px) rotateY(0deg);
     }
@@ -105,10 +174,144 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .globe-hero {
+    .logo-hero {
         animation: none;
     }
 }
+
+.kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--blue-tint)
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    font-size: clamp(28px, 4vw, 40px)
+}
+
+.section-sub {
+    color: var(--muted);
+    font-size: 15px
+}
+
+.card-surface {
+    background: linear-gradient(180deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.icon-box {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: oklch(62% 0.10 250 / .16);
+    border: 1px solid var(--border);
+    color: var(--blue-tint);
+    font-size: 20px;
+}
+
+.pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: oklch(100% 0 0 / .04)
+}
+
+.avatar-stack img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--surface);
+    object-fit: cover;
+    margin-left: -8px
+}
+
+.avatar-stack img:first-child {
+    margin-left: 0
+}
+
+.stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    line-height: 1
+}
+
+.timeline-step {
+    position: relative;
+    padding-left: 28px
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 28px;
+    bottom: -12px;
+    width: 1px;
+    background: var(--border)
+}
+
+.timeline-step:last-child::before {
+    display: none
+}
+
+.step-dot {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--border)
+}
+
+.event-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--blue-tint);
+    background: oklch(62% 0.10 250 / .12);
+    border: 1px solid var(--border);
+    padding: 5px 9px;
+    border-radius: 999px
+}
+
+.quote-mark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--blue-tint);
+    opacity: .5
+}
+
+a.link-muted {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent
+}
+
+a.link-muted:hover {
+    color: var(--fg);
+    border-bottom-color: var(--border)
+} 
 
 .btn-accent {
     background: var(--accent);
