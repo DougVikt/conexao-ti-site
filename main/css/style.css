@@ -2,38 +2,58 @@
 =========== variaveis e cores globais =============
 */
 :root {
+    /* --- superficiais --- */
     --bg: oklch(21% 0.045 256);
-    --surface: oklch(27% 0.05 256);
+    --surface: #091426;
+    --surface-2: #0d1b31;
+    --surface-inset: oklch(31% 0.052 256);
+
+    /* --- textos --- */
     --fg: oklch(96% 0.008 250);
-    --muted: oklch(74% 0.03 250);
+    --muted: #91a4bf;
+
+    /* --- bordas e camadas --- */
     --border: oklch(100% 0 0 / 0.10);
+    --border-strong: oklch(100% 0 0 / 0.18);
+    --overlay: oklch(100% 0 0 / 0.04);
+
+    /* --- icones e chips --- */
+    --tint: oklch(62% 0.10 250 / 0.16);
+    --tint-soft: oklch(62% 0.10 250 / 0.12);
+
+    /* --- cores identidade --- */
     --accent: oklch(70% 0.145 244);
     --accent-ink: oklch(20% 0.06 244);
     --blue-tint: oklch(74% 0.105 250);
-
-    --bs-body-bg: var(--bg);
-    --bs-body-color: var(--fg);
-    --bs-primary: oklch(70% 0.145 244);
-    --bs-primary-rgb: 70, 140, 235;
-    --bs-emphasis-color: var(--fg);
-    --bs-secondary-color: var(--muted);
-
-    /* cores */
-    --bg-dark: #020817;
-    --surface: #091426;
-    --surface-2: #0d1b31;
-    --line: rgba(164, 191, 226, .14);
-    --text: #eef5ff;
-    --muted: #91a4bf;
     --cyan: #16cbe2;
     --blue: #147cf5;
     --violet: #7c4dff;
-    --dark: #070707;
+    --gradient-brand: linear-gradient(110deg, var(--cyan), var(--blue) 52%, var(--violet));
+
+   /* --- marcas redes sociais --- */
+    --linkedin: #0A66C2;
+    --instagram: #d62976;
+    --gradient-instagram: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+
+    /* --- sombra --- */
+    --shadow: oklch(10% 0.06 256 / 0.8);
+
+    /* --- bootstrap --- */
+    --bs-body-bg: var(--bg);
+    --bs-body-color: var(--fg);
+    --bs-primary: var(--accent);
+    --bs-primary-rgb: 70, 140, 235;
+    --bs-emphasis-color: var(--fg);
+    --bs-secondary-color: var(--muted);
+    
+}
+/*========== global e bootstrap aterações ========*/
+.border-top,
+.border-bottom {
+    --bs-border-color: var(--border);
 }
 
-/*
-============= body ================
-*/
+/*============= body ================*/
 body {
     margin: 0;
     padding-top: 5rem;
@@ -250,7 +270,7 @@ body::before {
 }
 
 .nav-link {
-    color: var(--text) !important;
+    color: var(--fg) !important;
     font-size: .96rem;
     padding: .3rem .75rem !important;
 }
@@ -267,7 +287,7 @@ body::before {
 .btn-gradient {
     border: 0;
     color: white;
-    background: linear-gradient(110deg, var(--cyan), var(--blue) 52%, var(--violet));
+    background: var(--gradient-brand);
     box-shadow: 0 10px 30px rgba(20, 39, 245, 0.18);
     font-weight: 700
 }
@@ -278,7 +298,20 @@ body::before {
     transform: translateY(-1px)
 }
 
-
+.icon-box.sty-instagram , 
+.icon-box.sty-linkedin{
+    color:var(--fg);
+    border-color:transparent;
+    width:40px;
+    height:40px;
+    font-size:18px;
+}
+.icon-box.sty-linkedin{
+    background:var(--linkedin);
+} 
+.icon-box.sty-instagram{
+    background:var(--gradient-instagram);
+}
 
 
 
@@ -288,7 +321,7 @@ body::before {
     border: 1px solid oklch(78% 0.14 244);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
-    box-shadow: 0 18px 40px -24px oklch(10% 0.06 256 / .8);
+    box-shadow: 0 18px 40px -24px var(--shadow);
     transition: transform .14s, filter .14s;
 }
 
@@ -307,9 +340,9 @@ body::before {
 }
 
 .btn-ghost:hover {
-    border-color: oklch(100% 0 0 / .18);
+    border-color: var(--border-strong);
     color: var(--fg);
-    background: oklch(100% 0 0 / .04)
+    background: var(--overlay)
 }
 
 .brand-mark {
@@ -444,7 +477,7 @@ body::before {
     display: grid;
     place-items: center;
     border-radius: 12px;
-    background: oklch(62% 0.10 250 / .16);
+    background: var(--tint);
     border: 1px solid var(--border);
     color: var(--blue-tint);
     font-size: 20px;
@@ -459,7 +492,7 @@ body::before {
     border-radius: 999px;
     border: 1px solid var(--border);
     color: var(--muted);
-    background: oklch(100% 0 0 / .04)
+    background: var(--overlay)
 }
 
 .avatar-stack img {
@@ -520,7 +553,7 @@ body::before {
     letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--blue-tint);
-    background: oklch(62% 0.10 250 / .12);
+    background: var(--tint-soft);
     border: 1px solid var(--border);
     padding: 5px 9px;
     border-radius: 999px
@@ -551,7 +584,7 @@ a.link-muted:hover {
     border: 1px solid oklch(78% 0.14 244);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
-    box-shadow: 0 18px 40px -24px oklch(10% 0.06 256 / 0.8);
+    box-shadow: 0 18px 40px -24px var(--shadow);
     transition: transform .14s ease, filter .14s ease;
 }
 
@@ -591,12 +624,12 @@ a.link-muted:hover {
 
 .folder-card:hover {
     transform: translateY(-4px);
-    border-color: oklch(100% 0 0 / 0.18);
-    box-shadow: 0 18px 40px -24px oklch(10% 0.06 256 / 0.8);
+    border-color: var(--border-strong);
+    box-shadow: 0 18px 40px -24px var(--shadow);
 }
 
 .folder-card:focus-visible {
-    outline: 2px solid oklch(100% 0 0 / 0.18);
+    outline: 2px solid var(--border-strong);
     outline-offset: 2px;
 }
 
@@ -606,7 +639,7 @@ a.link-muted:hover {
     display: grid;
     place-items: center;
     border-radius: 12px;
-    background: oklch(62% 0.10 250 / 0.16);
+    background: var(--tint);
     border: 1px solid var(--border);
     color: var(--blue-tint);
     font-size: 22px;
@@ -643,8 +676,8 @@ a.link-muted:hover {
 }
 
 .search-input:focus {
-    background: oklch(31% 0.052 256);
-    border-color: oklch(100% 0 0 / 0.18);
+    background: var(--surface-inset);
+    border-color: var(--border-strong);
     box-shadow: none;
     color: var(--fg);
 }
