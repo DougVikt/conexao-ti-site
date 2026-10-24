@@ -24,7 +24,7 @@ const dadosCards = [
 
 function CardsCentrais() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-4">
+    <section className="w-full py-4">
       <div className="mb-1 text-center">
         <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-tint">
           Só para quem é da casa

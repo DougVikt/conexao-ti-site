@@ -10,7 +10,7 @@ const tags = [
 
 function Redes() {
   return (
-    <section id="redes" className="mx-auto w-full max-w-6xl border-t border-border px-4 py-5">
+    <section id="redes" className="w-full border-t border-border py-5">
       <div className="mb-4 text-center">
         <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-tint">Siga e apareça</div>
         <h2 className="font-display text-[clamp(28px,4vw,40px)] font-bold leading-[1.05] tracking-[-0.02em] text-fg">

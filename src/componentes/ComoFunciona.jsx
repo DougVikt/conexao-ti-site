@@ -24,7 +24,7 @@ function Step({ step, last }) {
 
 function ComoFunciona() {
     return (
-        <section className="mx-auto grid w-full max-w-6xl items-center gap-4 px-4 py-5 lg:grid-cols-12">
+        <section className="grid w-full items-center gap-4 py-5 lg:grid-cols-12">
             <div className="lg:col-span-5">
                 <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-tint">Como entrar</div>
                 <h2 className="mb-3 font-display text-[clamp(28px,4vw,40px)] font-bold leading-[1.05] tracking-[-0.02em] text-fg">

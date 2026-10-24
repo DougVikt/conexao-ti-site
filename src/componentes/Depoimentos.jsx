@@ -24,7 +24,7 @@ const dadosDepoimentos = [
 
 function Depoimentos() {
     return (
-        <section className="mx-auto w-full max-w-6xl border-t border-border px-4 py-5">
+        <section className="w-full border-t border-border py-5">
             <div className="mb-2 text-center font-mono text-[11px] uppercase tracking-[0.12em] text-blue-tint">O que dizem</div>
             <h2 className="mb-4 text-center font-display text-[clamp(28px,4vw,40px)] font-bold leading-[1.05] tracking-[-0.02em] text-fg">
                 Quem estuda junto, vai mais longe

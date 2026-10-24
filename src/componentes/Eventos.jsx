@@ -21,7 +21,7 @@ const dadosEventos = [
 
 function Eventos() {
     return (
-        <section id="eventos" className="mx-auto w-full max-w-6xl border-t border-border px-4 py-5">
+        <section id="eventos" className="w-full border-t border-border py-5">
             <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
                 <div>
                     <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-tint">Agenda</div>

@@ -7,7 +7,7 @@ const dadosHero = {
 
 function Hero() {
   return (
-    <section id="inicio" className="px-4 py-16 text-center">
+    <section id="inicio" className="py-16 text-center">
       <div className="mb-4 flex items-center justify-center gap-2.5 text-[0.68rem] font-bold tracking-[0.19em] text-brand-cyan">
         <span className="inline-block h-px w-[34px] bg-brand-cyan align-middle opacity-55"></span>
         UM ESPAÇO PARA TODOS

@@ -12,7 +12,7 @@ function Navbar() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-[rgba(49,38,54,0.7)] bg-[rgba(28,7,51,0.48)] backdrop-blur-lg">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-4 py-2">
+      <div className="flex flex-wrap items-center gap-2 px-4 py-2 md:px-6 lg:px-12">
         <a href="#inicio" className="flex items-center gap-2 font-display text-[1.3rem] font-bold tracking-[0.16em] text-fg">
           <img src="img/logo.png" alt="Logo da comunidade" className="h-10 w-10 rounded-full object-cover" />
           <span>Conexão TI</span>
@@ -28,7 +28,7 @@ function Navbar() {
           <i className={open ? 'bi bi-x-lg' : 'bi bi-list'}></i>
         </button>
 
-        <div className={`${open ? 'flex' : 'hidden'} w-full flex-col items-stretch gap-2 lg:flex lg:w-auto lg:flex-row lg:items-center`}>
+        <div className={`${open ? 'flex' : 'hidden'} w-full flex-col items-stretch gap-2 lg:ml-auto lg:flex lg:w-auto lg:flex-row lg:items-center`}>
           <ul className="flex flex-col gap-1 lg:ml-auto lg:flex-row lg:items-center lg:gap-2">
             {links.map((link) => (
               <li key={link.href}>

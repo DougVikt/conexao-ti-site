@@ -24,7 +24,7 @@ const stats = [
 
 function Comunidade() {
   return (
-    <section id="comunidade" className="mx-auto w-full max-w-6xl border-t border-border px-4 py-5">
+    <section id="comunidade" className="w-full border-t border-border py-5">
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <div key={stat.label} className="rounded-2xl border border-border bg-linear-to-b from-surface to-surface-2 p-4">
