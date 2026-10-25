@@ -106,9 +106,10 @@
       </div>
     </main>
 
-    <footer class="border-top py-4 font-monospace" data-od-id="footer" style="--bs-border-color: var(--border); font-size:12px; color: var(--muted); letter-spacing:0.02em;">
+    <footer class="site-footer">
       <div class="container">
-        <span>Conexão TI · ADMs da Comunidade</span>
+        <p class="site-footer__message">Ninguém aprende tecnologia sozinho. Aqui, o conhecimento circula.</p>
+        <p class="site-footer__meta">Conexão TI · © 2026 · Feito de alunos para alunos</p>
       </div>
     </footer>
   </div>
@@ -141,12 +142,16 @@
           .map((tag) => '<span class="badge-tag">' + tag + '</span>')
           .join('');
 
+        const avatar = adm.foto
+          ? '<div class="adm-avatar"><img src="' + adm.foto + '" alt="Foto de ' + adm.nome + '" width="46" height="46"></div>'
+          : '<div class="adm-avatar" aria-hidden="true">' + adm.iniciais + '</div>';
+
         const col = document.createElement('div');
         col.className = 'col';
         col.innerHTML =
           '<article class="bento-card p-4 h-100 d-flex flex-column">' +
           '<div class="d-flex align-items-start justify-content-between gap-3 mb-3">' +
-          '<div class="adm-avatar" aria-hidden="true">' + adm.iniciais + '</div>' +
+          avatar +
           '<span class="badge-tag">ADM</span>' +
           '</div>' +
           '<h2 class="bento-card-title mb-1">' + adm.nome + '</h2>' +

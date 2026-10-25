@@ -551,13 +551,53 @@ body.page-leaving {
   display: inline-block;
 }
 
-/* Footer Limpo */
+/* Footer unificado (todas as páginas) */
 .site-footer {
   border-top: 1px solid var(--border-subtle);
-  padding: 3rem 0;
   margin-top: 4rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  padding: 2.75rem 0;
+  text-align: center;
+}
+
+.site-footer__message {
+  max-width: 620px;
+  margin: 0 auto 0.6rem;
+  font-family: var(--font-title);
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text-main);
+  text-wrap: balance;
+}
+
+.site-footer__message::before,
+.site-footer__message::after {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.site-footer__message::before {
+  content: "“";
+  margin-right: 0.12em;
+}
+
+.site-footer__message::after {
+  content: "”";
+  margin-left: 0.12em;
+}
+
+.site-footer__meta {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--text-subtle);
+}
+
+@media (max-width: 767.98px) {
+  .site-footer {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+  }
 }
 
 /* ==========================================================================
@@ -853,6 +893,7 @@ body.page-leaving {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  overflow: hidden;
   background: linear-gradient(135deg, rgba(0, 229, 255, 0.22), rgba(0, 229, 255, 0.05));
   border: 1px solid rgba(0, 229, 255, 0.35);
   color: var(--brand-primary);
@@ -860,6 +901,13 @@ body.page-leaving {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.03em;
+}
+
+.adm-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .adm-social-link {
