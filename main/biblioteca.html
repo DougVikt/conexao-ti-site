@@ -4,162 +4,357 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Biblioteca Conexão TI</title>
+    <title>Biblioteca de Arquivos — Conexão TI</title>
+
+    <!-- Bootstrap 5.3 & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet">
-    <script src="js/biblioteca-dados.js"></script>
 
+    <!-- CSS Moderno High-End -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <div class="tech-background" aria-hidden="true">
-    <div class="tech-grid"></div><div class="tech-scanline"></div>
-    <span class="tech-node node-one"></span>
-    <span class="tech-node node-two"></span>
-    <span class="tech-node node-three"></span>
-    <span class="tech-node node-four"></span>
-  </div>
-  <div class="container-fluid px-3 px-md-4 px-lg-5">
+    <!-- Efeitos de Fundo Moderno -->
+    <div class="ambient-background" aria-hidden="true">
+        <div class="ambient-grid"></div>
+        <div class="ambient-glow glow-top-left"></div>
+        <div class="ambient-glow glow-bottom-right"></div>
+    </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top site-nav">
-  <div class="container py-2">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-      <img src="img/logo.png" alt="Logo" class="brand-logo" />
-      <div>
-        <div class="brand-title">Conexão TI</div>
-      </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-          aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse d-flex justify-content-center me-2" id="mainNav">
-          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-            <li class="nav-item"><a class="nav-link active" href="#inicio">Início</a></li>
-            <li class="nav-item"><a class="nav-link" href="duvidas.html">Dúvidas</a></li>
-          </ul>
+    <div class="position-relative" style="z-index: 1">
 
-          <a href="https://www.linkedin.com/company/conexao-ti/" target="_blank" class="btn btn-ghost btn-sm px-2 mx-2"
-            aria-label="LinkedIn">
-            <i class="bi bi-linkedin"></i></a>
-          <a href="https://www.instagram.com/conexaoti/" target="_blank" class="btn btn-ghost btn-sm px-2 me-2"
-            aria-label="Instagram">
-            <i class="bi bi-instagram"></i></a>
-        </div>
-  </div>
-</nav>
-
-        <section class="row justify-content-center text-center py-5 g-4" data-od-id="welcome">
-            <div class="col-lg-9 col-xl-8">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
-                     <img src="img/logo.png" class="logo-hero d-block mx-auto my-3" aria-hidden="true" alt="Logo da comunidade">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-custom py-3">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                    <img src="img/logo.png" alt="Logo Conexão TI" class="brand-logo-img" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain;" />
+                    <span class="brand-title">Conexão TI</span>
                 </a>
-                <span class="hero-eyebrow">Biblioteca</span>
-                <h1 class="hero-title">Biblioteca <span class="thin">Conexão TI</span></h1>
-                <p class="hero-text mx-auto">
-                    Bem-vindo à Biblioteca Conexão TI — o ponto de acesso à nossa
-                    coleção de materiais de tecnologia. Cada pasta representa uma
-                    matéria e leva direto ao conteúdo organizado no Google Drive.
-                    Escolha uma disciplina para começar.
-                </p>
-                <a class="btn btn-accent mt-4"
-                    href="https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx"
-                    data-od-id="cta-drive">
-                    <i class="bi bi-globe2 me-2"></i>Abrir biblioteca no Drive
+
+                <a href="index.html" class="btn-modern-ghost py-1 px-3" style="font-size: 0.85rem;">
+                    <i class="bi bi-arrow-left me-1"></i> Voltar à Home
                 </a>
+            </div>
+        </nav>
+
+        <!-- Header da Biblioteca -->
+        <header class="container py-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <span class="badge-pill-tech mb-3">
+                        <i class="bi bi-folder-check"></i> Materiais por Disciplina
+                    </span>
+                    <h1 class="hero-title-gradient" style="font-size: clamp(2rem, 4vw, 3rem);">
+                        Biblioteca de Materiais & Aulas
+                    </h1>
+                    <p class="hero-subtitle mb-4">
+                        Acesse as pastas organizadas por matéria com resumos, slides, provas anteriores e códigos de aula salvos no Google Drive.
+                    </p>
+
+                    <!-- Barra de Busca -->
+                    <div class="quick-search-wrapper mb-4">
+                        <i class="bi bi-search quick-search-icon"></i>
+                        <input type="search" id="filterInput" class="form-control quick-search-input" placeholder="Filtrar por matéria (Ex: Python, Redes, SQL...)" />
+                    </div>
+
+                    <!-- Botão de Atualização -->
+                    <div class="text-end mb-3">
+                        <button id="refreshBtn" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-arrow-clockwise me-1"></i> Atualizar Biblioteca
+                        </button>
+                    </div>
+
+                    <!-- Chips de Filtro Rápido -->
+                    <div class="d-flex flex-wrap justify-content-center gap-2" id="filterChips">
+                        <button class="roadmap-tab-btn active" data-slug="all">Todas as Matérias</button>
+                        <button class="roadmap-tab-btn" data-slug="redes">Redes</button>
+                        <button class="roadmap-tab-btn" data-slug="banco-dados">Banco de Dados</button>
+                        <button class="roadmap-tab-btn" data-slug="python">Python</button>
+                        <button class="roadmap-tab-btn" data-slug="seguranca">Segurança</button>
+                        <button class="roadmap-tab-btn" data-slug="ia">IA</button>
+                        <button class="roadmap-tab-btn" data-slug="dev-web">Dev Web</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Posts em Destaque -->
+        <section class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <span class="badge-pill-tech mb-3">
+                        <i class="bi bi-star-fill"></i> Destaques da Comunidade
+                    </span>
+                    <h2 class="section-title mb-4" style="font-size: clamp(1.5rem, 3vw, 2rem);">
+                        Posts em Destaque
+                    </h2>
+                    <div class="row g-4" id="featuredPostsGrid"></div>
+                </div>
             </div>
         </section>
 
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 py-3 border-top"
-            data-od-id="toolbar" style="--bs-border-color: var(--border);">
-            <span class="section-label">Pastas disponíveis</span>
-            <div class="input-group" style="max-width: 360px;">
-                <span class="input-group-text bg-transparent border-0 ps-0 text-secondary"><i
-                        class="bi bi-search"></i></span>
-                <input id="filter" type="search"
-                    class="form-control search-input bg-transparent border-0 border-bottom rounded-0"
-                    placeholder="Filtrar matérias…" aria-label="Filtrar matérias"
-                    style="border-color: var(--border) !important; color: var(--fg);" />
+        <!-- Instagram Feed -->
+        <section class="container mb-5" id="instagramFeedSection">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <span class="badge-pill-tech mb-3">
+                        <i class="bi bi-instagram"></i> Feed do Instagram
+                    </span>
+                    <h2 class="section-title mb-4" style="font-size: clamp(1.5rem, 3vw, 2rem);">
+                        Últimas Postagens
+                    </h2>
+                    <div class="row g-4" id="instagramPostsGrid"></div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <main class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 pb-5 pt-2" id="grid"
-            data-od-id="folder-grid">
-            <p class="empty-msg col-12" id="empty" hidden>Nenhuma pasta encontrada para esse filtro.</p>
+        <!-- Grid de Pastas -->
+        <main class="container pb-5">
+            <div class="row g-3" id="foldersGrid"></div>
+            <div id="emptyMessage" class="text-center text-muted py-5 d-none">
+                <i class="bi bi-search fs-1 d-block mb-2 text-secondary"></i>
+                Nenhuma matéria encontrada com esse nome.
+            </div>
+            <!-- Indicador de carregamento -->
+            <div id="loadingIndicator" class="text-center text-muted py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Carregando...</span>
+                </div>
+                <p class="mt-2">Carregando materiais do Drive...</p>
+            </div>
         </main>
 
-        <footer class="border-top py-4 d-flex flex-wrap justify-content-between gap-2 font-monospace"
-            data-od-id="footer"
-            style="--bs-border-color: var(--border); font-size:12px; color: var(--muted); letter-spacing:0.02em;">
-            <span>Biblioteca Conexão TI · arquivos no Drive</span>
-            <span>Atualizado em —</span>
-        </footer>
-    </div>
-
-    <!-- Modal de arquivos da pasta -->
-    <div class="modal fade" id="folderModal" tabindex="-1" aria-labelledby="folderModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content"
-                style="background: var(--surface); border: 1px solid var(--border); color: var(--fg);">
-                <div class="modal-header border-0">
-                    <div>
-                        <h5 class="modal-title section-label mb-1" id="folderModalTitle">Pasta</h5>
-                        <small class="text-secondary font-monospace" id="folderModalSub"
-                            style="font-size: 11.5px;"></small>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body" id="folderModalBody">
-                    <div class="text-center text-secondary py-4"><i
-                            class="bi bi-arrow-clockwise spin me-2"></i>Carregando arquivos…</div>
-                </div>
-                <div class="modal-footer border-0">
-                    <a id="folderModalDrive" class="btn btn-accent" href="#" target="_blank" rel="noopener">
-                        <i class="bi bi-globe2 me-2"></i>Abrir pasta no Drive
-                    </a>
-                </div>
+        <!-- Footer -->
+        <footer class="footer-minimal">
+            <div class="container text-center">
+                <p class="mb-0 text-muted">Conexão TI · Materiais abertos e compartilhados pelos alunos</p>
             </div>
-        </div>
+        </footer>
+
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        import * as data from './js/data.js';
+        const { escapeHtml } = data;
 
-    <script>
-    (function renderBiblioteca() {
-        const grid = document.getElementById('grid');
-        const empty = document.getElementById('empty');
-        const filterInput = document.getElementById('filter');
-        if (!grid || typeof bibliotecaDados === 'undefined') return;
+        const grid = document.getElementById('foldersGrid');
+        const empty = document.getElementById('emptyMessage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const filterInput = document.getElementById('filterInput');
+        const chips = document.querySelectorAll('#filterChips button');
 
-        function render(query) {
-            const q = (query || '').trim().toLowerCase();
-            grid.innerHTML = '<p class="empty-msg col-12" id="empty" hidden>Nenhuma pasta encontrada para esse filtro.</p>';
-            let visible = 0;
-            bibliotecaDados.forEach((item) => {
-                if (!q || item.titulo.toLowerCase().includes(q)) {
-                    visible++;
-                    const col = document.createElement('div');
-                    col.className = 'col';
-                    const arquivosHtml = item.arquivos.map(a => '<li>• ' + a + '</li>').join('');
-                    col.innerHTML =
-                        '<div class="card-surface p-4 h-100 d-flex flex-column">' +
-                        '<h3 class="section-label mb-2" style="font-family:\'Space Grotesk\',sans-serif;font-weight:600;font-size:1.15rem;letter-spacing:-0.01em;">' + item.titulo + '</h3>' +
-                        '<ul class="list-unstyled mb-3 text-sm" style="color:var(--muted);font-family:\'JetBrains Mono\',monospace;font-size:12px;line-height:1.5;">' + arquivosHtml + '</ul>' +
-                        '<a class="btn btn-accent btn-sm w-100 mt-auto" href="' + item.drive + '" target="_blank" rel="noopener"><i class="bi bi-globe2 me-2"></i>Abrir pasta no Drive</a>' +
-                        '</div>';
-                    grid.appendChild(col);
+        function renderFolders(items) {
+            if (!items.length) {
+                grid.innerHTML = '';
+                empty.classList.remove('d-none');
+                loadingIndicator.classList.add('d-none');
+                return;
+            }
+            empty.classList.add('d-none');
+            loadingIndicator.classList.add('d-none');
+
+            grid.innerHTML = items.map(f => `
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="bento-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="bento-icon-wrapper mb-3">
+                                <i class="bi ${escapeHtml(f.icon)}"></i>
+                            </div>
+                            <h5 class="bento-card-title">${escapeHtml(f.name)}</h5>
+                            <span class="badge-tag">${escapeHtml(f.filesCount)} arquivos</span>
+                        </div>
+                        <div class="mt-2">
+                            ${f.files && f.files.length > 0 ? f.files.map(file => `
+                                <a href="https://drive.google.com/file/d/${escapeHtml(file.id)}/view?usp=sharing" target="_blank" class="text-decoration-none d-block mb-1">
+                                    <i class="bi ${escapeHtml(file.getIcon())} me-1"></i> ${escapeHtml(file.name)}
+                                </a>
+                            `).join('') : ''}
+                        </div>
+                        <div class="pt-4 mt-auto">
+                            <a href="https://drive.google.com/drive/folders/${escapeHtml(f.driveId)}" target="_blank" class="btn-modern-ghost w-100 justify-content-center py-2 text-decoration-none" style="font-size: 0.82rem;">
+                                <i class="bi bi-folder me-1"></i> Ver Pastas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function initialLoad() {
+            grid.innerHTML = '';
+            empty.classList.add('d-none');
+            loadingIndicator.classList.remove('d-none');
+        }
+
+        function handleDriveDataLoaded(event) {
+            const folders = event.detail?.folders || [];
+            renderFolders(folders);
+        }
+
+        function filterList(query) {
+            const q = query.toLowerCase().trim();
+            const filtered = data.FOLDERS.filter(f => 
+                f.name.toLowerCase().includes(q) || 
+                f.slug.toLowerCase().includes(q)
+            );
+            renderFolders(filtered);
+        }
+
+        filterInput.addEventListener('input', (e) => {
+            chips.forEach(c => c.classList.remove('active'));
+            filterList(e.target.value);
+        });
+
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                filterInput.value = '';
+                const slug = chip.dataset.slug;
+                if (slug === 'all') {
+                    renderFolders(data.FOLDERS);
+                } else {
+                    filterList(slug);
                 }
             });
-            if (empty) empty.hidden = visible > 0;
+        });
+
+        // Instagram oEmbed functionality
+        let instagramEmbedCache = {};
+
+        // Fetch oEmbed data for an Instagram post using tokenless Facebook Graph API
+        async function fetchInstagramOEmbed(postUrl) {
+            // Check cache first
+            if (instagramEmbedCache[postUrl]) {
+                return instagramEmbedCache[postUrl];
+            }
+
+            try {
+                // Using Facebook Graph API v26.0+ for tokenless Instagram oEmbed
+                const oEmbedUrl = new URL('https://graph.facebook.com/v26.0/instagram_oembed');
+                oEmbedUrl.searchParams.set('url', postUrl);
+                oEmbedUrl.searchParams.set('hidecaption', 'true'); // Hide caption as required
+                oEmbedUrl.searchParams.set('maxwidth', '658'); // Standard width
+                oEmbedUrl.searchParams.set('omitscript', 'true'); // Avoid script conflicts
+
+                const response = await fetch(oEmbedUrl.toString());
+                if (!response.ok) {
+                    throw new Error(`Instagram oEmbed failed: ${response.status}`);
+                }
+                const data = await response.json();
+                const embedHtml = data.html || null;
+                instagramEmbedCache[postUrl] = embedHtml;
+                return embedHtml;
+            } catch (error) {
+                console.warn(`Failed to load oEmbed for ${postUrl}:`, error);
+                return null;
+            }
         }
 
-        render();
-        if (filterInput) {
-            filterInput.addEventListener('input', (e) => render(e.target.value));
+        // Render featured posts with oEmbed support for Instagram
+        function renderFeaturedPosts(posts) {
+            const featuredGrid = document.getElementById('featuredPostsGrid');
+            if (!posts.length) {
+                featuredGrid.innerHTML = '<div class="col-12"><p class="text-muted text-center py-4">Nenhum post em destaque disponível.</p></div>';
+                return;
+            }
+
+            // Process all posts and collect their HTML
+            const postHTMLPromises = posts.map(async (post) => {
+                // For Instagram posts, try to use oEmbed
+                if (post.platform === 'Instagram' && post.embedUrl) {
+                    const embedHtml = await fetchInstagramOEmbed(post.embedUrl);
+                    if (embedHtml) {
+                        return `
+                            <div class="col-md-6">
+                                <div class="post-feed-card p-3 border-0">
+                                    ${embedHtml}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+                // For non-Instagram posts or if oEmbed failed, use fallback rendering
+                return `
+                    <div class="col-md-6">
+                        <div class="post-feed-card">
+                            <div class="post-feed-header">
+                                <div class="d-flex align-items-center">
+                                    <img src="${escapeHtml(post.authorAvatar)}" alt="${escapeHtml(post.author)}" class="post-author-img">
+                                    <div>
+                                        <small class="text-muted">${escapeHtml(post.timeAgo)}</small>
+                                        <div>
+                                            <span class="post-tag">${escapeHtml(post.tag)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="social-embed-heading">
+                                    <span>
+                                        <i class="${escapeHtml(post.platformIcon)}"></i> ${escapeHtml(post.platform)}
+                                    </span>
+                                    <a href="${escapeHtml(post.url)}" target="_blank" class="text-decoration-none">Ver original</a>
+                                </div>
+                            </div>
+
+                            ${post.image ? `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" class="post-feed-media">` : ''}
+
+                            <div class="post-feed-body">
+                                <span class="post-tag">${escapeHtml(post.tag)}</span>
+                                <h3 class="post-title">${escapeHtml(post.title)}</h3>
+                                <p class="post-snippet">${escapeHtml(post.text)}</p>
+                            </div>
+
+                            <div class="post-engagement-bar">
+                                <span><i class="bi bi-heart-fill me-1"></i>${escapeHtml(post.likes)}</span>
+                                <span><i class="bi bi-chat-dots-fill me-1"></i>${escapeHtml(post.comments)}</span>
+                                <a href="${escapeHtml(post.url)}" target="_blank" class="post-cta-btn">${escapeHtml(post.ctaText)}</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Wait for all promises and then render
+            Promise.all(postHTMLPromises).then(htmlParts => {
+                featuredGrid.innerHTML = htmlParts.join('');
+            }).catch(error => {
+                console.error('Error rendering featured posts:', error);
+                featuredGrid.innerHTML = '<div class="col-12"><p class="text-danger text-center py-4">Erro ao carregar posts em destaque.</p></div>';
+            });
         }
-    })();
+
+        // Render featured posts on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFeaturedPosts(data.FEATURED_POSTS);
+        });
+
+        // Listen for drive data loaded event FIRST
+        document.addEventListener('drive-data-loaded', handleDriveDataLoaded);
+
+        // Initial load
+        initialLoad();
+
+        // Refresh button handler
+        const refreshBtn = document.getElementById('refreshBtn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', () => {
+                refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizando...';
+                refreshBtn.disabled = true;
+                
+                // Re-import data module to get latest functions
+                import('./js/data.js').then(async (dataModule) => {
+                    await dataModule.initializeDriveFolders();
+                    refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizar Biblioteca';
+                    refreshBtn.disabled = false;
+                }).catch(error => {
+                    console.error('Error refreshing Drive data:', error);
+                    refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizar Biblioteca';
+                    refreshBtn.disabled = false;
+                });
+            });
+        }
     </script>
-
 </body>
 
 </html>
