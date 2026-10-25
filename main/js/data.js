@@ -49,16 +49,16 @@ const SOCIAL_CHANNELS = [
         cta: "Seguir Página"
     },
     {
-        id: "linkedin-post",
-        name: "LinkedIn · Post Oficial",
-        handle: "Conexão TI (Company)",
-        url: "https://www.linkedin.com/company/conex%C3%A3o-ti/home/",
-        followers: "Publicações Recentes",
+        id: "linkedin-group",
+        name: "LinkedIn · Grupo Oficial",
+        handle: "Grupo Conexão TI",
+        url: "https://www.linkedin.com/groups/40314001/",
+        followers: "Networking & Vagas",
         icon: "bi-linkedin",
         colorClass: "brand-linkedin",
-        badge: "Post Oficial",
-        description: "Publicações oficiais da comunidade Conexão TI no LinkedIn.",
-        cta: "Seguir Página"
+        badge: "Grupo Oficial",
+        description: "Participe do grupo oficial no LinkedIn para trocar experiências, acompanhar vagas e ampliar seu networking.",
+        cta: "Entrar no Grupo"
     },
     {
         id: "discord",
@@ -170,23 +170,6 @@ const FEATURED_POSTS = [
         url: "https://www.linkedin.com/feed/update/urn:li:activity:7498799924717793282/",
         embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7498799924717793282",
         ctaText: "Ver no LinkedIn"
-    },
-    {
-        id: "post-5",
-        platform: "Discord",
-        platformIcon: "bi-discord",
-        platformColor: "#5865f2",
-        author: "Comunidade Conexão TI",
-        authorAvatar: "img/logo.png",
-        timeAgo: "Ao vivo / 24/7",
-        tag: "Salas de Voz",
-        title: "Salas de estudo abertas no Discord para tirar dúvidas e codar junto",
-        text: "Entre no servidor para discutir sintaxe, algoritmos, banco de dados e outros temas com estudantes da comunidade.",
-        image: "https://images.unsplash.com/photo-1618401471353-b98aedd04e11?w=700&h=380&fit=crop",
-        likes: "Canais de voz ativos",
-        comments: "Tire dúvidas ao vivo",
-        url: "https://discord.gg/K5qquv4TfA",
-        ctaText: "Entrar no Discord"
     }
 ];
 

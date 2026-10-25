@@ -98,29 +98,102 @@ body.page-leaving {
     opacity: 1;
     transition: none;
   }
+
+  .bg-space__stars {
+    animation: none;
+  }
 }
 
-/* Background com textura sutil e orgânica */
-.bg-decor {
+/* Fundo espacial minimalista (compartilhado por todas as páginas) */
+.bg-space {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
-  background-image:
-    radial-gradient(at 15% 10%, rgba(0, 229, 255, 0.08) 0px, transparent 50%),
-    radial-gradient(at 85% 90%, rgba(0, 112, 243, 0.08) 0px, transparent 50%);
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 82% -8%, rgba(0, 229, 255, 0.07), transparent 68%),
+    radial-gradient(ellipse 65% 50% at 10% 108%, rgba(0, 112, 243, 0.09), transparent 70%),
+    var(--bg-main);
 }
 
-.bg-dot-pattern {
+/* Camadas de estrelas: tamanhos diferentes para evitar repetição visível */
+.bg-space__stars {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+.bg-space__stars--far {
+  background-image:
+    radial-gradient(1px 1px at 22px 34px, rgba(255, 255, 255, 0.42), transparent),
+    radial-gradient(1px 1px at 118px 186px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 176px 78px, rgba(255, 255, 255, 0.36), transparent),
+    radial-gradient(1px 1px at 62px 232px, rgba(255, 255, 255, 0.26), transparent),
+    radial-gradient(1px 1px at 208px 148px, rgba(255, 255, 255, 0.32), transparent),
+    radial-gradient(1px 1px at 146px 268px, rgba(255, 255, 255, 0.24), transparent),
+    radial-gradient(1px 1px at 28px 128px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 248px 22px, rgba(255, 255, 255, 0.34), transparent);
+  background-size: 272px 288px;
+  animation: stars-breathe 14s ease-in-out infinite;
+}
+
+.bg-space__stars--near {
+  background-image:
+    radial-gradient(1.5px 1.5px at 84px 42px, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 318px 196px, rgba(190, 240, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 236px 298px, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1.5px 1.5px at 168px 118px, rgba(210, 235, 255, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 388px 74px, rgba(255, 255, 255, 0.42), transparent);
+  background-size: 430px 430px;
+  animation: stars-breathe 22s ease-in-out infinite reverse;
+}
+
+/* Luz ambiente que acompanha o ponteiro (ver js/cursor.js).
+   Fica atrás do conteúdo e apenas clareia de leve as estrelas por perto. */
+.bg-space__spotlight {
+  --x: 50vw;
+  --y: 50vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(0, 229, 255, 0.09),
+    rgba(0, 112, 243, 0.05) 42%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translate3d(var(--x), var(--y), 0) translate(-50%, -50%);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.bg-space__spotlight.is-visible {
+  opacity: 1;
+}
+
+/* Um brilho discreto no horizonte, tipo atmosfera de planeta */
+.bg-space__horizon {
+  position: absolute;
+  left: 50%;
+  bottom: -42vh;
+  width: 130vw;
+  height: 80vh;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border-top: 1px solid rgba(0, 229, 255, 0.12);
+  background: radial-gradient(ellipse at 50% 0%, rgba(0, 112, 243, 0.1), transparent 62%);
+  filter: blur(2px);
+}
+
+@keyframes stars-breathe {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
 }
 
 /* Navbar */
@@ -593,6 +666,25 @@ body.page-leaving {
   color: var(--text-subtle);
 }
 
+.site-footer__credit {
+  margin: 0.55rem 0 0;
+  font-size: 0.7rem;
+  color: var(--text-subtle);
+}
+
+.site-footer__credit a {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-footer__credit a:hover,
+.site-footer__credit a:focus-visible {
+  color: var(--brand-primary);
+  border-bottom-color: currentColor;
+}
+
 @media (max-width: 767.98px) {
   .site-footer {
     margin-top: 3rem;
@@ -629,47 +721,6 @@ body.page-leaving {
   --bs-emphasis-color: var(--text-main);
   --bs-secondary-color: var(--text-muted);
 }
-
-/* Fundo tecnológico estático das páginas secundárias */
-.tech-background {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0.72;
-}
-
-.tech-grid {
-  position: absolute;
-  inset: -20%;
-  background-image: linear-gradient(to right, rgba(0, 229, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 229, 255, 0.06) 1px, transparent 1px);
-  background-size: 72px 72px;
-  transform: perspective(500px) rotateX(58deg) translateY(-12%);
-  mask-image: linear-gradient(to bottom, transparent, black 28%, black 72%, transparent);
-}
-
-.tech-scanline {
-  position: absolute;
-  inset: -30% 0;
-  height: 22%;
-  background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.06), transparent);
-}
-
-.tech-node {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--brand-primary);
-  box-shadow: 0 0 0 5px rgba(0, 229, 255, 0.08), 0 0 22px rgba(0, 229, 255, 0.7);
-}
-
-.node-one { left: 18%; top: 27%; }
-.node-two { right: 21%; top: 19%; }
-.node-three { left: 28%; bottom: 22%; }
-.node-four { right: 13%; bottom: 28%; }
 
 /* Cartões e rótulos */
 .card-surface {
@@ -885,49 +936,235 @@ body.page-leaving {
   color: var(--text-main);
 }
 
-/* Avatar e redes dos ADMs */
-.adm-avatar {
-  width: 46px;
-  height: 46px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
+/* Cards dos ADMs */
+.adm-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.22), rgba(0, 229, 255, 0.05));
-  border: 1px solid rgba(0, 229, 255, 0.35);
-  color: var(--brand-primary);
-  font-family: var(--font-title);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
 }
 
-.adm-avatar img {
+.adm-card:hover,
+.adm-card:focus-within {
+  transform: translateY(-6px);
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.adm-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: linear-gradient(145deg, #0f1a24, #080b11);
+}
+
+.adm-card__photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.adm-card:hover .adm-card__photo,
+.adm-card:focus-within .adm-card__photo {
+  transform: scale(1.05);
+}
+
+.adm-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(7, 9, 14, 0.62), rgba(7, 9, 14, 0.08) 34%, transparent 60%);
+}
+
+.adm-card__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary);
+  font-family: var(--font-title);
+  font-size: clamp(2.6rem, 5vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(0, 229, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 78% 82%, rgba(0, 112, 243, 0.18), transparent 52%),
+    linear-gradient(145deg, #101a25, #080b11);
+}
+
+.adm-card__badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 1;
+  padding: 0.28rem 0.6rem;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(7, 9, 14, 0.55);
+  color: #dffbff;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.adm-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+}
+
+.adm-card__name {
+  margin: 0;
+  color: var(--text-main);
+  font-family: var(--font-title);
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.adm-card__role {
+  margin: 0 0 0.25rem;
+  color: var(--brand-primary);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.adm-card__bio {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.adm-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.55rem;
+}
+
+.adm-card__tags .badge-tag {
+  padding: 0.18rem 0.5rem;
+  font-size: 0.6rem;
+}
+
+.adm-card__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.95rem;
 }
 
 .adm-social-link {
-  width: 36px;
-  height: 36px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 10px;
+  gap: 0.35rem;
+  height: 34px;
+  padding: 0 0.7rem;
   border: 1px solid var(--border-subtle);
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.02);
   color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
-.adm-social-link:hover {
-  color: var(--brand-primary);
+.adm-social-link i {
+  font-size: 0.9rem;
+}
+
+.adm-social-link:hover,
+.adm-social-link:focus-visible {
+  color: var(--text-main);
   border-color: var(--border-active);
   background: rgba(0, 229, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.adm-social-link[data-network="instagram"]:hover,
+.adm-social-link[data-network="instagram"]:focus-visible {
+  color: #ff7aa8;
+  border-color: rgba(225, 48, 108, 0.5);
+  background: rgba(225, 48, 108, 0.1);
+}
+
+.adm-social-link[data-network="github"]:hover,
+.adm-social-link[data-network="github"]:focus-visible {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.adm-social-link[data-network="linkedin"]:hover,
+.adm-social-link[data-network="linkedin"]:focus-visible {
+  color: #7cbcff;
+  border-color: rgba(10, 102, 194, 0.6);
+  background: rgba(10, 102, 194, 0.14);
+}
+
+.adm-social-link:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.adm-socials-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-subtle);
+  font-size: 0.74rem;
+}
+
+@media (max-width: 575.98px) {
+  .adm-card__media {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adm-card,
+  .adm-card__photo,
+  .adm-social-link {
+    transition: none;
+  }
+
+  .adm-card:hover,
+  .adm-card:focus-within {
+    transform: none;
+  }
+
+  .adm-card:hover .adm-card__photo,
+  .adm-card:focus-within .adm-card__photo {
+    transform: none;
+  }
 }
 
 .badge-tag {
@@ -962,4 +1199,100 @@ body.page-leaving {
   border-color: var(--border-active);
   background: rgba(0, 229, 255, 0.06);
   color: var(--text-main);
+}
+
+/* ============================================================
+   Cursor personalizado (ver js/cursor.js)
+   Só entra em ação quando o script ativa .has-custom-cursor,
+   ou seja, em dispositivos com mouse/trackpad.
+   ============================================================ */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Campos de digitação mantêm o cursor nativo de texto. */
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
+
+html.has-custom-cursor select {
+  cursor: pointer !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  --x: -100px;
+  --y: -100px;
+  --scale: 1;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate3d(var(--x), var(--y), 0) translate(-50%, -50%) scale(var(--scale));
+  transition:
+    opacity 0.18s ease,
+    width 0.18s ease,
+    height 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+  will-change: transform, width, height;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--brand-primary);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.85);
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(0, 229, 255, 0.55);
+  background: rgba(0, 229, 255, 0.03);
+}
+
+.cursor-dot.is-visible,
+.cursor-ring.is-visible {
+  opacity: 1;
+}
+
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0;
+}
+
+/* Sobre elementos clicáveis o anel cresce e o ponto encolhe. */
+.cursor-ring.is-hover {
+  --scale: 1.6;
+  border-color: rgba(0, 229, 255, 0.9);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.cursor-dot.is-hover {
+  --scale: 0.5;
+}
+
+/* Feedback tátil no clique. */
+.cursor-ring.is-pressed {
+  --scale: 0.85;
+  border-color: var(--brand-primary);
+}
+
+.cursor-dot.is-pressed {
+  --scale: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-ring {
+    transition: none;
+  }
 }

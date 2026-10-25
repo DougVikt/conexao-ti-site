@@ -50,16 +50,16 @@ export const CONEXAO_CONFIG = {
             cta: "Seguir Página"
         },
         {
-            id: "linkedin-post",
-            name: "LinkedIn · Post Destacado",
-            handle: "Conexão TI (Company)",
-            url: "https://www.linkedin.com/feed/update/urn:li:activity:7498799924717793282/",
-            followers: "Atualizações Recentes",
+            id: "linkedin-group",
+            name: "LinkedIn · Grupo Oficial",
+            handle: "Grupo Conexão TI",
+            url: "https://www.linkedin.com/groups/40314001/",
+            followers: "Networking & Vagas",
             icon: "bi-linkedin",
             colorClass: "brand-linkedin",
-            badge: "Post em Destaque",
-            description: "Post destacado mostrando novidades da Conexão TI, parcerias acadêmicas e oportunidades exclusivas.",
-            cta: "Ver Post"
+            badge: "Grupo Oficial",
+            description: "Participe do grupo oficial no LinkedIn para trocar experiências, acompanhar vagas e ampliar seu networking.",
+            cta: "Entrar no Grupo"
         },
         {
             id: "discord",

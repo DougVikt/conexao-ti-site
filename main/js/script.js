@@ -283,14 +283,14 @@ function renderInstagramEmbed(post) {
     const shortcode = getInstagramShortcode(post.embedUrl || post.url || '');
     const heading = `
         <div class="social-embed-heading">
-            <span><i class="bi bi-instagram"></i> Post real do Instagram</span>
-            <a href="${url}" target="_blank" rel="noopener">Abrir <i class="bi bi-box-arrow-up-right"></i></a>
+            <span><i class="bi bi-instagram"></i> Post do Instagram</span>
+            <a href="${url}" target="_blank" rel="noopener">Abrir no Instagram <i class="bi bi-box-arrow-up-right"></i></a>
         </div>
     `;
 
     if (!shortcode) {
         return `
-            <article class="social-embed-card" aria-label="Publicação recente de ${author}">
+            <article class="social-embed-card" aria-label="Publicação de ${author}">
                 ${heading}
                 <p class="text-muted small p-3 mb-0">Não foi possível carregar este post. <a href="${url}" target="_blank" rel="noopener">Abrir no Instagram</a>.</p>
             </article>
@@ -302,7 +302,7 @@ function renderInstagramEmbed(post) {
     const embedUrl = `https://www.instagram.com/p/${encodeURIComponent(shortcode)}/embed/?cr=1&v=14&wp=540&rd=${origin}`;
 
     return `
-        <article class="social-embed-card" aria-label="Publicação recente de ${author}">
+        <article class="social-embed-card" aria-label="Publicação de ${author}">
             ${heading}
             <iframe
                 class="instagram-media instagram-media-rendered"
@@ -357,10 +357,10 @@ function renderPostCard(post) {
 function renderLinkedInEmbed(post) {
     const embedUrl = post.embedUrl || post.url;
     return `
-        <article class="social-embed-card" aria-label="Publicação recente de ${escapeHtml(post.author)}">
+        <article class="social-embed-card" aria-label="Publicação de ${escapeHtml(post.author)}">
             <div class="social-embed-heading">
-                <span><i class="bi bi-linkedin"></i> Post real do LinkedIn</span>
-                <a href="${escapeHtml(post.url)}" target="_blank" rel="noopener">Abrir <i class="bi bi-box-arrow-up-right"></i></a>
+                <span><i class="bi bi-linkedin"></i> Post do LinkedIn</span>
+                <a href="${escapeHtml(post.url)}" target="_blank" rel="noopener">Abrir no LinkedIn <i class="bi bi-box-arrow-up-right"></i></a>
             </div>
             <div class="linkedin-embed-wrapper">
                 <iframe src="${escapeHtml(embedUrl)}" 
@@ -368,7 +368,7 @@ function renderLinkedInEmbed(post) {
                         width="100%" 
                         frameborder="0" 
                         allowfullscreen 
-                        title="Embedded post"
+                        title="Publicação do LinkedIn de ${escapeHtml(post.author)}"
                         loading="lazy">
                 </iframe>
             </div>
