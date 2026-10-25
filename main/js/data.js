@@ -49,16 +49,16 @@ const SOCIAL_CHANNELS = [
         cta: "Seguir Página"
     },
     {
-        id: "linkedin-post",
-        name: "LinkedIn · Post Oficial",
-        handle: "Conexão TI (Company)",
-        url: "https://www.linkedin.com/company/conex%C3%A3o-ti/home/",
-        followers: "Publicações Recentes",
+        id: "linkedin-group",
+        name: "LinkedIn · Grupo Oficial",
+        handle: "Grupo Conexão TI",
+        url: "https://www.linkedin.com/groups/40314001/",
+        followers: "Networking & Vagas",
         icon: "bi-linkedin",
         colorClass: "brand-linkedin",
-        badge: "Post Oficial",
-        description: "Publicações oficiais da comunidade Conexão TI no LinkedIn.",
-        cta: "Seguir Página"
+        badge: "Grupo Oficial",
+        description: "Participe do grupo oficial no LinkedIn para trocar experiências, acompanhar vagas e ampliar seu networking.",
+        cta: "Entrar no Grupo"
     },
     {
         id: "discord",
@@ -170,23 +170,6 @@ const FEATURED_POSTS = [
         url: "https://www.linkedin.com/feed/update/urn:li:activity:7498799924717793282/",
         embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7498799924717793282",
         ctaText: "Ver no LinkedIn"
-    },
-    {
-        id: "post-5",
-        platform: "Discord",
-        platformIcon: "bi-discord",
-        platformColor: "#5865f2",
-        author: "Comunidade Conexão TI",
-        authorAvatar: "img/logo.png",
-        timeAgo: "Ao vivo / 24/7",
-        tag: "Salas de Voz",
-        title: "Salas de estudo abertas no Discord para tirar dúvidas e codar junto",
-        text: "Entre no servidor para discutir sintaxe, algoritmos, banco de dados e outros temas com estudantes da comunidade.",
-        image: "https://images.unsplash.com/photo-1618401471353-b98aedd04e11?w=700&h=380&fit=crop",
-        likes: "Canais de voz ativos",
-        comments: "Tire dúvidas ao vivo",
-        url: "https://discord.gg/K5qquv4TfA",
-        ctaText: "Entrar no Discord"
     }
 ];
 
@@ -195,43 +178,7 @@ const COMMUNITY_PERKS = [
     { icon: "bi-folder2-open", title: "Drive Coletivo", desc: "Acesso a resumos, provas anteriores e gabaritos comentados pela comunidade." },
     { icon: "bi-megaphone-fill", title: "Visibilidade dos Seus Projetos", desc: "Seus repositórios do GitHub e conquistas podem ser divulgados nos canais oficiais." },
     { icon: "bi-discord", title: "Tira-Dúvidas 24/7", desc: "Salas de voz e texto para você não travar em um bug antes das entregas." },
-    { icon: "bi-chat-heart-fill", title: "Mentoria com Mestres", desc: "Conecte-se com profissionais que podem orientar seus próximos passos na área." }
-];
-
-const MENTORSHIP_PROGRAMS = [
-    {
-        id: "frontend",
-        name: "Mestre Front-end",
-        role: "Profissional convidado",
-        company: "Perfil em breve",
-        avatar: "img/logo.png",
-        topics: ["Front-end", "Portfólio", "Primeiro emprego"],
-        slots: "Inscrições abertas",
-        bio: "Converse sobre fundamentos, projetos para portfólio e como se preparar para processos seletivos na área web.",
-        ctaUrl: "https://chat.whatsapp.com/GV7oWrSgWoIJ9DYlEh9h18"
-    },
-    {
-        id: "data",
-        name: "Mestre Dados",
-        role: "Profissional convidado",
-        company: "Perfil em breve",
-        avatar: "img/logo.png",
-        topics: ["Python", "Dados", "Carreira"],
-        slots: "Inscrições abertas",
-        bio: "Entenda caminhos de estudo, projetos práticos e o que considerar antes de iniciar uma carreira orientada por dados.",
-        ctaUrl: "https://chat.whatsapp.com/GV7oWrSgWoIJ9DYlEh9h18"
-    },
-    {
-        id: "infra",
-        name: "Mestre Infraestrutura",
-        role: "Profissional convidado",
-        company: "Perfil em breve",
-        avatar: "img/logo.png",
-        topics: ["Redes", "Cloud", "Certificações"],
-        slots: "Inscrições abertas",
-        bio: "Troque experiências sobre infraestrutura, cloud, certificações e os primeiros passos para entrar na área.",
-        ctaUrl: "https://chat.whatsapp.com/GV7oWrSgWoIJ9DYlEh9h18"
-    }
+    { icon: "bi-people-fill", title: "Coordenação Presente", desc: "ADMs ativos na moderação, na organização de eventos e no apoio aos projetos da comunidade." }
 ];
 
 // ==============================
@@ -283,31 +230,6 @@ const FOLDER_ICON_MAP = {
 // Lista de pastas que será preenchida dinamicamente
 let FOLDERS = [];
 
-// Depoimentos de mentorias realizadas
-const TESTIMONIALS = [
-    {
-        name: "Ana Silva",
-        role: "Estudante de Ciência da Computação",
-        topics: ["Front-end", "Carreira"],
-        message: "A mentoria me ajudou a estruturar meu portfólio e conseguir meu primeiro estágio em uma startup de tecnologia. As dicas sobre entrevistas técnicas foram valiosas!",
-        date: "Março 2026"
-    },
-    {
-        name: "Carlos Mendes",
-        role: "Desenvolvedor Júnior",
-        topics: ["Back-end", "Banco de Dados"],
-        message: "Troquei experiências sobre arquitetura de microserviços e otimização de queries SQL. Me sinto mais confiante para tomar decisões técnicas em meu trabalho.",
-        date: "Fevereiro 2026"
-    },
-    {
-        name: "Fernanda Lopes",
-        role: "Analista de Dados",
-        topics: ["Dados", "IA", "Carreira"],
-        message: "A mentora me orientou sobre os caminhos para especialização em machine learning e quais certificações vale a pena investir inicialmente.",
-        date: "Janeiro 2026"
-    }
-];
-
 // Criar o objeto CONEXAO_DATA imediatamente com os dados estáticos
 // As pastas do Drive serão atualizadas assincronamente
 window.CONEXAO_DATA = {
@@ -315,8 +237,6 @@ window.CONEXAO_DATA = {
     SOCIAL_CHANNELS,
     FEATURED_POSTS,
     COMMUNITY_PERKS,
-    MENTORSHIP_PROGRAMS,
-    TESTIMONIALS,
     FOLDERS
 };
 
@@ -575,89 +495,24 @@ async function initializeDriveFolders() {
 }
 
 /**
- * Inicializa o feed do Instagram buscando posts recentes usando tokenless oEmbed
- * Busca os posts mais recentes do perfil do Instagram usando URLs conhecidas
+ * Prepara o feed do Instagram a partir dos posts em destaque.
+ * O embed oficial (instagram.com/embed.js) é aplicado no frontend, sem
+ * necessidade de token da Graph API.
  */
 async function initializeInstagramFeed() {
     try {
-        // Definir URLs recentes conhecidas do Instagram para buscar via oEmbed
-        // Estas são as mesmas URLs do FEATURED_POSTS, mas podemos buscar dinamicamente
-        const instagramPostUrls = [
-            'https://www.instagram.com/conexaoti_/p/DcjHge4o0G3/', // Destaque Recente
-            'https://www.instagram.com/conexaoti_/p/DeNgAVzFiKJ/', // Carrossel de Estudo
-            // Adicionar mais URLs conforme necessário para posts recentes
-        ];
+        const featuredPosts = (typeof window !== 'undefined' && window.CONEXAO_DATA && window.CONEXAO_DATA.FEATURED_POSTS) || [];
+        const instagramPosts = featuredPosts.filter(post => post.platform === 'Instagram');
 
-        // Buscar posts do Instagram usando oEmbed tokenless
-        const instagramPosts = [];
-
-        for (const postUrl of instagramPostUrls) {
-            try {
-                // Extrair ID do post da URL para usar como ID único
-                const postId = postUrl.split('/p/')[1].replace('/', '');
-
-                // Buscar dados do oEmbed
-                const embedHtml = await fetchInstagramOEmbed(postUrl);
-
-                if (embedHtml) {
-                    // Criar objeto de post compatível com o formato existente
-                    instagramPosts.push({
-                        id: `ig_${postId}`,
-                        platform: 'Instagram',
-                        platformIcon: 'bi-instagram',
-                        platformColor: '#e1306c',
-                        author: '@conexaoti_',
-                        authorAvatar: 'img/logo.png',
-                        timeAgo: 'Recente', // Vamos melhorar isso com timestamp real se disponível
-                        tag: 'Recente',
-                        title: `Post do Instagram ${postId}`,
-                        text: 'Post do Instagram conexaoti_',
-                        image: '', // O oEmbed trará a imagem completa
-                        likes: 'Ver curtidas',
-                        comments: 'Ver comentários',
-                        url: postUrl,
-                        embedUrl: postUrl,
-                        ctaText: 'Ver no Instagram',
-                        // Armazenar o HTML do oEmbed para renderização
-                        _oEmbedHtml: embedHtml
-                    });
-                }
-            } catch (postError) {
-                console.warn(`Failed to load Instagram post ${postUrl}:`, postError);
-                continue;
-            }
-        }
-
-        // Se conseguimos carregar posts via oEmbed, usar eles
-        // Caso contrário, fallback para FEATURED_POSTS
-        let finalPosts = instagramPosts;
-        if (finalPosts.length === 0) {
-            console.warn('No recent Instagram posts loaded via oEmbed, using FEATURED_POSTS fallback');
-            const featuredPosts = (typeof window !== 'undefined' && window.CONEXAO_DATA && window.CONEXAO_DATA.FEATURED_POSTS) || [];
-            finalPosts = featuredPosts.filter(post => post.platform === 'Instagram');
-        }
-
-        // Atualizar o objeto CONEXAO_DATA
         if (typeof window !== 'undefined' && window.CONEXAO_DATA) {
-            window.CONEXAO_DATA.INSTAGRAM_FEED = finalPosts;
+            window.CONEXAO_DATA.INSTAGRAM_FEED = instagramPosts;
         }
 
-        // Disparar evento para o frontend renderizar
         if (typeof document !== 'undefined') {
-            document.dispatchEvent(new CustomEvent('instagram-data-loaded', { detail: { posts: finalPosts } }));
+            document.dispatchEvent(new CustomEvent('instagram-data-loaded', { detail: { posts: instagramPosts } }));
         }
     } catch (error) {
-        console.error('Erro ao inicializar feed do Instagram:', error);
-        // Fallback completo
-        const featuredPosts = (typeof window !== 'undefined' && window.CONEXAO_DATA && window.CONEXAO_DATA.FEATURED_POSTS) || [];
-        const fallbackPosts = featuredPosts.filter(post => post.platform === 'Instagram');
-
-        if (typeof window !== 'undefined' && window.CONEXAO_DATA) {
-            window.CONEXAO_DATA.INSTAGRAM_FEED = fallbackPosts.length > 0 ? fallbackPosts : getFallbackInstagramPosts();
-        }
-        if (typeof document !== 'undefined') {
-            document.dispatchEvent(new CustomEvent('instagram-data-loaded', { detail: { posts: window.CONEXAO_DATA?.INSTAGRAM_FEED || getFallbackInstagramPosts() } }));
-        }
+        console.error('Erro ao preparar feed do Instagram:', error);
     }
 }
 /**
@@ -804,8 +659,6 @@ export {
     escapeHtml,
     FOLDERS,
     FEATURED_POSTS,
-    MENTORSHIP_PROGRAMS,
-    TESTIMONIALS,
     SOCIAL_STATS,
     SOCIAL_CHANNELS,
     initializeDriveFolders,

@@ -12,29 +12,65 @@
 
     <!-- CSS Moderno High-End -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="js/transitions.js" defer></script>
+    <script src="js/cursor.js" defer></script>
 </head>
 
 <body>
     <!-- Efeitos de Fundo Moderno -->
-    <div class="ambient-background" aria-hidden="true">
-        <div class="ambient-grid"></div>
-        <div class="ambient-glow glow-top-left"></div>
-        <div class="ambient-glow glow-bottom-right"></div>
+    <div class="bg-space" aria-hidden="true">
+        <div class="bg-space__stars bg-space__stars--far"></div>
+        <div class="bg-space__stars bg-space__stars--near"></div>
+        <div class="bg-space__horizon"></div>
     </div>
 
     <div class="position-relative" style="z-index: 1">
 
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-custom py-3">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-                    <img src="img/logo.png" alt="Logo Conexão TI" class="brand-logo-img" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain;" />
-                    <span class="brand-title">Conexão TI</span>
+        <!-- Navbar Oficial -->
+        <nav class="nav-header py-3" aria-label="Navegação principal">
+            <div class="container d-flex align-items-center justify-content-between">
+                <a class="d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+                    <img src="img/logo.png" alt="Logo Conexão TI" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain;" />
+                    <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão TI</span>
                 </a>
 
-                <a href="index.html" class="btn-modern-ghost py-1 px-3" style="font-size: 0.85rem;">
-                    <i class="bi bi-arrow-left me-1"></i> Voltar à Home
-                </a>
+                <div class="d-none d-xl-flex align-items-center gap-3">
+                    <a href="index.html#redes" class="text-decoration-none text-secondary small fw-semibold">Nossas Redes</a>
+                    <a href="index.html#posts" class="text-decoration-none text-secondary small fw-semibold">Destaques &amp; Posts</a>
+                    <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold">ADMs</a>
+                    <a href="biblioteca.html" class="text-decoration-none text-primary small fw-semibold active" aria-current="page">Biblioteca de Arquivos</a>
+                    <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold">Projetos</a>
+                    <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold">Dúvidas</a>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
+                        <i class="bi bi-discord"></i>
+                    </a>
+                    <a href="index.html#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;">
+                        <span>Fazer Parte</span> <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                    <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="collapse d-xl-none nav-mobile" id="navMenu">
+                <div class="container d-flex flex-column gap-2 pb-2">
+                    <a href="index.html#redes" class="text-decoration-none text-secondary small fw-semibold py-1">Nossas Redes</a>
+                    <a href="index.html#posts" class="text-decoration-none text-secondary small fw-semibold py-1">Destaques &amp; Posts</a>
+                    <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold py-1">ADMs</a>
+                    <a href="biblioteca.html" class="text-decoration-none text-primary small fw-semibold py-1 active" aria-current="page">Biblioteca de Arquivos</a>
+                    <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Projetos</a>
+                    <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
+                </div>
             </div>
         </nav>
 
@@ -42,9 +78,11 @@
         <header class="container py-5 text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <span class="badge-pill-tech mb-3">
-                        <i class="bi bi-folder-check"></i> Materiais por Disciplina
-                    </span>
+                    <div class="section-eyebrow mb-3">
+                        <span class="section-eyebrow__num">01</span>
+                        <span class="section-eyebrow__line"></span>
+                        <span>Materiais por disciplina</span>
+                    </div>
                     <h1 class="hero-title-gradient" style="font-size: clamp(2rem, 4vw, 3rem);">
                         Biblioteca de Materiais & Aulas
                     </h1>
@@ -79,38 +117,13 @@
             </div>
         </header>
 
-        <!-- Posts em Destaque -->
-        <section class="container mb-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <span class="badge-pill-tech mb-3">
-                        <i class="bi bi-star-fill"></i> Destaques da Comunidade
-                    </span>
-                    <h2 class="section-title mb-4" style="font-size: clamp(1.5rem, 3vw, 2rem);">
-                        Posts em Destaque
-                    </h2>
-                    <div class="row g-4" id="featuredPostsGrid"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Instagram Feed -->
-        <section class="container mb-5" id="instagramFeedSection">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <span class="badge-pill-tech mb-3">
-                        <i class="bi bi-instagram"></i> Feed do Instagram
-                    </span>
-                    <h2 class="section-title mb-4" style="font-size: clamp(1.5rem, 3vw, 2rem);">
-                        Últimas Postagens
-                    </h2>
-                    <div class="row g-4" id="instagramPostsGrid"></div>
-                </div>
-            </div>
-        </section>
-
         <!-- Grid de Pastas -->
         <main class="container pb-5">
+            <div class="section-eyebrow mb-3">
+                <span class="section-eyebrow__num">02</span>
+                <span class="section-eyebrow__line"></span>
+                <span>Pastas por matéria</span>
+            </div>
             <div class="row g-3" id="foldersGrid"></div>
             <div id="emptyMessage" class="text-center text-muted py-5 d-none">
                 <i class="bi bi-search fs-1 d-block mb-2 text-secondary"></i>
@@ -126,13 +139,16 @@
         </main>
 
         <!-- Footer -->
-        <footer class="footer-minimal">
-            <div class="container text-center">
-                <p class="mb-0 text-muted">Conexão TI · Materiais abertos e compartilhados pelos alunos</p>
+        <footer class="site-footer">
+            <div class="container">
+                <p class="site-footer__message">Ninguém aprende tecnologia sozinho. Aqui, o conhecimento circula.</p>
+                <p class="site-footer__meta">Conexão TI · © 2026 · Feito de alunos para alunos</p>
             </div>
         </footer>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script type="module">
         import * as data from './js/data.js';
@@ -218,115 +234,6 @@
                     filterList(slug);
                 }
             });
-        });
-
-        // Instagram oEmbed functionality
-        let instagramEmbedCache = {};
-
-        // Fetch oEmbed data for an Instagram post using tokenless Facebook Graph API
-        async function fetchInstagramOEmbed(postUrl) {
-            // Check cache first
-            if (instagramEmbedCache[postUrl]) {
-                return instagramEmbedCache[postUrl];
-            }
-
-            try {
-                // Using Facebook Graph API v26.0+ for tokenless Instagram oEmbed
-                const oEmbedUrl = new URL('https://graph.facebook.com/v26.0/instagram_oembed');
-                oEmbedUrl.searchParams.set('url', postUrl);
-                oEmbedUrl.searchParams.set('hidecaption', 'true'); // Hide caption as required
-                oEmbedUrl.searchParams.set('maxwidth', '658'); // Standard width
-                oEmbedUrl.searchParams.set('omitscript', 'true'); // Avoid script conflicts
-
-                const response = await fetch(oEmbedUrl.toString());
-                if (!response.ok) {
-                    throw new Error(`Instagram oEmbed failed: ${response.status}`);
-                }
-                const data = await response.json();
-                const embedHtml = data.html || null;
-                instagramEmbedCache[postUrl] = embedHtml;
-                return embedHtml;
-            } catch (error) {
-                console.warn(`Failed to load oEmbed for ${postUrl}:`, error);
-                return null;
-            }
-        }
-
-        // Render featured posts with oEmbed support for Instagram
-        function renderFeaturedPosts(posts) {
-            const featuredGrid = document.getElementById('featuredPostsGrid');
-            if (!posts.length) {
-                featuredGrid.innerHTML = '<div class="col-12"><p class="text-muted text-center py-4">Nenhum post em destaque disponível.</p></div>';
-                return;
-            }
-
-            // Process all posts and collect their HTML
-            const postHTMLPromises = posts.map(async (post) => {
-                // For Instagram posts, try to use oEmbed
-                if (post.platform === 'Instagram' && post.embedUrl) {
-                    const embedHtml = await fetchInstagramOEmbed(post.embedUrl);
-                    if (embedHtml) {
-                        return `
-                            <div class="col-md-6">
-                                <div class="post-feed-card p-3 border-0">
-                                    ${embedHtml}
-                                </div>
-                            </div>
-                        `;
-                    }
-                }
-                // For non-Instagram posts or if oEmbed failed, use fallback rendering
-                return `
-                    <div class="col-md-6">
-                        <div class="post-feed-card">
-                            <div class="post-feed-header">
-                                <div class="d-flex align-items-center">
-                                    <img src="${escapeHtml(post.authorAvatar)}" alt="${escapeHtml(post.author)}" class="post-author-img">
-                                    <div>
-                                        <small class="text-muted">${escapeHtml(post.timeAgo)}</small>
-                                        <div>
-                                            <span class="post-tag">${escapeHtml(post.tag)}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="social-embed-heading">
-                                    <span>
-                                        <i class="${escapeHtml(post.platformIcon)}"></i> ${escapeHtml(post.platform)}
-                                    </span>
-                                    <a href="${escapeHtml(post.url)}" target="_blank" class="text-decoration-none">Ver original</a>
-                                </div>
-                            </div>
-
-                            ${post.image ? `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" class="post-feed-media">` : ''}
-
-                            <div class="post-feed-body">
-                                <span class="post-tag">${escapeHtml(post.tag)}</span>
-                                <h3 class="post-title">${escapeHtml(post.title)}</h3>
-                                <p class="post-snippet">${escapeHtml(post.text)}</p>
-                            </div>
-
-                            <div class="post-engagement-bar">
-                                <span><i class="bi bi-heart-fill me-1"></i>${escapeHtml(post.likes)}</span>
-                                <span><i class="bi bi-chat-dots-fill me-1"></i>${escapeHtml(post.comments)}</span>
-                                <a href="${escapeHtml(post.url)}" target="_blank" class="post-cta-btn">${escapeHtml(post.ctaText)}</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-
-            // Wait for all promises and then render
-            Promise.all(postHTMLPromises).then(htmlParts => {
-                featuredGrid.innerHTML = htmlParts.join('');
-            }).catch(error => {
-                console.error('Error rendering featured posts:', error);
-                featuredGrid.innerHTML = '<div class="col-12"><p class="text-danger text-center py-4">Erro ao carregar posts em destaque.</p></div>';
-            });
-        }
-
-        // Render featured posts on load
-        document.addEventListener('DOMContentLoaded', () => {
-            renderFeaturedPosts(data.FEATURED_POSTS);
         });
 
         // Listen for drive data loaded event FIRST

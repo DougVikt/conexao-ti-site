@@ -12,60 +12,138 @@
 
   <!-- CSS Autoral & Design System -->
   <link href="css/style.css" rel="stylesheet">
+  <script src="js/transitions.js" defer></script>
+  <script src="js/cursor.js" defer></script>
 
   <!-- Scripts -->
   <script type="module" src="js/data.js"></script>
   <script type="module" src="js/script.js"></script>
+  <script src="js/nav.js" defer></script>
 </head>
 
 <body>
-  <!-- Textura de Fundo Sutil -->
-  <div class="bg-decor" aria-hidden="true">
-    <div class="bg-dot-pattern"></div>
+  <!-- Fundo espacial minimalista -->
+  <div class="bg-space" aria-hidden="true">
+    <div class="bg-space__stars bg-space__stars--far"></div>
+    <div class="bg-space__stars bg-space__stars--near"></div>
+    <div class="bg-space__horizon"></div>
   </div>
 
   <div class="position-relative" style="z-index: 1;">
 
     <!-- Navbar Oficial -->
-    <nav class="nav-header py-3">
+    <nav class="nav-header py-3" aria-label="Navegação principal">
       <div class="container d-flex align-items-center justify-content-between">
         <a class="d-flex align-items-center gap-2 text-decoration-none" href="#inicio">
           <img src="img/logo.png" alt="Logo Conexão TI" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain;" />
           <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão TI</span>
         </a>
 
-        <div class="d-none d-md-flex align-items-center gap-3">
+        <div class="d-none d-xl-flex align-items-center gap-3">
           <a href="#redes" class="text-decoration-none text-secondary small fw-semibold">Nossas Redes</a>
-          <a href="#posts" class="text-decoration-none text-secondary small fw-semibold">Destaques & Posts</a>
+          <a href="#posts" class="text-decoration-none text-secondary small fw-semibold">Destaques &amp; Posts</a>
+          <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold">ADMs</a>
           <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold">Biblioteca de Arquivos</a>
           <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold">Projetos</a>
           <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold">Dúvidas</a>
         </div>
 
         <div class="d-flex align-items-center gap-2">
-          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
+          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
             <i class="bi bi-instagram"></i>
           </a>
-          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
+          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
             <i class="bi bi-linkedin"></i>
           </a>
-          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
+          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
             <i class="bi bi-discord"></i>
           </a>
-          <a href="#redes" class="btn-cta-primary py-2 px-3" style="font-size: 0.85rem;">
+          <a href="#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;">
             <span>Fazer Parte</span> <i class="bi bi-arrow-right-short"></i>
           </a>
+          <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="collapse d-xl-none nav-mobile" id="navMenu">
+        <div class="container d-flex flex-column gap-2 pb-2">
+          <a href="#redes" class="text-decoration-none text-secondary small fw-semibold py-1">Nossas Redes</a>
+          <a href="#posts" class="text-decoration-none text-secondary small fw-semibold py-1">Destaques &amp; Posts</a>
+          <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold py-1">ADMs</a>
+          <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold py-1">Biblioteca de Arquivos</a>
+          <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Projetos</a>
+          <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
         </div>
       </div>
     </nav>
 
     <!-- Hero Section com Prova Social Imediata -->
-    <header id="inicio" class="container py-5 text-center my-lg-4">
+    <header id="inicio" class="container py-5 text-center my-lg-4 hero-constellation-host">
+      <svg class="hero-constellation" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <g stroke-linecap="round">
+          <line x1="70" y1="140" x2="190" y2="60" />
+          <line x1="70" y1="140" x2="240" y2="220" />
+          <line x1="190" y1="60" x2="240" y2="220" />
+          <line x1="240" y1="220" x2="330" y2="360" />
+          <line x1="70" y1="140" x2="120" y2="300" />
+          <line x1="120" y1="300" x2="60" y2="430" />
+          <line x1="120" y1="300" x2="210" y2="470" class="is-alt" />
+          <line x1="210" y1="470" x2="330" y2="360" />
+          <line x1="60" y1="430" x2="210" y2="470" />
+
+          <line x1="1130" y1="120" x2="1010" y2="60" />
+          <line x1="1130" y1="120" x2="960" y2="200" />
+          <line x1="1010" y1="60" x2="960" y2="200" class="is-alt" />
+          <line x1="960" y1="200" x2="880" y2="400" />
+          <line x1="1130" y1="120" x2="1080" y2="300" />
+          <line x1="1080" y1="300" x2="1140" y2="420" />
+          <line x1="1080" y1="300" x2="1010" y2="500" class="is-alt" />
+          <line x1="1010" y1="500" x2="880" y2="400" />
+          <line x1="1140" y1="420" x2="1010" y2="500" />
+        </g>
+
+        <g>
+          <circle class="const-hub-ring" cx="70" cy="140" r="15" />
+          <circle class="const-node-halo" cx="70" cy="140" r="8" />
+          <circle class="const-node" cx="70" cy="140" r="2.8" />
+          <circle class="const-node-halo" cx="190" cy="60" r="7" />
+          <circle class="const-node is-twinkle" cx="190" cy="60" r="2.4" />
+          <circle class="const-node-halo" cx="240" cy="220" r="7" />
+          <circle class="const-node" cx="240" cy="220" r="2.4" />
+          <circle class="const-node-halo" cx="120" cy="300" r="8" />
+          <circle class="const-node is-twinkle" cx="120" cy="300" r="2.6" />
+          <circle class="const-node-halo is-alt" cx="60" cy="430" r="6" />
+          <circle class="const-node is-alt" cx="60" cy="430" r="2.2" />
+          <circle class="const-node-halo" cx="210" cy="470" r="7" />
+          <circle class="const-node" cx="210" cy="470" r="2.4" />
+          <circle class="const-node-halo" cx="330" cy="360" r="7" />
+          <circle class="const-node is-twinkle" cx="330" cy="360" r="2.4" />
+
+          <circle class="const-hub-ring is-alt" cx="1130" cy="120" r="15" />
+          <circle class="const-node-halo is-alt" cx="1130" cy="120" r="8" />
+          <circle class="const-node is-alt" cx="1130" cy="120" r="2.8" />
+          <circle class="const-node-halo" cx="1010" cy="60" r="7" />
+          <circle class="const-node" cx="1010" cy="60" r="2.4" />
+          <circle class="const-node-halo is-alt" cx="960" cy="200" r="7" />
+          <circle class="const-node is-twinkle is-alt" cx="960" cy="200" r="2.4" />
+          <circle class="const-node-halo" cx="1080" cy="300" r="8" />
+          <circle class="const-node" cx="1080" cy="300" r="2.6" />
+          <circle class="const-node-halo" cx="1140" cy="420" r="6" />
+          <circle class="const-node is-twinkle" cx="1140" cy="420" r="2.2" />
+          <circle class="const-node-halo" cx="1010" cy="500" r="7" />
+          <circle class="const-node is-twinkle" cx="1010" cy="500" r="2.4" />
+          <circle class="const-node-halo" cx="880" cy="400" r="7" />
+          <circle class="const-node" cx="880" cy="400" r="2.4" />
+        </g>
+      </svg>
+
       <div class="row justify-content-center">
         <div class="col-lg-10 col-xl-8">
 
           <div class="mb-3">
-            <span class="brand-badge">
+            <span class="badge-pill-tech">
               <i class="bi bi-patch-check-fill"></i> Comunidade de ADS, Sistemas e Redes
             </span>
           </div>
@@ -113,7 +191,11 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
     <!-- Seção: Todas as Nossas Redes e Canais -->
     <section class="container py-5" id="redes">
       <div class="text-center mb-5">
-        <span class="brand-badge mb-2"><i class="bi bi-grid-fill"></i> Onde nos encontrar</span>
+        <div class="section-eyebrow mb-2">
+          <span class="section-eyebrow__num">01</span>
+          <span class="section-eyebrow__line"></span>
+          <span>Onde nos encontrar</span>
+        </div>
         <h2 class="fw-bold text-light" style="font-family: var(--font-title); font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
           Escolha seu canal favorito para interagir
         </h2>
@@ -129,7 +211,11 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
     <section class="container py-5" id="posts">
       <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
         <div>
-          <span class="brand-badge mb-2"><i class="bi bi-lightning-charge-fill"></i> Conteúdo Recente</span>
+          <div class="section-eyebrow mb-2">
+            <span class="section-eyebrow__num">02</span>
+            <span class="section-eyebrow__line"></span>
+            <span>Conteúdo recente</span>
+          </div>
           <h2 class="fw-bold text-light m-0" style="font-family: var(--font-title);">Publicações que movimentaram a comunidade</h2>
           <p class="text-muted small mt-1 mb-0">Veja o que estamos debatendo, aprendendo e comemorando esta semana.</p>
         </div>
@@ -145,17 +231,15 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
       <div class="row g-4" id="featuredPostsGrid"></div>
     </section>
 
-
-    <!-- Seção: ADMs da Comunidade -->
-    
-    <!-- SeÃ§Ã£o: Mentoria com Mestres -->
-    
-
-
     <!-- Seção: Por que entrar na Conexão TI -->
     <section class="container py-5 my-3">
       <div class="p-4 p-md-5 rounded-4" style="background: var(--bg-card); border: 1px solid var(--border-subtle);">
         <div class="text-center mb-4">
+          <div class="section-eyebrow mb-3">
+            <span class="section-eyebrow__num">03</span>
+            <span class="section-eyebrow__line"></span>
+            <span>Por que participar</span>
+          </div>
           <h3 class="fw-bold text-light" style="font-family: var(--font-title);">O que você ganha fazendo parte</h3>
         </div>
         <div class="row g-3" id="perksGrid"></div>
@@ -164,7 +248,12 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
 
     <!-- Banner Chamada Final -->
     <section class="container py-5 text-center">
-      <div class="p-5 rounded-4 position-relative overflow-hidden" style="background: radial-gradient(ellipse at center, rgba(0,229,255,0.15) 0%, rgba(7,9,14,0.95) 70%); border: 1px solid var(--border-active);">
+      <div class="p-5 rounded-4 position-relative overflow-hidden" style="background: radial-gradient(ellipse at center, rgba(0,229,255,0.14) 0%, rgba(124,108,255,0.10) 38%, rgba(7,9,14,0.95) 72%); border: 1px solid var(--border-active);">
+        <div class="section-eyebrow mb-3">
+          <span class="section-eyebrow__num">04</span>
+          <span class="section-eyebrow__line"></span>
+          <span>Faça parte</span>
+        </div>
         <h2 class="fw-bold text-light mb-3" style="font-family: var(--font-title);">Não fique de fora dos grupos da sua turma</h2>
         <p class="text-muted mx-auto mb-4" style="max-width: 500px;">
           Siga nosso Instagram e LinkedIn para ficar por dentro de workshops, oportunidades de estágio e materiais atualizados.
@@ -185,15 +274,9 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
 
     <!-- Footer -->
     <footer class="site-footer">
-      <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
-        <div class="d-flex align-items-center gap-2">
-          <img src="img/logo.png" alt="Logo" style="width: 24px; height: 24px; border-radius: 50%; object-fit: contain;" />
-          <span class="text-light fw-bold">Conexão TI</span>
-          <span class="text-muted">· Comunidade Acadêmica e Profissional</span>
-        </div>
-        <div class="text-muted small">
-          © 2026 Conexão TI. Feito de alunos para alunos.
-        </div>
+      <div class="container">
+        <p class="site-footer__message">Ninguém aprende tecnologia sozinho. Aqui, o conhecimento circula.</p>
+        <p class="site-footer__meta">Conexão TI · © 2026 · Feito de alunos para alunos</p>
       </div>
     </footer>
 

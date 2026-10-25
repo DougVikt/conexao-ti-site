@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADMs da Comunidade — Conexão TI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/transitions.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+  <script src="js/adms-dados.js"></script>
+</head>
+
+<body>
+  <div class="bg-space" aria-hidden="true">
+    <div class="bg-space__stars bg-space__stars--far"></div>
+    <div class="bg-space__stars bg-space__stars--near"></div>
+    <div class="bg-space__horizon"></div>
+  </div>
+  <div class="position-relative" style="z-index: 1;">
+
+    <nav class="nav-header py-3" aria-label="Navegação principal">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a class="d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+          <img src="img/logo.png" alt="Logo Conexão TI" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain;" />
+          <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão TI</span>
+        </a>
+
+        <div class="d-none d-xl-flex align-items-center gap-3">
+          <a href="index.html#redes" class="text-decoration-none text-secondary small fw-semibold">Nossas Redes</a>
+          <a href="index.html#posts" class="text-decoration-none text-secondary small fw-semibold">Destaques &amp; Posts</a>
+          <a href="adms.html" class="text-decoration-none text-primary small fw-semibold active" aria-current="page">ADMs</a>
+          <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold">Biblioteca de Arquivos</a>
+          <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold">Projetos</a>
+          <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold">Dúvidas</a>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
+            <i class="bi bi-discord"></i>
+          </a>
+          <a href="index.html#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;">
+            <span>Fazer Parte</span> <i class="bi bi-arrow-right-short"></i>
+          </a>
+          <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="collapse d-xl-none nav-mobile" id="navMenu">
+        <div class="container d-flex flex-column gap-2 pb-2">
+          <a href="index.html#redes" class="text-decoration-none text-secondary small fw-semibold py-1">Nossas Redes</a>
+          <a href="index.html#posts" class="text-decoration-none text-secondary small fw-semibold py-1">Destaques &amp; Posts</a>
+          <a href="adms.html" class="text-decoration-none text-primary small fw-semibold py-1 active" aria-current="page">ADMs</a>
+          <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold py-1">Biblioteca de Arquivos</a>
+          <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Projetos</a>
+          <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="container py-5 text-center" data-od-id="welcome">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="section-eyebrow mb-3">
+            <span class="section-eyebrow__num">01</span>
+            <span class="section-eyebrow__line"></span>
+            <span>Quem faz acontecer</span>
+          </div>
+          <h1 class="hero-title-gradient" style="font-size: clamp(2rem, 4vw, 3rem);">
+            ADMs da Comunidade
+          </h1>
+          <p class="hero-subtitle mb-4">
+            Conheça quem administra a Conexão TI: coordenação, moderação, conteúdo, eventos e projetos. São essas pessoas que mantêm a comunidade ativa todos os dias.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main class="container pb-5" data-od-id="adms-grid">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-4 justify-content-center" id="admGrid">
+        <p class="empty-msg col-12" id="empty" hidden>Nenhum ADM cadastrado no momento.</p>
+      </div>
+
+      <div class="card-surface p-4 p-md-5 mt-5 text-center">
+        <div class="section-eyebrow mb-3">
+          <span class="section-eyebrow__num">02</span>
+          <span class="section-eyebrow__line"></span>
+          <span>Participar</span>
+        </div>
+        <h2 class="fw-bold text-light mb-2" style="font-family: var(--font-title);">Quer ajudar a comunidade?</h2>
+        <p class="text-muted mx-auto mb-4" style="max-width: 560px;">
+          A coordenação está sempre aberta a novos apoios: moderação, materiais, eventos e projetos. Fale com a gente pelos canais oficiais.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-primary">
+            <i class="bi bi-discord"></i> Falar no Discord
+          </a>
+          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary">
+            <i class="bi bi-instagram"></i> Chamar no Instagram
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="site-footer__message">Ninguém aprende tecnologia sozinho. Aqui, o conhecimento circula.</p>
+        <p class="site-footer__meta">Conexão TI · © 2026 · Feito de alunos para alunos</p>
+        <p class="site-footer__credit">Fotos dos perfis públicos · Avatares via <a href="https://unavatar.io" target="_blank" rel="noopener">Unavatar</a></p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    (function renderAdms() {
+      const grid = document.getElementById('admGrid');
+      const empty = document.getElementById('empty');
+      if (!grid || typeof admsDados === 'undefined') return;
+
+      const socials = [
+        { key: 'instagram', icon: 'bi-instagram', label: 'Instagram' },
+        { key: 'github', icon: 'bi-github', label: 'GitHub' },
+        { key: 'linkedin', icon: 'bi-linkedin', label: 'LinkedIn' }
+      ];
+
+      admsDados.forEach((adm) => {
+        const links = socials
+          .filter((social) => adm[social.key])
+          .map((social) =>
+            '<a href="' + adm[social.key] + '" target="_blank" rel="noopener" class="adm-social-link" data-network="' +
+            social.key + '" title="' + social.label + ' de ' + adm.nome + '" aria-label="' +
+            social.label + ' de ' + adm.nome + '">' +
+            '<i class="bi ' + social.icon + '"></i><span>' + social.label + '</span></a>'
+          )
+          .join('');
+
+        const tags = (adm.tags || [])
+          .map((tag) => '<span class="badge-tag">' + tag + '</span>')
+          .join('');
+
+        const media = adm.foto
+          ? '<img class="adm-card__photo" src="' + adm.foto + '" alt="Foto de ' + adm.nome + '" width="640" height="640" decoding="async">'
+          : '<div class="adm-card__fallback" aria-hidden="true">' + adm.iniciais + '</div>';
+
+        const emptySocials = '<span class="adm-socials-empty"><i class="bi bi-clock"></i> Redes em breve</span>';
+
+        const col = document.createElement('div');
+        col.className = 'col';
+        col.innerHTML =
+          '<article class="adm-card">' +
+          '<div class="adm-card__media">' + media +
+          '<span class="adm-card__badge" aria-hidden="true">ADM</span>' +
+          '</div>' +
+          '<div class="adm-card__body">' +
+          '<h2 class="adm-card__name">' + adm.nome + '</h2>' +
+          '<p class="adm-card__role">' + adm.cargo + '</p>' +
+          '<p class="adm-card__bio">' + adm.descricao + '</p>' +
+          '<div class="adm-card__tags">' + tags + '</div>' +
+          '<div class="adm-card__socials">' + (links || emptySocials) + '</div>' +
+          '</div>' +
+          '</article>';
+
+        grid.appendChild(col);
+      });
+
+      if (empty) empty.hidden = true;
+    })();
+  </script>
+</body>
+
+</html>
