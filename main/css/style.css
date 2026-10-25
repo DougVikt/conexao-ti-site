@@ -26,6 +26,11 @@
   --brand-secondary: #0070f3;
   --brand-dark: #002b4d;
 
+  /* Acento secundário: usado só em gradientes, bordas e detalhes de HUD */
+  --brand-alt: #7c6cff;
+  --brand-alt-soft: rgba(124, 108, 255, 0.35);
+  --brand-alt-glow: rgba(124, 108, 255, 0.45);
+
   /* Redes Específicas */
   --color-linkedin: #0a66c2;
   --color-instagram: #e1306c;
@@ -118,6 +123,7 @@ body.page-leaving {
   pointer-events: none;
   background:
     radial-gradient(ellipse 70% 55% at 82% -8%, rgba(0, 229, 255, 0.07), transparent 68%),
+    radial-gradient(ellipse 58% 45% at 16% 10%, rgba(124, 108, 255, 0.06), transparent 70%),
     radial-gradient(ellipse 65% 50% at 10% 108%, rgba(0, 112, 243, 0.09), transparent 70%),
     var(--bg-main);
 }
@@ -236,6 +242,10 @@ body.page-leaving {
 
 .hero-highlight {
   color: var(--brand-primary);
+  background: linear-gradient(100deg, var(--brand-primary) 25%, #a99cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   position: relative;
   display: inline-block;
 }
@@ -281,8 +291,16 @@ body.page-leaving {
   vector-effect: non-scaling-stroke;
 }
 
+.hero-constellation line.is-alt {
+  stroke: rgba(124, 108, 255, 0.22);
+}
+
 .hero-constellation .const-node {
   fill: rgba(210, 247, 255, 0.85);
+}
+
+.hero-constellation .const-node.is-alt {
+  fill: rgba(207, 199, 255, 0.9);
 }
 
 .hero-constellation .const-node.is-twinkle {
@@ -305,10 +323,18 @@ body.page-leaving {
   fill: rgba(0, 229, 255, 0.09);
 }
 
+.hero-constellation .const-node-halo.is-alt {
+  fill: rgba(124, 108, 255, 0.12);
+}
+
 .hero-constellation .const-hub-ring {
   fill: none;
   stroke: rgba(0, 229, 255, 0.18);
   stroke-width: 1;
+}
+
+.hero-constellation .const-hub-ring.is-alt {
+  stroke: rgba(124, 108, 255, 0.26);
 }
 
 @keyframes constellation-drift {
@@ -400,8 +426,50 @@ body.page-leaving {
   background: var(--bg-card-hover);
   border-color: var(--border-active);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-lg), 0 0 34px -14px var(--brand-alt-glow);
   color: inherit;
+}
+
+/* Detalhes de HUD: linha superior e cantos só aparecem no card em foco */
+.social-hub-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-alt), transparent);
+  transform: scaleX(0);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-hub-card:hover::before,
+.social-hub-card:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.social-hub-card::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background:
+    linear-gradient(var(--brand-primary), var(--brand-primary)) left top / 12px 1px no-repeat,
+    linear-gradient(var(--brand-primary), var(--brand-primary)) left top / 1px 12px no-repeat,
+    linear-gradient(var(--brand-alt), var(--brand-alt)) right top / 12px 1px no-repeat,
+    linear-gradient(var(--brand-alt), var(--brand-alt)) right top / 1px 12px no-repeat,
+    linear-gradient(var(--brand-alt), var(--brand-alt)) left bottom / 12px 1px no-repeat,
+    linear-gradient(var(--brand-alt), var(--brand-alt)) left bottom / 1px 12px no-repeat,
+    linear-gradient(var(--brand-primary), var(--brand-primary)) right bottom / 12px 1px no-repeat,
+    linear-gradient(var(--brand-primary), var(--brand-primary)) right bottom / 1px 12px no-repeat;
+}
+
+.social-hub-card:hover::after,
+.social-hub-card:focus-visible::after {
+  opacity: 0.55;
 }
 
 .social-icon-box {
@@ -973,7 +1041,7 @@ body.page-leaving {
   flex: none;
   width: 36px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(0, 229, 255, 0.65), rgba(0, 229, 255, 0));
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.65), rgba(124, 108, 255, 0.55));
 }
 
 /* Busca rápida */
