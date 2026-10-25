@@ -797,3 +797,17 @@ if (typeof window !== 'undefined') {
     }
 }
 
+
+// Exportações para uso como módulo ES (index.html e biblioteca.html).
+// O objeto window.CONEXAO_DATA continua sendo mantido para scripts clássicos.
+export {
+    escapeHtml,
+    FOLDERS,
+    FEATURED_POSTS,
+    MENTORSHIP_PROGRAMS,
+    TESTIMONIALS,
+    SOCIAL_STATS,
+    SOCIAL_CHANNELS,
+    initializeDriveFolders,
+    fetchInstagramOEmbed
+};
