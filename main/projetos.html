@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projetos — Conexão TI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/projetos-dados.js"></script>
+</head>
+
+<body>
+  <div class="tech-background" aria-hidden="true">
+    <div class="tech-grid"></div><div class="tech-scanline"></div>
+    <span class="tech-node node-one"></span>
+    <span class="tech-node node-two"></span>
+    <span class="tech-node node-three"></span>
+    <span class="tech-node node-four"></span>
+  </div>
+  <div class="container-fluid px-3 px-md-4 px-lg-5">
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top site-nav">
+      <div class="container py-2">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <img src="img/logo.png" alt="Logo" class="brand-logo" />
+          <div>
+            <div class="brand-title">Conexão TI</div>
+            <div class="brand-sub">Projetos da Comunidade</div>
+          </div>
+        </a>
+      </div>
+    </nav>
+
+    <section class="row justify-content-center text-center py-5 g-4" data-od-id="welcome">
+      <div class="col-lg-9 col-xl-8">
+        <img src="img/logo.png" alt="Logo" class="logo-hero d-block mx-auto mb-3" aria-hidden="true" style="max-height:120px;">
+        <span class="hero-eyebrow">Colabore</span>
+        <h1 class="hero-title">Projetos <span class="thin">Compartilhados</span></h1>
+        <p class="hero-text mx-auto">
+          Repositórios, ferramentas e iniciativas construídas pela comunidade. Cada projeto é aberto e pode ser contribuído diretamente no GitHub.
+        </p>
+      </div>
+    </section>
+
+    <main class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pb-5 pt-2" id="grid" data-od-id="projetos-grid">
+      <p class="empty-msg col-12" id="empty" hidden>Nenhum projeto encontrado.</p>
+    </main>
+
+    <footer class="border-top py-4 d-flex flex-wrap justify-content-between gap-2 font-monospace" data-od-id="footer" style="--bs-border-color: var(--border); font-size:12px; color: var(--muted); letter-spacing:0.02em;">
+      <span>Conexão TI · Projetos · Feito com <i class="bi bi-heart-fill" style="color:var(--blue-tint);font-size:10px"></i> pela coordenação</span>
+      <span><a href="index.html" style="color:var(--muted);text-decoration:none">Voltar à página inicial</a></span>
+    </footer>
+  </div>
+
+  <script>
+    (function renderProjetos() {
+      const grid = document.getElementById('grid');
+      const empty = document.getElementById('empty');
+      if (!grid || typeof projetosDados === 'undefined') return;
+      projetosDados.forEach((p) => {
+        const col = document.createElement('div');
+        col.className = 'col';
+        col.innerHTML =
+          '<div class="card-surface p-0 h-100 d-flex flex-column overflow-hidden">' +
+          '<a href="' + (p.github || '#') + '" target="_blank" rel="noopener" aria-label="Ver projeto no GitHub">' +
+          '<img src="' + p.capa + '" alt="Capa do projeto ' + p.titulo + '" class="w-100" style="height:220px;object-fit:cover;border-bottom:1px solid var(--border)">' +
+          '</a>' +
+          '<div class="p-4 flex-grow-1 d-flex flex-column">' +
+          '<h3 class="section-label mb-2" style="font-family:\'Space Grotesk\',sans-serif;font-weight:600;font-size:1.1rem;line-height:1.2;">' + p.titulo + '</h3>' +
+          '<p class="text-muted mb-3" style="font-size:0.9rem;line-height:1.5;">' + p.descricao + '</p>' +
+          '<a class="btn btn-ghost btn-sm w-100 mt-auto" href="' + (p.github || '#') + '" target="_blank" rel="noopener">' +
+          '<i class="bi bi-github me-1"></i>Ver no GitHub</a>' +
+          '</div>' +
+          '</div>';
+        grid.appendChild(col);
+      });
+      if (empty) empty.hidden = true;
+    })();
+  </script>
+</body>
+
+</html>

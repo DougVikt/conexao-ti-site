@@ -666,3 +666,200 @@ body {
   font-size: 0.9rem;
   color: var(--text-muted);
 }
+
+/* ==========================================================================
+   Páginas secundárias (duvidas.html e projetos.html)
+   --------------------------------------------------------------------------
+   As regras abaixo foram trazidas da versão anterior do design system para
+   que as páginas criadas em paralelo mantenham o visual, agora usando a
+   paleta e as variáveis do novo design system.
+   ========================================================================== */
+
+/* Aliases das variáveis antigas, remapeados para a paleta atual */
+:root {
+  --bg: var(--bg-main);
+  --surface: var(--bg-card);
+  --surface-2: var(--bg-card-hover);
+  --surface-inset: var(--bg-surface);
+  --fg: var(--text-main);
+  --muted: var(--text-muted);
+  --border: var(--border-subtle);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --overlay: rgba(255, 255, 255, 0.04);
+  --accent: var(--brand-primary);
+  --accent-ink: #04121a;
+  --cyan: var(--brand-primary);
+  --blue: var(--brand-secondary);
+  --blue-tint: var(--brand-primary);
+  --bs-primary: var(--brand-primary);
+  --bs-primary-rgb: 0, 229, 255;
+  --bs-emphasis-color: var(--text-main);
+  --bs-secondary-color: var(--text-muted);
+}
+
+/* Fundo tecnológico estático das páginas secundárias */
+.tech-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.tech-grid {
+  position: absolute;
+  inset: -20%;
+  background-image: linear-gradient(to right, rgba(0, 229, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  transform: perspective(500px) rotateX(58deg) translateY(-12%);
+  mask-image: linear-gradient(to bottom, transparent, black 28%, black 72%, transparent);
+}
+
+.tech-scanline {
+  position: absolute;
+  inset: -30% 0;
+  height: 22%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.06), transparent);
+}
+
+.tech-node {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  box-shadow: 0 0 0 5px rgba(0, 229, 255, 0.08), 0 0 22px rgba(0, 229, 255, 0.7);
+}
+
+.node-one { left: 18%; top: 27%; }
+.node-two { right: 21%; top: 19%; }
+.node-three { left: 28%; bottom: 22%; }
+.node-four { right: 13%; bottom: 28%; }
+
+/* Navbar das páginas secundárias */
+.site-nav {
+  background: rgba(7, 9, 14, 0.72);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand-logo {
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand-title {
+  font-family: var(--font-title);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Cabeçalhos das páginas secundárias */
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  background: var(--brand-primary);
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(38px, 6vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  margin: 22px 0 18px;
+}
+
+.hero-title .thin {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.hero-text {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+.logo-hero {
+  width: 10rem;
+  height: 10rem;
+  padding: 10px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.2), 0 0 55px rgba(0, 112, 243, 0.24);
+}
+
+/* Cartões e rótulos */
+.card-surface {
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-card-hover));
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+}
+
+.section-label {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.search-input:focus {
+  background: var(--bg-surface);
+  border-color: var(--border-active);
+  box-shadow: none;
+  color: var(--text-main);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.empty-msg {
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 40px 0;
+}
+
+/* Botão fantasma usado na navbar das páginas secundárias */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+.btn-ghost:hover {
+  border-color: var(--border-active);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Ajustes de borda do Bootstrap nas páginas secundárias */
+.border-top,
+.border-bottom {
+  --bs-border-color: var(--border-subtle);
+}
