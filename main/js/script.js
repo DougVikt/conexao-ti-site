@@ -66,17 +66,21 @@ function renderSocialChannels(channels) {
         whatsapp: 'icon-whatsapp'
     };
 
-    container.innerHTML = channels.map(channel => `
+    container.innerHTML = channels.map((channel, index) => `
         <div class="col-lg-4 col-md-6">
             <a href="${channel.url}" ${channel.url.startsWith('http') ? 'target="_blank" rel="noopener"' : ''} class="social-hub-card">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <div class="social-icon-box ${iconMap[channel.id] || 'icon-linkedin'}">
                         <i class="bi ${channel.icon}"></i>
                     </div>
-                    <span class="badge social-badge">${channel.badge}</span>
+                    <span class="social-card-index">
+                        <span class="social-card-index__dot" aria-hidden="true"></span>
+                        Canal ${String(index + 1).padStart(2, '0')}
+                    </span>
                 </div>
                 <h3 class="social-card-title">${channel.name}</h3>
                 <div class="social-card-handle">${channel.handle}</div>
+                <div class="social-card-tagline">${channel.badge}</div>
                 <p class="social-card-desc">${channel.description}</p>
                 <div class="social-card-action">
                     <span class="cta-text">${channel.cta}</span>

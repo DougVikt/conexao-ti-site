@@ -102,6 +102,11 @@ body.page-leaving {
   .bg-space__stars {
     animation: none;
   }
+
+  .hero-constellation,
+  .hero-constellation .const-node.is-twinkle {
+    animation: none;
+  }
 }
 
 /* Fundo espacial minimalista (compartilhado por todas as páginas) */
@@ -243,6 +248,91 @@ body.page-leaving {
   line-height: 1.6;
 }
 
+/* Constelação decorativa do hero — liga os canais da comunidade ao tema espacial */
+.hero-constellation-host {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-constellation-host > .row {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-constellation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  opacity: 0.6;
+  pointer-events: none;
+  overflow: visible;
+  transform: translateY(-50%);
+  -webkit-mask-image: radial-gradient(ellipse 58% 66% at 50% 46%, transparent 18%, #000 70%);
+  mask-image: radial-gradient(ellipse 58% 66% at 50% 46%, transparent 18%, #000 70%);
+  animation: constellation-drift 48s ease-in-out infinite alternate;
+}
+
+.hero-constellation line {
+  stroke: rgba(0, 229, 255, 0.17);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.hero-constellation .const-node {
+  fill: rgba(210, 247, 255, 0.85);
+}
+
+.hero-constellation .const-node.is-twinkle {
+  animation: constellation-twinkle 6.5s ease-in-out infinite;
+}
+
+.hero-constellation .const-node.is-twinkle:nth-of-type(4n+1) {
+  animation-delay: -1.6s;
+}
+
+.hero-constellation .const-node.is-twinkle:nth-of-type(4n+2) {
+  animation-delay: -3.4s;
+}
+
+.hero-constellation .const-node.is-twinkle:nth-of-type(4n+3) {
+  animation-delay: -5s;
+}
+
+.hero-constellation .const-node-halo {
+  fill: rgba(0, 229, 255, 0.09);
+}
+
+.hero-constellation .const-hub-ring {
+  fill: none;
+  stroke: rgba(0, 229, 255, 0.18);
+  stroke-width: 1;
+}
+
+@keyframes constellation-drift {
+  from { transform: translateY(-50%) translate3d(0, 0, 0); }
+  to { transform: translateY(-50%) translate3d(-12px, 8px, 0); }
+}
+
+@keyframes constellation-twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 991.98px) {
+  .hero-constellation {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-constellation {
+    display: none;
+  }
+}
+
 /* Botões com contraste e presença */
 .btn-cta-primary {
   background: var(--brand-primary);
@@ -332,13 +422,42 @@ body.page-leaving {
 .icon-github { background: rgba(255, 255, 255, 0.1); color: #f0f6fc; border: 1px solid rgba(255, 255, 255, 0.2); }
 .icon-discord { background: rgba(88, 101, 242, 0.2); color: #9aa4ff; border: 1px solid rgba(88, 101, 242, 0.45); }
 
-.social-badge {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  font-size: 0.7rem;
+/* Etiqueta "mission control" de cada canal */
+.social-card-index {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-subtle);
+  text-transform: uppercase;
+}
+
+.social-card-index__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  box-shadow: 0 0 7px rgba(0, 229, 255, 0.8);
+}
+
+.social-card-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+}
+
+.social-card-tagline::before {
+  content: '//';
+  margin-right: 0.45rem;
+  color: var(--brand-primary);
+  opacity: 0.75;
 }
 
 .social-hub-card:hover .cta-text,
@@ -828,6 +947,33 @@ body.page-leaving {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* Rótulo editorial numerado das seções (01 — ...) */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.71rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.section-eyebrow__num {
+  color: var(--brand-primary);
+  letter-spacing: 0.08em;
+}
+
+.section-eyebrow__line {
+  display: block;
+  flex: none;
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.65), rgba(0, 229, 255, 0));
 }
 
 /* Busca rápida */
