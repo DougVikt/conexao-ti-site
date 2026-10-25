@@ -14,9 +14,8 @@ function escapeHtml(text) {
     };
     return text.replace(/[&<>"']/g, m => map[m]);
 }
-  // Import fetchInstagramOEmbed from data.js for use in renderFeaturedPosts
-// Since data.js doesn't use ES6 exports, we access it through the global data object
-const { fetchInstagramOEmbed } = window.CONEXAO_DATA || {};
+
+// Os posts do Instagram usam o script oficial de embed (sem token de acesso).
 
 document.addEventListener('DOMContentLoaded', async () => {
     const data = window.CONEXAO_DATA;
@@ -28,11 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderSocialChannels(data.SOCIAL_CHANNELS);
     renderFeaturedPosts(data.FEATURED_POSTS);
     renderPerks(data.COMMUNITY_PERKS);
-    
-    renderTestimonials(data.TESTIMONIALS || []); // New testimonials section
-    initMentorshipInterestForm();
     initFilters(data.FEATURED_POSTS);
-    initMentorFilters(data.MENTORSHIP_PROGRAMS);
 
     // Add event listeners for data updates
     document.addEventListener('drive-data-loaded', handleDriveDataLoaded);
@@ -42,10 +37,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 /* ==========================================================================
    Event listeners for data updates
    ========================================================================== */
-function handleInstagramDataLoaded(event) {
-    const posts = event.detail?.posts || [];
-    // Re-render featured posts when Instagram data is loaded
-    renderFeaturedPosts(CONEXAO_DATA?.FEATURED_POSTS || []);
+function handleInstagramDataLoaded() {
+    // The Instagram feed now uses static post URLs rendered with the official
+    // embed script, so keep the complete featured posts grid (Instagram,
+    // LinkedIn and Discord) when this event fires.
+    renderFeaturedPosts(window.CONEXAO_DATA?.FEATURED_POSTS || []);
 }
 
 function handleDriveDataLoaded(event) {
@@ -55,7 +51,7 @@ function handleDriveDataLoaded(event) {
 }
 
 /* ==========================================================================
-   1. RenderizaÃ§Ã£o dos Canais e Redes Sociais Oficiais
+   1. Renderização dos Canais e Redes Sociais Oficiais
    ========================================================================== */
 function renderSocialChannels(channels) {
     const container = document.getElementById('socialChannelsGrid');
@@ -92,7 +88,7 @@ function renderSocialChannels(channels) {
 }
 
 /* ==========================================================================
-   2. RenderizaÃ§Ã£o de Posts Recentes e com Alto Engajamento
+   2. Renderização de Posts Recentes e com Alto Engajamento
    ========================================================================== */
 async function renderFeaturedPosts(posts, filter = 'all') {
     const container = document.getElementById('featuredPostsGrid');
@@ -107,7 +103,7 @@ async function renderFeaturedPosts(posts, filter = 'all') {
         container.innerHTML = `
             <div class="col-12 text-center py-5 text-muted">
                 <i class="bi bi-inbox fs-2 mb-2 d-block"></i>
-                Nenhum conteÃºdo encontrado para este filtro no momento.
+                Nenhum conteúdo encontrado para este filtro no momento.
             </div>
         `;
         return;
@@ -134,7 +130,7 @@ async function renderFeaturedPosts(posts, filter = 'all') {
         container.innerHTML = `
             <div class="col-12 text-center py-5 text-muted">
                 <i class="bi bi-inbox fs-2 mb-2 d-block"></i>
-                Nenhum conteÃºdo encontrado para este filtro no momento.
+                Nenhum conteúdo encontrado para este filtro no momento.
             </div>
         `;
         return;
@@ -176,35 +172,14 @@ async function renderFeaturedPosts(posts, filter = 'all') {
                 // Responsive column classes: full width on xs, half width on sm, third width on lg and up
                 const columnClasses = 'col-12 col-sm-6 col-lg-4 mb-2';
 
-                // Special handling for Instagram posts - use oEmbed
+                // Instagram posts usam o iframe oficial de embed (sem token).
+                // A altura real é ajustada via postMessage em initInstagramEmbedResize().
                 if (safePost.platform === 'Instagram') {
-                    // Use pre-loaded oEmbed HTML if available (from initializeInstagramFeed)
-                    if (safePost._oEmbedHtml) {
-                        return `
-                            <div class="${columnClasses}">
-                                <article class="social-embed-card">
-                                    ${safePost._oEmbedHtml}
-                                </article>
-                            </div>
-                        `;
-                    }
-                    // Fallback to fetching oEmbed on demand
-                    else if (safePost.embedUrl) {
-                        try {
-                            const embedHtml = await fetchInstagramOEmbed(safePost.embedUrl);
-                            if (embedHtml) {
-                                return `
-                                    <div class="${columnClasses}">
-                                        <article class="social-embed-card">
-                                            ${embedHtml}
-                                        </article>
-                                    </div>
-                                `;
-                            }
-                        } catch (embedError) {
-                            console.warn('Failed to load Instagram oEmbed, falling back to regular card:', embedError);
-                        }
-                    }
+                    return `
+                        <div class="${columnClasses}">
+                            ${renderInstagramEmbed(safePost)}
+                        </div>
+                    `;
                 }
 
                 // Special handling for LinkedIn posts - use LinkedIn embed
@@ -235,46 +210,8 @@ async function renderFeaturedPosts(posts, filter = 'all') {
         container.innerHTML = postHTMLs.filter(Boolean).join('');
         console.log('Successfully rendered featured posts HTML');
 
-        // Process Instagram embeds after loading script robustly
-        function processInstagramEmbedsRobust() {
-            // Ensure script is loaded only once
-            if (!document.getElementById('instagram-embed-script')) {
-                const script = document.createElement('script');
-                script.id = 'instagram-embed-script';
-                script.async = true;
-                script.src = 'https://www.instagram.com/embed.js';
-                
-                // Handle script load/error
-                script.onload = () => {
-                    // Small delay to ensure script is fully initialized
-                    setTimeout(() => {
-                        if (window.instgrm?.Embeds) {
-                            window.instgrm.Embeds.process();
-                        }
-                    }, 100);
-                };
-                
-                script.onerror = () => {
-                    console.warn('Instagram embed script failed to load');
-                    // Retry once after delay
-                    setTimeout(() => {
-                        if (window.instgrm?.Embeds) {
-                            window.instgrm.Embeds.process();
-                        }
-                    }, 2000);
-                };
-                
-                document.body.appendChild(script);
-            } else {
-                // Script already loaded, just process
-                if (window.instgrm?.Embeds) {
-                    window.instgrm.Embeds.process();
-                }
-            }
-        }
-
-        // Call the robust Instagram embed processor
-        processInstagramEmbedsRobust();
+        // Garante o ajuste de altura dos iframes do Instagram após cada render.
+        initInstagramEmbedResize();
 
         // LinkedIn embeds are iframes, no processing needed
         // setTimeout(() => {
@@ -291,19 +228,92 @@ async function renderFeaturedPosts(posts, filter = 'all') {
     }
 }
 
+function getInstagramShortcode(url) {
+    if (typeof url !== 'string') return null;
+    const match = url.match(/instagram\.com\/(?:p|reel|tv)\/([^/?#]+)/i)
+        || url.match(/^\/(?:p|reel|tv)\/([^/?#]+)/i);
+    return match ? match[1] : null;
+}
+
+let instagramEmbedResizeInitialized = false;
+const instagramEmbedHeights = new WeakMap();
+
+/**
+ * O embed oficial em iframe (sem token) começa com altura fixa e informa a
+ * altura real via postMessage. Este listener aplica essa altura para evitar
+ * que o post fique espremido em cards estreitos.
+ */
+function initInstagramEmbedResize() {
+    if (instagramEmbedResizeInitialized) return;
+    instagramEmbedResizeInitialized = true;
+
+    window.addEventListener('message', (event) => {
+        if (event.origin !== 'https://www.instagram.com') return;
+
+        let data = event.data;
+        if (typeof data === 'string') {
+            try {
+                data = JSON.parse(data);
+            } catch (error) {
+                return;
+            }
+        }
+        if (!data || typeof data.type !== 'string') return;
+
+        const frame = Array.from(document.querySelectorAll('iframe.instagram-media-rendered'))
+            .find((iframe) => iframe.contentWindow === event.source);
+        if (!frame) return;
+
+        const height = Number(data.details?.height);
+        if (data.type === 'MEASURE' && height > 0) {
+            instagramEmbedHeights.set(frame, height);
+            frame.height = height;
+        } else if (data.type === 'MOUNTED') {
+            const measured = instagramEmbedHeights.get(frame);
+            if (measured) {
+                window.requestAnimationFrame(() => { frame.height = measured; });
+            }
+        }
+    });
+}
+
 function renderInstagramEmbed(post) {
+    const url = escapeHtml(post.url || post.embedUrl || 'https://www.instagram.com/conexaoti_/');
+    const author = escapeHtml(post.author || '@conexaoti_');
+    const shortcode = getInstagramShortcode(post.embedUrl || post.url || '');
+    const heading = `
+        <div class="social-embed-heading">
+            <span><i class="bi bi-instagram"></i> Post real do Instagram</span>
+            <a href="${url}" target="_blank" rel="noopener">Abrir <i class="bi bi-box-arrow-up-right"></i></a>
+        </div>
+    `;
+
+    if (!shortcode) {
+        return `
+            <article class="social-embed-card" aria-label="Publicação recente de ${author}">
+                ${heading}
+                <p class="text-muted small p-3 mb-0">Não foi possível carregar este post. <a href="${url}" target="_blank" rel="noopener">Abrir no Instagram</a>.</p>
+            </article>
+        `;
+    }
+
+    const origin = encodeURIComponent(window.location.origin);
+    // Variante sem legenda: exibe apenas a mídia e o cabeçalho do post.
+    const embedUrl = `https://www.instagram.com/p/${encodeURIComponent(shortcode)}/embed/?cr=1&v=14&wp=540&rd=${origin}`;
+
     return `
-        <article class="social-embed-card" aria-label="PublicaÃ§Ã£o recente de ${escapeHtml(post.author)}">
-            <div class="social-embed-heading">
-                <span><i class="bi bi-instagram"></i> Post real do Instagram</span>
-                <a href="${post.url}" target="_blank" rel="noopener">Abrir <i class="bi bi-box-arrow-up-right"></i></a>
-            </div>
-            <blockquote class="instagram-media"
-                data-instgrm-permalink="${post.embedUrl}"
-                data-instgrm-version="14"
-                data-instgrm-captioned>
-                <a href="${post.url}" target="_blank" rel="noopener">Ver publicaÃ§Ã£o de ${escapeHtml(post.author)}</a>
-            </blockquote>
+        <article class="social-embed-card" aria-label="Publicação recente de ${author}">
+            ${heading}
+            <iframe
+                class="instagram-media instagram-media-rendered"
+                src="${embedUrl}"
+                height="500"
+                scrolling="no"
+                frameborder="0"
+                allowtransparency="true"
+                allowfullscreen="true"
+                title="Publicação do Instagram de ${author}">
+            </iframe>
         </article>
     `;
 }
@@ -336,7 +346,7 @@ function renderPostCard(post) {
                         <span><i class="bi bi-chat-dots-fill me-1" style="color: var(--brand-primary);"></i> ${escapeHtml(post.comments)}</span>
                     </div>
                     <a href="${post.url}" target="_blank" rel="noopener" class="post-cta-btn">
-                        ${escapeHtml(post.ctaText || 'Ver PublicaÃ§Ã£o')} <i class="bi bi-box-arrow-up-right ms-1"></i>
+                        ${escapeHtml(post.ctaText || 'Ver Publicação')} <i class="bi bi-box-arrow-up-right ms-1"></i>
                     </a>
                 </div>
             </div>
@@ -344,53 +354,10 @@ function renderPostCard(post) {
     `;
 }
 
-function processInstagramEmbeds() {
-    if (window.instgrm?.Embeds) {
-        window.instgrm.Embeds.process();
-        return;
-    }
-
-    const existingScript = document.getElementById('instagram-embed-script');
-    if (existingScript) {
-        // Script is already loading, wait and retry
-        setTimeout(() => {
-            if (window.instgrm?.Embeds) {
-                window.instgrm.Embeds.process();
-            } else {
-                // Try again after another delay
-                setTimeout(processInstagramEmbeds, 2000);
-            }
-        }, 1000);
-        return;
-    }
-
-    const script = document.createElement('script');
-    script.id = 'instagram-embed-script';
-    script.async = true;
-    script.src = 'https://www.instagram.com/embed.js';
-    script.onload = () => {
-        // Give it a moment to initialize, then process
-        setTimeout(() => {
-            if (window.instgrm?.Embeds) {
-                window.instgrm.Embeds.process();
-            } else {
-                // Fallback: try once more after a delay
-                setTimeout(processInstagramEmbeds, 3000);
-            }
-        }, 500);
-    };
-    script.onerror = () => {
-        console.warn('Instagram embed script failed to load');
-        // Retry after error
-        setTimeout(processInstagramEmbeds, 5000);
-    };
-    document.body.appendChild(script);
-}
-
 function renderLinkedInEmbed(post) {
     const embedUrl = post.embedUrl || post.url;
     return `
-        <article class="social-embed-card" aria-label="PublicaÃ§Ã£o recente de ${escapeHtml(post.author)}">
+        <article class="social-embed-card" aria-label="Publicação recente de ${escapeHtml(post.author)}">
             <div class="social-embed-heading">
                 <span><i class="bi bi-linkedin"></i> Post real do LinkedIn</span>
                 <a href="${escapeHtml(post.url)}" target="_blank" rel="noopener">Abrir <i class="bi bi-box-arrow-up-right"></i></a>
@@ -471,7 +438,7 @@ function processLinkedInEmbeds() {
 }
 
 /* ==========================================================================
-   3. RenderizaÃ§Ã£o de BenefÃ­cios da Comunidade
+   3. Renderização de Benefícios da Comunidade
    ========================================================================== */
 function renderPerks(perks) {
     const container = document.getElementById('perksGrid');
@@ -486,50 +453,6 @@ function renderPerks(perks) {
             </div>
         </div>
     `).join('');
-}
-
-/* ==========================================================================
-   4. Interesse em Mentoria
-   O protÃ³tipo abre uma mensagem pronta no WhatsApp oficial. NÃ£o armazena dados
-   pessoais no navegador nem envia informaÃ§Ãµes a terceiros.
-   ========================================================================== */
-function initMentorshipInterestForm() {
-    const form = document.getElementById('mentorshipInterestForm');
-    if (!form) return;
-
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        const name = formData.get('name').trim();
-        const email = formData.get('email').trim();
-        const whatsapp = formData.get('whatsapp').trim();
-        const profile = formData.get('profile');
-        const area = formData.get('area');
-        const message = formData.get('message').trim();
-
-        const confirmation = document.getElementById('mentorshipFormFeedback');
-        if (!name || !email || !whatsapp || !profile || !area) {
-            confirmation.textContent = 'Preencha os campos obrigatÃ³rios para continuar.';
-            confirmation.className = 'mentorship-form-feedback is-error';
-            return;
-        }
-
-        const whatsAppMessage = [
-            'OlÃ¡, ConexÃ£o TI! Tenho interesse no programa Mentoria com Mestres.',
-            `Nome: ${escapeHtml(name)}`,
-            `E-mail: ${escapeHtml(email)}`,
-            `WhatsApp: ${escapeHtml(whatsapp)}`,
-            `Perfil: ${escapeHtml(profile)}`,
-            `Ãrea de interesse: ${escapeHtml(area)}`,
-            message ? `Mensagem: ${escapeHtml(message)}` : ''
-        ].filter(Boolean).join('\n');
-
-        confirmation.textContent = 'Abrindo o WhatsApp da comunidade com seus dados preenchidos.';
-        confirmation.className = 'mentorship-form-feedback is-success';
-        window.open(`https://wa.me/?text=${encodeURIComponent(whatsAppMessage)}`, '_blank', 'noopener');
-        form.reset();
-    });
 }
 
 /* ==========================================================================
@@ -555,156 +478,7 @@ function initFilters(posts) {
 function showDataError() {
     document.querySelectorAll('#socialChannelsGrid, #featuredPostsGrid, #perksGrid').forEach(container => {
         if (container) {
-            container.innerHTML = '<div class="col-12 text-center text-muted py-4">NÃ£o foi possÃ­vel carregar os dados da comunidade.</div>';
+            container.innerHTML = '<div class="col-12 text-center text-muted py-4">Não foi possível carregar os dados da comunidade.</div>';
         }
     });
 }
-
-/* ==========================================================================
-   5. RenderizaÃ§Ã£o da SeÃ§Ã£o de Mentoria com Mestres
-   ========================================================================== */
-function renderMentorshipPrograms(programs) {
-    const container = document.getElementById('mentorshipGrid');
-    if (!container) return;
-
-    container.innerHTML = programs.map(program => `
-        <div class="col-lg-4 col-md-6">
-            <div class="mentor-card">
-                <img src="${program.avatar}" alt="${escapeHtml(program.name)}" class="mentor-avatar" />
-                <h5 class="mentor-name">${escapeHtml(program.name)}</h5>
-                <p class="mentor-role text-muted">${escapeHtml(program.role)} na ${escapeHtml(program.company)}</p>
-                <div class="mentor-topics">
-                    ${program.topics.map(topic => `<span class="badge bg-subtle text-muted small">${escapeHtml(topic)}</span>`).join('')}
-                </div>
-                <p class="mentor-slots"><span class="badge bg-secondary">${escapeHtml(program.slots)}</span></p>
-                <p class="mentor-bio">${escapeHtml(program.bio)}</p>
-                <a href="${program.ctaUrl}" target="_blank" rel="noopener" class="btn-cta-primary w-100 mt-3">Agendar SessÃ£o</a>
-            </div>
-        </div>
-    `).join('');
-}
-
-
-/* ==========================================================================
-   5. RenderizaÃ§Ã£o dos ADMs da Comunidade (inserido após mentoria)
-   ========================================================================== */
-function renderADMs(adms) {
-    const container = document.getElementById("admGrid");
-    if (!container) return;
-
-    container.innerHTML = adms.map(adm => `
-        <div class="col-lg-3 col-md-6">
-            <div class="bento-card p-4 h-100 d-flex flex-column justify-content-between">
-                <div>
-                    <div class="bento-icon-wrapper mb-3">
-                        <i class="bi ${adm.icon}"></i>
-                    </div>
-                    <h5 class="bento-card-title text-light">${escapeHtml(adm.name)}</h5>
-                    <span class="badge-tag">${escapeHtml(adm.handle)}</span>
-                </div>
-                <div class="mt-2">
-                    <div class="d-flex gap-2">
-                        ${adm.instagram ? `<a href="${escapeHtml(adm.instagram.url)}" target="_blank" rel="noopener" class="text-decoration-none"><i class="bi bi-instagram me-1" style="color: #e1306c;"></i> Instagram</a>` : ""}
-                        ${adm.linkedin ? `<a href="${escapeHtml(adm.linkedin.url)}" target="_blank" rel="noopener" class="text-decoration-none"><i class="bi bi-linkedin me-1" style="color: #0a66c2;"></i> LinkedIn</a>` : ""}
-                        ${adm.github ? `<a href="${escapeHtml(adm.github.url)}" target="_blank" rel="noopener" class="text-decoration-none"><i class="bi bi-github me-1" style="color: #333;"></i> GitHub</a>` : ""}
-                    </div>
-                </div>
-                <div class="pt-4 mt-auto">
-                    <p class="text-muted small mb-0" style="font-size: 0.85rem;">${escapeHtml(adm.description || "")}</p>
-                </div>
-            </div>
-        </div>
-    `).join("");
-}function renderTestimonials(testimonials) {
-    const container = document.getElementById('testimoniosGrid');
-    if (!container) return;
-
-    if (!testimonials.length) {
-        container.innerHTML = `
-            <div class="col-12 text-center py-5">
-                <p class="text-muted">Ainda nÃ£o temos depoimentos publicados. Se vocÃª jÃ¡ participou de nossa mentoria, compartilhe sua experiÃªncia conosco!</p>
-            </div>
-        `;
-        return;
-    }
-
-    container.innerHTML = testimonials.map(testimonial => `
-        <div class="col-lg-4 col-md-6">
-            <div class="mentor-card" style="border-left: 4px solid var(--brand-primary);">
-                <div class="mentor-avatar" style="background: var(--brand-primary); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                    <i class="bi bi-chat-left-quote text-white" style="font-size: 2rem;"></i>
-                </div>
-                <h5 class="mentor-name">${escapeHtml(testimonial.name)}</h5>
-                <p class="mentor-role text-muted">${escapeHtml(testimonial.role)}</p>
-                <div class="mentor-topics">
-                    ${testimonial.topics.map(topic => `<span class="badge bg-subtle text-muted small">${escapeHtml(topic)}</span>`).join('')}
-                </div>
-                <p class="mentor-bio" style="font-style: italic;">"${escapeHtml(testimonial.message)}"</p>
-                <div class="mentor-slots">
-                    <span class="badge bg-secondary">${escapeHtml(testimonial.date || 'Recente')}</span>
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-function initMentorFilters(programs) {
-    const filterButtons = document.querySelectorAll('.mentor-filter-btn');
-    if (!filterButtons.length) return;
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Filter mentors
-            const filter = button.dataset.filter;
-            const mentorCards = document.querySelectorAll('.mentor-card');
-
-            mentorCards.forEach(card => {
-                const mentorName = card.querySelector('.mentor-name').textContent.toLowerCase();
-                const mentorRole = card.querySelector('.mentor-role').textContent.toLowerCase();
-                const mentorTopics = card.querySelector('.mentor-topics').textContent.toLowerCase();
-
-                let matches = false;
-
-                if (filter === 'all') {
-                    matches = true;
-                } else {
-                    // Check if mentor matches the filter category
-                    switch(filter) {
-                        case 'frontend':
-                            matches = mentorName.includes('front') || mentorRole.includes('front') || mentorTopics.includes('front-end') || mentorTopics.includes('frontend');
-                            break;
-                        case 'backend':
-                            matches = mentorName.includes('back') || mentorRole.includes('back') || mentorTopics.includes('back-end') || mentorTopics.includes('backend');
-                            break;
-                        case 'data':
-                            matches = mentorName.includes('data') || mentorRole.includes('data') || mentorTopics.includes('dados') || mentorTopics.includes('data') || mentorTopics.includes('ia') || mentorTopics.includes('ai');
-                            break;
-                        case 'infra':
-                            matches = mentorName.includes('infra') || mentorRole.includes('infra') || mentorTopics.includes('infraestrutura') || mentorTopics.includes('redes') || mentorTopics.includes('cloud');
-                            break;
-                        case 'uxui':
-                            matches = mentorName.includes('ux') || mentorName.includes('ui') || mentorRole.includes('ux') || mentorRole.includes('ui') || mentorTopics.includes('ux/ui') || mentorTopics.includes('produto') || mentorTopics.includes('ux') || mentorTopics.includes('ui');
-                            break;
-                        case 'carreira':
-                            matches = mentorName.includes('carreira') || mentorRole.includes('carreira') || mentorTopics.includes('carreira') || mentorTopics.includes('primeiro emprego') || mentorTopics.includes('emprego');
-                            break;
-                        default:
-                            matches = true;
-                    }
-                }
-
-                card.parentElement.style.display = matches ? '' : 'none';
-            });
-        });
-    });
-}
-
-
-
-
-
-

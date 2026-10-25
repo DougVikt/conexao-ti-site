@@ -33,7 +33,6 @@
   --color-github: #f0f6fc;
   --color-discord: #5865f2;
   --color-drive: #34a853;
-  --color-mentor: #ff6b6b;
 
   /* Bordas e Sombras Físicas (Sem blur exagerado que gera aspecto sujo) */
   --border-subtle: rgba(255, 255, 255, 0.08);
@@ -55,6 +54,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
@@ -62,6 +66,38 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  animation: page-enter 0.32s ease backwards;
+}
+
+body.page-leaving {
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    animation: none;
+  }
+
+  body.page-leaving {
+    opacity: 1;
+    transition: none;
+  }
 }
 
 /* Background com textura sutil e orgânica */
@@ -99,18 +135,14 @@ body {
   transition: all 0.2s ease;
 }
 
-.brand-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(0, 229, 255, 0.08);
-  border: 1px solid rgba(0, 229, 255, 0.25);
-  color: var(--brand-primary);
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+.nav-mobile {
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.nav-header .fw-semibold {
+  transition: color 0.2s ease;
 }
 
 /* Hero Section */
@@ -337,9 +369,12 @@ body {
 }
 
 .social-embed-card .instagram-media {
+  display: block;
   width: calc(100% - 2rem) !important;
   min-width: 0 !important;
   margin: 1rem auto !important;
+  border: 1px solid #dbdbdb !important;
+  border-radius: 3px !important;
   background: #ffffff !important;
 }
 
@@ -500,148 +535,6 @@ body {
   }
 }
 
-/* Cartões da Mentoria com Mestres */
-.mentor-card {
-  height: 100%;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-}
-
-.mentor-card:hover {
-  border-color: rgba(255, 107, 107, 0.55);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-3px);
-}
-
-.mentor-avatar {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 107, 107, 0.45);
-  padding: 0.3rem;
-  margin: 0 auto 1rem;
-}
-
-.mentor-name {
-  color: #ffffff;
-  font-family: var(--font-title);
-  font-size: 1.15rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 0.3rem;
-}
-
-.mentor-role {
-  font-size: 0.85rem;
-  line-height: 1.4;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.mentor-topics {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-}
-
-.mentor-topics .badge,
-.mentor-slots .badge {
-  background: rgba(255, 107, 107, 0.1) !important;
-  border: 1px solid rgba(255, 107, 107, 0.3);
-  color: #ffd1d1 !important;
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  font-weight: 500;
-  padding: 0.35rem 0.5rem;
-}
-
-.mentor-slots {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.mentor-bio {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.55;
-  text-align: center;
-  flex-grow: 1;
-  margin-bottom: 0;
-}
-
-@media (max-width: 575.98px) {
-  .mentor-card {
-    padding: 1.25rem;
-  }
-}
-
-/* Formulário de interesse na mentoria */
-.mentorship-form-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 2rem;
-  align-items: start;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), var(--bg-card) 45%);
-}
-
-.mentorship-interest-form .form-label {
-  color: var(--text-main);
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.mentorship-interest-form .form-control,
-.mentorship-interest-form .form-select {
-  min-height: 46px;
-  color: var(--text-main);
-  background-color: rgba(255, 255, 255, 0.04);
-  border-color: var(--border-subtle);
-}
-
-.mentorship-interest-form .form-control:focus,
-.mentorship-interest-form .form-select:focus {
-  color: var(--text-main);
-  background-color: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 107, 107, 0.65);
-  box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.12);
-}
-
-.mentorship-interest-form .form-select option {
-  color: var(--text-main);
-  background: var(--bg-card);
-}
-
-.mentorship-form-feedback {
-  min-height: 1.25rem;
-  margin: 0.85rem 0 0;
-  font-size: 0.85rem;
-}
-
-.mentorship-form-feedback.is-success {
-  color: #65e58a;
-}
-
-.mentorship-form-feedback.is-error {
-  color: #ff9292;
-}
-
-@media (max-width: 767.98px) {
-  .mentorship-form-shell {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Seção de Vantagens da Comunidade */
 .perk-box {
   background: rgba(255, 255, 255, 0.02);
@@ -737,76 +630,6 @@ body {
 .node-two { right: 21%; top: 19%; }
 .node-three { left: 28%; bottom: 22%; }
 .node-four { right: 13%; bottom: 28%; }
-
-/* Navbar das páginas secundárias */
-.site-nav {
-  background: rgba(7, 9, 14, 0.72);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.brand-logo {
-  width: 39px;
-  height: 39px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.brand-title {
-  font-family: var(--font-title);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.brand-sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
-/* Cabeçalhos das páginas secundárias */
-.hero-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent-ink);
-  background: var(--brand-primary);
-  padding: 7px 13px;
-  border-radius: 999px;
-  font-weight: 600;
-}
-
-.hero-title {
-  font-family: var(--font-title);
-  font-weight: 700;
-  font-size: clamp(38px, 6vw, 62px);
-  line-height: 1.04;
-  letter-spacing: -0.025em;
-  margin: 22px 0 18px;
-}
-
-.hero-title .thin {
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.hero-text {
-  font-size: clamp(16px, 2vw, 19px);
-  color: var(--text-muted);
-  max-width: 62ch;
-}
-
-.logo-hero {
-  width: 10rem;
-  height: 10rem;
-  padding: 10px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.2), 0 0 55px rgba(0, 112, 243, 0.24);
-}
 
 /* Cartões e rótulos */
 .card-surface {
@@ -1020,6 +843,43 @@ body {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-main);
+}
+
+/* Avatar e redes dos ADMs */
+.adm-avatar {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.22), rgba(0, 229, 255, 0.05));
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: var(--brand-primary);
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.adm-social-link {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.adm-social-link:hover {
+  color: var(--brand-primary);
+  border-color: var(--border-active);
+  background: rgba(0, 229, 255, 0.08);
 }
 
 .badge-tag {

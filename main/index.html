@@ -12,10 +12,12 @@
 
   <!-- CSS Autoral & Design System -->
   <link href="css/style.css" rel="stylesheet">
+  <script src="js/transitions.js" defer></script>
 
   <!-- Scripts -->
   <script type="module" src="js/data.js"></script>
   <script type="module" src="js/script.js"></script>
+  <script src="js/nav.js" defer></script>
 </head>
 
 <body>
@@ -27,34 +29,49 @@
   <div class="position-relative" style="z-index: 1;">
 
     <!-- Navbar Oficial -->
-    <nav class="nav-header py-3">
+    <nav class="nav-header py-3" aria-label="Navegação principal">
       <div class="container d-flex align-items-center justify-content-between">
         <a class="d-flex align-items-center gap-2 text-decoration-none" href="#inicio">
           <img src="img/logo.png" alt="Logo Conexão TI" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain;" />
           <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão TI</span>
         </a>
 
-        <div class="d-none d-md-flex align-items-center gap-3">
+        <div class="d-none d-xl-flex align-items-center gap-3">
           <a href="#redes" class="text-decoration-none text-secondary small fw-semibold">Nossas Redes</a>
-          <a href="#posts" class="text-decoration-none text-secondary small fw-semibold">Destaques & Posts</a>
+          <a href="#posts" class="text-decoration-none text-secondary small fw-semibold">Destaques &amp; Posts</a>
+          <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold">ADMs</a>
           <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold">Biblioteca de Arquivos</a>
           <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold">Projetos</a>
           <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold">Dúvidas</a>
         </div>
 
         <div class="d-flex align-items-center gap-2">
-          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
+          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
             <i class="bi bi-instagram"></i>
           </a>
-          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
+          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
             <i class="bi bi-linkedin"></i>
           </a>
-          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
+          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
             <i class="bi bi-discord"></i>
           </a>
-          <a href="#redes" class="btn-cta-primary py-2 px-3" style="font-size: 0.85rem;">
+          <a href="#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;">
             <span>Fazer Parte</span> <i class="bi bi-arrow-right-short"></i>
           </a>
+          <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="collapse d-xl-none nav-mobile" id="navMenu">
+        <div class="container d-flex flex-column gap-2 pb-2">
+          <a href="#redes" class="text-decoration-none text-secondary small fw-semibold py-1">Nossas Redes</a>
+          <a href="#posts" class="text-decoration-none text-secondary small fw-semibold py-1">Destaques &amp; Posts</a>
+          <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold py-1">ADMs</a>
+          <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold py-1">Biblioteca de Arquivos</a>
+          <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Projetos</a>
+          <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
         </div>
       </div>
     </nav>
@@ -65,7 +82,7 @@
         <div class="col-lg-10 col-xl-8">
 
           <div class="mb-3">
-            <span class="brand-badge">
+            <span class="badge-pill-tech">
               <i class="bi bi-patch-check-fill"></i> Comunidade de ADS, Sistemas e Redes
             </span>
           </div>
@@ -113,7 +130,7 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
     <!-- Seção: Todas as Nossas Redes e Canais -->
     <section class="container py-5" id="redes">
       <div class="text-center mb-5">
-        <span class="brand-badge mb-2"><i class="bi bi-grid-fill"></i> Onde nos encontrar</span>
+        <span class="badge-pill-tech mb-2"><i class="bi bi-grid-fill"></i> Onde nos encontrar</span>
         <h2 class="fw-bold text-light" style="font-family: var(--font-title); font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
           Escolha seu canal favorito para interagir
         </h2>
@@ -129,7 +146,7 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
     <section class="container py-5" id="posts">
       <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
         <div>
-          <span class="brand-badge mb-2"><i class="bi bi-lightning-charge-fill"></i> Conteúdo Recente</span>
+          <span class="badge-pill-tech mb-2"><i class="bi bi-lightning-charge-fill"></i> Conteúdo Recente</span>
           <h2 class="fw-bold text-light m-0" style="font-family: var(--font-title);">Publicações que movimentaram a comunidade</h2>
           <p class="text-muted small mt-1 mb-0">Veja o que estamos debatendo, aprendendo e comemorando esta semana.</p>
         </div>
@@ -144,13 +161,6 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
 
       <div class="row g-4" id="featuredPostsGrid"></div>
     </section>
-
-
-    <!-- Seção: ADMs da Comunidade -->
-    
-    <!-- SeÃ§Ã£o: Mentoria com Mestres -->
-    
-
 
     <!-- Seção: Por que entrar na Conexão TI -->
     <section class="container py-5 my-3">
