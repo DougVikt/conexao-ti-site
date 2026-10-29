@@ -190,15 +190,28 @@ let DRIVE_CONFIG = {
     parentFolderId: ''
 };
 
-// Tentar carregar configuração externa
+// Carrega a configuração externa.
+// Prioriza window.CONEXAO_CONFIG (config.js clássico, funciona via file://).
+// Se não existir, tenta importar como módulo (compatibilidade com configs antigas).
 async function loadDriveConfig() {
     try {
-        // Tentar importar o módulo de configuração
-        const configModule = await import('./config.js');
-        if (configModule && configModule.CONEXAO_CONFIG && configModule.CONEXAO_CONFIG.drive) {
+        if (typeof window !== 'undefined' && window.CONEXAO_CONFIG && window.CONEXAO_CONFIG.drive) {
             DRIVE_CONFIG = {
-                apiKey: configModule.CONEXAO_CONFIG.drive.apiKey || '',
-                parentFolderId: configModule.CONEXAO_CONFIG.drive.parentFolderId || ''
+                apiKey: window.CONEXAO_CONFIG.drive.apiKey || '',
+                parentFolderId: window.CONEXAO_CONFIG.drive.parentFolderId || ''
+            };
+            console.log('Configuração do Drive carregada com sucesso');
+            return;
+        }
+
+        const configModule = await import('./config.js');
+        const config = (configModule && configModule.CONEXAO_CONFIG)
+            || (typeof window !== 'undefined' ? window.CONEXAO_CONFIG : null);
+
+        if (config && config.drive) {
+            DRIVE_CONFIG = {
+                apiKey: config.drive.apiKey || '',
+                parentFolderId: config.drive.parentFolderId || ''
             };
             console.log('Configuração do Drive carregada com sucesso');
         } else {
@@ -223,6 +236,15 @@ const FOLDER_ICON_MAP = {
     'seguranca': 'bi-shield-lock',
     'ia': 'bi-brain',
     'desenvolvimento-web': 'bi-code-slash',
+    'videos': 'bi-play-btn',
+    'outros': 'bi-collection',
+    'software': 'bi-diagram-3',
+    'programacao': 'bi-file-earmark-code',
+    'idiomas': 'bi-translate',
+    'infraestrutura': 'bi-hdd-network',
+    'linguagens': 'bi-code-slash',
+    'matematia': 'bi-calculator',
+    'matematica': 'bi-calculator',
     'todas-as-materias': 'bi-folder2-open',
     'default': 'bi-folder2'
 };
@@ -267,71 +289,74 @@ async function fetchFoldersFromDrive() {
             return getFallbackFolders();
         }
 
-        // Busca pastas e arquivos em paralelo
-        const [foldersResponse, filesResponse] = await Promise.all([
-            (() => {
-                const url = new URL('https://www.googleapis.com/drive/v3/files');
-                url.searchParams.set('q', `\"${DRIVE_CONFIG.parentFolderId}\" in parents and mimeType = \"application/vnd.google-apps.folder\" and trashed = false`);
-                url.searchParams.set('fields', 'files(id,name)');
-                url.searchParams.set('key', DRIVE_CONFIG.apiKey);
-                return fetch(url.toString());
-            })(),
-            (() => {
-                const url = new URL('https://www.googleapis.com/drive/v3/files');
-                url.searchParams.set('q', `\"${DRIVE_CONFIG.parentFolderId}\" in parents and mimeType != \"application/vnd.google-apps.folder\" and trashed = false`);
-                url.searchParams.set('fields', 'files(id,parents)');
-                url.searchParams.set('key', DRIVE_CONFIG.apiKey);
-                return fetch(url.toString());
-            })()
-        ]);
+        // 1) Pastas filhas da pasta raiz
+        const foldersUrl = new URL('https://www.googleapis.com/drive/v3/files');
+        foldersUrl.searchParams.set('q', `'${DRIVE_CONFIG.parentFolderId}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false`);
+        foldersUrl.searchParams.set('fields', 'files(id,name)');
+        foldersUrl.searchParams.set('key', DRIVE_CONFIG.apiKey);
 
+        const foldersResponse = await fetch(foldersUrl.toString());
         if (!foldersResponse.ok) {
             throw new Error(`Falha na API do Drive (buscando pastas): ${foldersResponse.status}`);
         }
 
-        if (!filesResponse.ok) {
-            throw new Error(`Falha na API do Drive (buscando arquivos): ${filesResponse.status}`);
-        }
-
         const foldersData = await foldersResponse.json();
-        const filesData = await filesResponse.json();
         const folders = foldersData.files || [];
-        const files = filesData.files || [];
 
-        // Conta arquivos por pasta pai
-        const fileCountMap = new Map();
-        for (const file of files) {
-            if (file.parents) {
-                for (const parentId of file.parents) {
-                    fileCountMap.set(parentId, (fileCountMap.get(parentId) || 0) + 1);
+        // 2) Conteúdo de cada pasta.
+        // A API do Drive não aceita combinar vários "in parents" com OR usando
+        // API key, então consultamos pasta por pasta (em paralelo).
+        const filesByFolder = new Map();
+        const subfoldersByFolder = new Map();
+
+        await Promise.all(folders.map(async folder => {
+            try {
+                const filesUrl = new URL('https://www.googleapis.com/drive/v3/files');
+                filesUrl.searchParams.set('q', `'${folder.id}' in parents and trashed = false`);
+                filesUrl.searchParams.set('fields', 'files(id,name,parents,mimeType)');
+                filesUrl.searchParams.set('pageSize', '1000');
+                filesUrl.searchParams.set('key', DRIVE_CONFIG.apiKey);
+
+                const filesResponse = await fetch(filesUrl.toString());
+                if (!filesResponse.ok) {
+                    throw new Error(`Falha na API do Drive (buscando conteúdo de "${folder.name}"): ${filesResponse.status}`);
                 }
+
+                const filesData = await filesResponse.json();
+                const children = filesData.files || [];
+                const isFolder = item => item.mimeType === 'application/vnd.google-apps.folder';
+
+                filesByFolder.set(folder.id, children.filter(item => !isFolder(item)));
+                subfoldersByFolder.set(folder.id, children.filter(isFolder));
+            } catch (error) {
+                // Uma pasta sem permissão não deve derrubar a biblioteca inteira.
+                console.warn(error.message || error);
+                filesByFolder.set(folder.id, []);
+                subfoldersByFolder.set(folder.id, []);
             }
-        }
+        }));
 
         // Transforma a resposta no formato esperado pelo site
-        // Cada folder agora inclui os arquivos dentro dele
+        // Cada folder inclui a contagem e os arquivos dentro dele
         return folders.map(folder => {
             const name = folder.name.trim();
             const slug = normalizeSlug(name);
             const icon = FOLDER_ICON_MAP[slug] || FOLDER_ICON_MAP.default;
-
-            // Filtrar arquivos que pertencem a esta pasta
-            const folderFiles = files.filter(file =>
-                file.parents && file.parents.includes(folder.id)
-            );
+            const folderFiles = filesByFolder.get(folder.id) || [];
 
             return {
                 name,
                 slug,
                 icon,
                 driveId: folder.id,
-                filesCount: fileCountMap.get(folder.id) || 0,
+                filesCount: folderFiles.length,
+                subfoldersCount: (subfoldersByFolder.get(folder.id) || []).length,
                 // Include files for rendering in biblioteca
                 files: folderFiles.map(file => ({
                     id: file.id,
                     name: file.name,
                     // Determine file icon based on extension
-                    getIcon: function() {
+                    getIcon: function () {
                         const ext = (this.name.split('.').pop() || '').toLowerCase() || 'default';
                         let fileIcon = 'bi-folder2';
                         if (ext === 'pdf') fileIcon = 'bi-file-pdf';
@@ -357,6 +382,24 @@ async function fetchFoldersFromDrive() {
  * @returns {Array} Lista de pastas estáticas
  */
 function getFallbackFolders() {
+    // Se a lista editável da biblioteca estiver carregada, usa as pastas reais
+    // (com os links do Drive) em vez da lista de exemplo.
+    if (typeof bibliotecaDados !== 'undefined' && Array.isArray(bibliotecaDados) && bibliotecaDados.length) {
+        return bibliotecaDados.map(item => {
+            const match = String(item.drive || '').match(/\/folders\/([^/?#]+)/);
+            const slug = normalizeSlug(item.slug || item.titulo);
+            return {
+                name: item.titulo,
+                slug,
+                icon: FOLDER_ICON_MAP[slug] || FOLDER_ICON_MAP.default,
+                driveId: match ? match[1] : DRIVE_CONFIG.parentFolderId,
+                // Sem a API key não há como saber a contagem real; melhor não exibir.
+                filesCount: 0,
+                files: []
+            };
+        });
+    }
+
     return [
         {
             name: "Redes",
@@ -365,7 +408,7 @@ function getFallbackFolders() {
             driveId: "1A2B3C4D5E6F7G8H9I0J",
             filesCount: 0,
             files: [
-                { id: "fallback-1", name: "Introdução às Redes.pdf", getIcon: function() { const ext = (this.name.split('.').pop() || '').toLowerCase(); return ext === 'pdf' ? 'bi-file-pdf' : 'bi-file-text'; } }
+                { id: "fallback-1", name: "Introdução às Redes.pdf", getIcon: function () { const ext = (this.name.split('.').pop() || '').toLowerCase(); return ext === 'pdf' ? 'bi-file-pdf' : 'bi-file-text'; } }
             ]
         },
         {
@@ -375,7 +418,7 @@ function getFallbackFolders() {
             driveId: "2B3C4D5E6F7G8H9I0J1A",
             filesCount: 0,
             files: [
-                { id: "fallback-2", name: "Exercícios SQL.docx", getIcon: function() { const ext = (this.name.split('.').pop() || '').toLowerCase(); return ext === 'doc' || ext === 'docx' ? 'bi-file-word' : 'bi-file-text'; } }
+                { id: "fallback-2", name: "Exercícios SQL.docx", getIcon: function () { const ext = (this.name.split('.').pop() || '').toLowerCase(); return ext === 'doc' || ext === 'docx' ? 'bi-file-word' : 'bi-file-text'; } }
             ]
         },
         {
@@ -385,7 +428,7 @@ function getFallbackFolders() {
             driveId: "3C4D5E6F7G8H9I0J1A2B",
             filesCount: 0,
             files: [
-                { id: "fallback-3", name: "exercicio01.py", getIcon: function() { const ext = (this.name.split('.').pop() || '').toLowerCase(); return ext === 'py' ? 'bi-file-code' : 'bi-file-text'; } }
+                { id: "fallback-3", name: "exercicio01.py", getIcon: function () { const ext = (this.name.split('.').pop() || '').toLowerCase(); return ext === 'py' ? 'bi-file-code' : 'bi-file-text'; } }
             ]
         },
         {
@@ -643,24 +686,15 @@ if (typeof window !== 'undefined') {
     });
 }
 
-// Expose fetchInstagramOEmbed for use in other scripts (e.g., script.js)
+// Expõe funções para os scripts clássicos das páginas (compatível com file://).
+// O objeto window.CONEXAO_DATA continua sendo a fonte de dados compartilhada.
 if (typeof window !== 'undefined') {
     window.fetchInstagramOEmbed = fetchInstagramOEmbed;
+    window.initializeDriveFolders = initializeDriveFolders;
+    window.getFallbackFolders = getFallbackFolders;
     // Also attach to CONEXAO_DATA for consistency
     if (window.CONEXAO_DATA) {
         window.CONEXAO_DATA.fetchInstagramOEmbed = fetchInstagramOEmbed;
+        window.CONEXAO_DATA.initializeDriveFolders = initializeDriveFolders;
     }
 }
-
-
-// Exportações para uso como módulo ES (index.html e biblioteca.html).
-// O objeto window.CONEXAO_DATA continua sendo mantido para scripts clássicos.
-export {
-    escapeHtml,
-    FOLDERS,
-    FEATURED_POSTS,
-    SOCIAL_STATS,
-    SOCIAL_CHANNELS,
-    initializeDriveFolders,
-    fetchInstagramOEmbed
-};
