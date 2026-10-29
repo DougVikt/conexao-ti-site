@@ -452,7 +452,7 @@ function renderPerks(perks) {
         <div class="col-md-3 col-sm-6">
             <div class="perk-box">
                 <i class="bi ${perk.icon} perk-icon"></i>
-                <h5 class="fw-bold text-light mb-2" style="font-family: var(--font-title); font-size: 1.05rem;">${escapeHtml(perk.title)}</h5>
+                <h3 class="fw-bold text-light mb-2 h5" style="font-family: var(--font-title); font-size: 1.05rem;">${escapeHtml(perk.title)}</h3>
                 <p class="text-muted small mb-0" style="line-height: 1.5;">${escapeHtml(perk.desc)}</p>
             </div>
         </div>
