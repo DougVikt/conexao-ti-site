@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Biblioteca de materiais da Conexão TI: resumos, slides, provas e exercícios organizados por matéria no Google Drive." />
     <title>Biblioteca de Arquivos — Conexão TI</title>
 
     <!-- Bootstrap 5.3 & Icons -->
@@ -103,15 +104,9 @@
                         </button>
                     </div>
 
-                    <!-- Chips de Filtro Rápido -->
+                    <!-- Chips de Filtro Rápido (gerados a partir das pastas do Drive) -->
                     <div class="d-flex flex-wrap justify-content-center gap-2" id="filterChips">
                         <button class="roadmap-tab-btn active" data-slug="all">Todas as Matérias</button>
-                        <button class="roadmap-tab-btn" data-slug="redes">Redes</button>
-                        <button class="roadmap-tab-btn" data-slug="banco-dados">Banco de Dados</button>
-                        <button class="roadmap-tab-btn" data-slug="python">Python</button>
-                        <button class="roadmap-tab-btn" data-slug="seguranca">Segurança</button>
-                        <button class="roadmap-tab-btn" data-slug="ia">IA</button>
-                        <button class="roadmap-tab-btn" data-slug="dev-web">Dev Web</button>
                     </div>
                 </div>
             </div>
@@ -119,11 +114,11 @@
 
         <!-- Grid de Pastas -->
         <main class="container pb-5">
-            <div class="section-eyebrow mb-3">
+            <h2 class="section-eyebrow mb-3">
                 <span class="section-eyebrow__num">02</span>
                 <span class="section-eyebrow__line"></span>
                 <span>Pastas por matéria</span>
-            </div>
+            </h2>
             <div class="row g-3" id="foldersGrid"></div>
             <div id="emptyMessage" class="text-center text-muted py-5 d-none">
                 <i class="bi bi-search fs-1 d-block mb-2 text-secondary"></i>
@@ -150,118 +145,164 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script type="module">
-        import * as data from './js/data.js';
-        const { escapeHtml } = data;
+    <script>
+        // Script clássico: funciona tanto em servidor quanto via file://.
+        // O listener é registrado antes de data.js carregar, então nenhum
+        // evento "drive-data-loaded" é perdido.
+        (function initBiblioteca() {
+            const grid = document.getElementById('foldersGrid');
+            const empty = document.getElementById('emptyMessage');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const filterInput = document.getElementById('filterInput');
+            const filterChips = document.getElementById('filterChips');
 
-        const grid = document.getElementById('foldersGrid');
-        const empty = document.getElementById('emptyMessage');
-        const loadingIndicator = document.getElementById('loadingIndicator');
-        const filterInput = document.getElementById('filterInput');
-        const chips = document.querySelectorAll('#filterChips button');
-
-        function renderFolders(items) {
-            if (!items.length) {
-                grid.innerHTML = '';
-                empty.classList.remove('d-none');
-                loadingIndicator.classList.add('d-none');
-                return;
+            function escapeHtml(value) {
+                if (value === null || value === undefined) return '';
+                return String(value).replace(/[&<>"']/g, (char) => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[char]));
             }
-            empty.classList.add('d-none');
-            loadingIndicator.classList.add('d-none');
 
-            grid.innerHTML = items.map(f => `
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="bento-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="bento-icon-wrapper mb-3">
-                                <i class="bi ${escapeHtml(f.icon)}"></i>
+            function getFolders() {
+                const data = window.CONEXAO_DATA;
+                return data && Array.isArray(data.FOLDERS) ? data.FOLDERS : [];
+            }
+
+            function renderFolders(items) {
+                if (!items.length) {
+                    grid.innerHTML = '';
+                    empty.classList.remove('d-none');
+                    loadingIndicator.classList.add('d-none');
+                    return;
+                }
+                empty.classList.add('d-none');
+                loadingIndicator.classList.add('d-none');
+
+                grid.innerHTML = items.map(f => `
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bento-card p-4 h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="bento-icon-wrapper mb-3">
+                                    <i class="bi ${escapeHtml(f.icon)}"></i>
+                                </div>
+                                <h3 class="bento-card-title h5">${escapeHtml(f.name)}</h3>
+                                ${Number(f.filesCount) > 0 ? `<span class="badge-tag ${Number(f.subfoldersCount) > 0 ? 'me-1' : ''}">${escapeHtml(f.filesCount)} ${Number(f.filesCount) === 1 ? 'arquivo' : 'arquivos'}</span>` : ''}
+                                ${Number(f.subfoldersCount) > 0 ? `<span class="badge-tag">${escapeHtml(f.subfoldersCount)} ${Number(f.subfoldersCount) === 1 ? 'pasta' : 'pastas'}</span>` : ''}
                             </div>
-                            <h5 class="bento-card-title">${escapeHtml(f.name)}</h5>
-                            <span class="badge-tag">${escapeHtml(f.filesCount)} arquivos</span>
-                        </div>
-                        <div class="mt-2">
-                            ${f.files && f.files.length > 0 ? f.files.map(file => `
-                                <a href="https://drive.google.com/file/d/${escapeHtml(file.id)}/view?usp=sharing" target="_blank" class="text-decoration-none d-block mb-1">
-                                    <i class="bi ${escapeHtml(file.getIcon())} me-1"></i> ${escapeHtml(file.name)}
+                            <div class="mt-2">
+                                ${f.files && f.files.length > 0 ? f.files.slice(0, 3).map(file => `
+                                    <a href="https://drive.google.com/file/d/${escapeHtml(file.id)}/view?usp=sharing" target="_blank" rel="noopener" class="text-decoration-none d-block mb-1 text-truncate" title="${escapeHtml(file.name)}">
+                                        <i class="bi ${escapeHtml(file.getIcon())} me-1"></i> ${escapeHtml(file.name)}
+                                    </a>
+                                `).join('') : ''}
+                                ${f.files && f.files.length > 3 ? `<span class="text-muted font-monospace" style="font-size: 0.72rem;">+${f.files.length - 3} ${f.files.length - 3 === 1 ? 'arquivo' : 'arquivos'}</span>` : ''}
+                            </div>
+                            <div class="pt-4 mt-auto">
+                                <a href="https://drive.google.com/drive/folders/${escapeHtml(f.driveId)}" target="_blank" rel="noopener" class="btn-modern-ghost w-100 justify-content-center py-2 text-decoration-none" style="font-size: 0.82rem;">
+                                    <i class="bi bi-folder me-1"></i> Ver Pastas
                                 </a>
-                            `).join('') : ''}
-                        </div>
-                        <div class="pt-4 mt-auto">
-                            <a href="https://drive.google.com/drive/folders/${escapeHtml(f.driveId)}" target="_blank" class="btn-modern-ghost w-100 justify-content-center py-2 text-decoration-none" style="font-size: 0.82rem;">
-                                <i class="bi bi-folder me-1"></i> Ver Pastas
-                            </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
-        }
+                `).join('');
+            }
 
-        function initialLoad() {
-            grid.innerHTML = '';
-            empty.classList.add('d-none');
-            loadingIndicator.classList.remove('d-none');
-        }
-
-        function handleDriveDataLoaded(event) {
-            const folders = event.detail?.folders || [];
-            renderFolders(folders);
-        }
-
-        function filterList(query) {
-            const q = query.toLowerCase().trim();
-            const filtered = data.FOLDERS.filter(f => 
-                f.name.toLowerCase().includes(q) || 
-                f.slug.toLowerCase().includes(q)
-            );
-            renderFolders(filtered);
-        }
-
-        filterInput.addEventListener('input', (e) => {
-            chips.forEach(c => c.classList.remove('active'));
-            filterList(e.target.value);
-        });
-
-        chips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                chips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                filterInput.value = '';
-                const slug = chip.dataset.slug;
-                if (slug === 'all') {
-                    renderFolders(data.FOLDERS);
-                } else {
-                    filterList(slug);
-                }
-            });
-        });
-
-        // Listen for drive data loaded event FIRST
-        document.addEventListener('drive-data-loaded', handleDriveDataLoaded);
-
-        // Initial load
-        initialLoad();
-
-        // Refresh button handler
-        const refreshBtn = document.getElementById('refreshBtn');
-        if (refreshBtn) {
-            refreshBtn.addEventListener('click', () => {
-                refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizando...';
-                refreshBtn.disabled = true;
-                
-                // Re-import data module to get latest functions
-                import('./js/data.js').then(async (dataModule) => {
-                    await dataModule.initializeDriveFolders();
-                    refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizar Biblioteca';
-                    refreshBtn.disabled = false;
-                }).catch(error => {
-                    console.error('Error refreshing Drive data:', error);
-                    refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizar Biblioteca';
-                    refreshBtn.disabled = false;
+            // Os chips são gerados a partir das pastas reais do Drive,
+            // então nunca ficam fora de sincronia com as matérias disponíveis.
+            function renderChips(items) {
+                if (!filterChips) return;
+                filterChips.querySelectorAll('button[data-slug]:not([data-slug="all"])').forEach(btn => btn.remove());
+                items.filter(folder => folder.slug !== 'todas-as-materias').forEach(folder => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'roadmap-tab-btn';
+                    btn.dataset.slug = folder.slug;
+                    btn.textContent = folder.name;
+                    filterChips.appendChild(btn);
                 });
+            }
+
+            function initialLoad() {
+                grid.innerHTML = '';
+                empty.classList.add('d-none');
+                loadingIndicator.classList.remove('d-none');
+            }
+
+            function handleDriveDataLoaded(event) {
+                const folders = event.detail && Array.isArray(event.detail.folders)
+                    ? event.detail.folders
+                    : getFolders();
+                renderChips(folders);
+                renderFolders(folders);
+            }
+
+            function filterList(query) {
+                const q = query.toLowerCase().trim();
+                const filtered = getFolders().filter(f =>
+                    f.name.toLowerCase().includes(q) ||
+                    f.slug.toLowerCase().includes(q)
+                );
+                renderFolders(filtered);
+            }
+
+            if (filterChips) {
+                filterChips.addEventListener('click', (event) => {
+                    const chip = event.target.closest('button[data-slug]');
+                    if (!chip) return;
+                    filterChips.querySelectorAll('button').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    filterInput.value = '';
+                    const slug = chip.dataset.slug;
+                    if (slug === 'all') {
+                        renderFolders(getFolders());
+                    } else {
+                        filterList(slug);
+                    }
+                });
+            }
+
+            filterInput.addEventListener('input', (e) => {
+                if (filterChips) {
+                    filterChips.querySelectorAll('button').forEach(c => c.classList.remove('active'));
+                    const allBtn = filterChips.querySelector('button[data-slug="all"]');
+                    if (allBtn) allBtn.classList.add('active');
+                }
+                filterList(e.target.value);
             });
-        }
+
+            document.addEventListener('drive-data-loaded', handleDriveDataLoaded);
+            initialLoad();
+
+            const refreshBtn = document.getElementById('refreshBtn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', async () => {
+                    refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizando...';
+                    refreshBtn.disabled = true;
+                    try {
+                        if (typeof window.initializeDriveFolders === 'function') {
+                            await window.initializeDriveFolders();
+                        }
+                    } catch (error) {
+                        console.error('Error refreshing Drive data:', error);
+                    } finally {
+                        refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i> Atualizar Biblioteca';
+                        refreshBtn.disabled = false;
+                    }
+                });
+            }
+        })();
     </script>
+
+    <!-- Configuração local (apiKey do Drive). O arquivo é opcional e não versionado. -->
+    <script src="js/config.js"></script>
+    <!-- Dados editáveis da biblioteca (fallback com os links reais do Drive) -->
+    <script src="js/biblioteca-dados.js"></script>
+    <!-- Carrega os dados depois do listener para não perder o evento inicial -->
+    <script src="js/data.js"></script>
 </body>
 
 </html>
