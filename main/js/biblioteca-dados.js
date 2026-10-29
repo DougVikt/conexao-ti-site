@@ -2,9 +2,9 @@
 // Cada curso tem: titulo, slug, link da pasta no Drive (pode ser atualizado a qualquer momento), arquivos (texto editável)
 const bibliotecaDados = [
     {
-        titulo: "Redes de Computadores",
-        slug: "redes",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Banco de Dados",
+        slug: "banco-dados",
+        drive: "https://drive.google.com/drive/folders/1SF_2hvGrpkadhHAgx7y0PT-2HtiRKzaU?usp=drive_link",
         arquivos: [
             "Modelo OSI e TCP/IP",
             "Sub-redes e cálculo",
@@ -13,9 +13,9 @@ const bibliotecaDados = [
         ]
     },
     {
-        titulo: "Banco de Dados",
-        slug: "banco-dados",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Cursos em vídeo",
+        slug: "videos",
+        drive: "https://drive.google.com/drive/folders/1KoKiyfm1IsGNcVU85z0h9D2vFW7c_MhK?usp=drive_link",
         arquivos: [
             "MER e SQL básico",
             "Normalização e formas",
@@ -24,9 +24,9 @@ const bibliotecaDados = [
         ]
     },
     {
-        titulo: "Programação em Python",
-        slug: "python",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Disciplinas e Materiais Cruzeiro do Sul",
+        slug: "outros",
+        drive: "https://drive.google.com/drive/folders/14rns6kdcGNOZPy2DxqCaHuaZeJ56ua97?usp=drive_link",
         arquivos: [
             "Introdução a Python",
             "Exercícios resolvidos — listas e laços",
@@ -35,9 +35,9 @@ const bibliotecaDados = [
         ]
     },
     {
-        titulo: "Segurança da Informação",
-        slug: "seguranca",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Engenharia de Software",
+        slug: "software",
+        drive: "https://drive.google.com/drive/folders/1dT1iN52_IXCR50OeuoAUTztQSQVW1A81?usp=drive_link",
         arquivos: [
             "Criptografia básica",
             "Checklist de segurança",
@@ -46,9 +46,9 @@ const bibliotecaDados = [
         ]
     },
     {
-        titulo: "Inteligência Artificial",
-        slug: "ia",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Fundamentos de Programação",
+        slug: "programação",
+        drive: "https://drive.google.com/drive/folders/1qewrrv-nhEXR8v3HN9IOGiz0s3JL_06u?usp=drive_link",
         arquivos: [
             "Introdução a Machine Learning",
             "Redes neurais — conceitos",
@@ -57,9 +57,9 @@ const bibliotecaDados = [
         ]
     },
     {
-        titulo: "Infraestrutura de TI",
-        slug: "infraestrutura",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Idiomas",
+        slug: "idiomas",
+        drive: "https://drive.google.com/drive/folders/12YlnLKx1lTBDkNt2hOvbkDRhnehvEUnJ?usp=drive_link",
         arquivos: [
             "Virtualização",
             "Topologia de servidores",
@@ -68,9 +68,9 @@ const bibliotecaDados = [
         ]
     },
     {
-        titulo: "Desenvolvimento Web",
-        slug: "dev-web",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Infraestrutura e Sistemas",
+        slug: "infraestrutura",
+        drive: "https://drive.google.com/drive/folders/1Le3zP_5QV7viYXR_M6_ABZv95Y3Ut2N_?usp=drive_link",
         arquivos: [
             "HTML e CSS — guia rápido",
             "JavaScript essencial",
@@ -79,9 +79,20 @@ const bibliotecaDados = [
         ]
     },
     {
-        titulo: "Suporte Técnico",
-        slug: "suporte",
-        drive: "https://drive.google.com/drive/folders/1N5kTne7aYPXn-N57nHIgYAUfW1V-5Uzx",
+        titulo: "Linguagens de Programação",
+        slug: "linguagens",
+        drive: "https://drive.google.com/drive/folders/1CZjvM8fHUj-GcmYsuFnkJ6_l0-ZohJu7?usp=drive_link",
+        arquivos: [
+            "Manual de atendimento",
+            "Checklist de formatação",
+            "Slides — Hardware básico",
+            "Planilha de chamados"
+        ]
+    },
+    {
+        titulo: "Matemática",
+        slug: "matematia",
+        drive: "https://drive.google.com/drive/folders/16J9PIz6FhNKHqQrfe0utuOmVjjpEDLxu?usp=drive_link",
         arquivos: [
             "Manual de atendimento",
             "Checklist de formatação",
