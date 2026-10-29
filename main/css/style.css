@@ -18,7 +18,7 @@
   /* Textos */
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --text-subtle: #64748b;
+  --text-subtle: #7c8aa0;
 
   /* Cores de Destaque da Marca (Azul Elétrico & Ciano Foco) */
   --brand-primary: #00e5ff;
@@ -861,7 +861,9 @@ body.page-leaving {
 
 .site-footer__credit a {
   color: var(--text-muted);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
