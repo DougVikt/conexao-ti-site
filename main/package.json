@@ -1,0 +1,15 @@
+{
+  "name": "conexao-ti",
+  "version": "1.0.0",
+  "description": "Comunidade Conexão TI - Website oficial",
+  "scripts": {
+    "build": "node scripts/generate-config.js",
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "keywords": ["comunidade", "tecnologia", "ads", "sistemas", "redes"],
+  "author": "Conexão TI",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
