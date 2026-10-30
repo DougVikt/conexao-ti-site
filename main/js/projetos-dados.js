@@ -1,11 +1,11 @@
 // Projetos compartilhados pela comunidade — edite esta lista
 const projetosDados = [
     {
-        titulo: "Biblioteca Virtual de TI",
-        slug: "biblioteca-virtual",
-        descricao: "Sistema de organização de arquivos de estudo para alunos de ADS, Sistemas e Redes, com busca por matéria.",
-        github: "https://github.com/conexao-ti/biblioteca-virtual",
-        capa: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=340&fit=crop"
+        titulo: "Estrada na Programação",
+        slug: "site",
+        descricao: "Este repositório foi criado para ser um ponto de encontro de quem está começando agora na programação e participa do curso de programação da Cruzeiro. Aqui você vai guardar, compartilhar e aprender olhando o código dos colegas.",
+        github: "https://github.com/DougVikt/estrada-na-programacao",
+        capa: "https://opengraph.githubassets.com/1/dougvikt/estrada-na-programacao"
     },
     {
         titulo: "Trilhas de Nivelamento",
