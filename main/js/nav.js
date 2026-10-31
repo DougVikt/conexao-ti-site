@@ -15,7 +15,7 @@
   if (!sections.length) return;
 
   const links = Array.from(
-    nav.querySelectorAll('a.small.fw-semibold[href*="#"]')
+    nav.querySelectorAll('a[href*="#"]')
   ).filter((link) => {
     const hash = link.getAttribute('href').split('#')[1];
     return sections.some((section) => section.id === hash);
