@@ -38,6 +38,15 @@ Um espaço para mostrar o que os alunos constroem. Repositórios, ferramentas e 
 ### 📚 Biblioteca de Materiais
 Resumos, slides, provas anteriores, exercícios resolvidos e códigos de aula, organizados por matéria e conectados ao Google Drive coletivo. Tudo o que você precisa para estudar, em um só lugar.
 
+### 🎓 Guia de Cursos
+Os 12 cursos de TI mais comuns explicados sem enrolação: objetivo, duração de referência, principais assuntos da grade, um exemplo prático, onde você pode trabalhar e o ponto forte de cada formação. A página tem busca, filtros por área e detalhes completos em um modal.
+
+### 🧩 Cursos Livres e Complementares
+Uma curadoria de plataformas e cursos para estudar por fora da graduação, organizada por área (programação, dados, infraestrutura, segurança, gestão, inglês e design). Dá para filtrar só o que tem acesso gratuito e ir direto para o site oficial de cada curso.
+
+### 🗓️ Calendário de Provas e Entregas
+Um calendário mensal com as datas oficiais publicadas pela coordenação e a opção de adicionar seus próprios prazos. Os prazos pessoais ficam salvos apenas no seu navegador e podem ser exportados em `.ics` ou enviados para o Google Agenda.
+
 ### 🤝 Canais Oficiais
 Instagram, LinkedIn (página e grupo), Discord e WhatsApp — todos os canais da comunidade reunidos, com links diretos para você entrar e participar.
 
@@ -85,6 +94,18 @@ main/js/config.js.example  →  main/js/config.js
 > `config.js` não é versionado (fica no `.gitignore`). Sem a chave, a biblioteca continua funcionando: exibe as pastas cadastradas em `main/js/biblioteca-dados.js` com links diretos para o Drive — só não lista os arquivos internos nem a contagem automática.
 >
 > A chave precisa estar liberada para o domínio de publicação no Google Cloud. A chave atual está restrita a `https://conexao-ti.vercel.app/`; em `localhost` a API responde `403` e o site usa o fallback automaticamente.
+
+### Para a coordenação (conteúdo)
+
+Os conteúdos editáveis ficam em arquivos de dados separados, sem precisar mexer no HTML:
+
+| O que atualizar | Arquivo | Observações |
+|---|---|---|
+| Guia de cursos | `main/js/cursos-dados.js` | Cada curso tem objetivo, grade, exemplo prático, áreas de atuação e ponto forte. `duracao` é uma referência e pode variar por instituição. |
+| Cursos livres | `main/js/cursos-complementares-dados.js` | Cada item tem plataforma, categoria, nível, duração, acesso (`gratuito`, `freemium` ou `pago`), idioma e link oficial. |
+| Datas oficiais | `main/js/calendario-dados.js` | Array `calendarioDados`. Use `data: "AAAA-MM-DD"` e, se quiser, `hora: "HH:MM"`. O arquivo já traz um exemplo comentado. |
+
+O calendário começa **vazio de datas oficiais** de propósito: a coordenação deve cadastrar apenas provas, entregas e eventos confirmados. Os prazos pessoais de cada aluno usam a chave `conexao-ti:prazos:v1` no `localStorage` e nunca são enviados para servidores.
 
 ### Deploy na Vercel
 O deploy é automático via GitHub. Como o `config.js` não é versionado, ele é gerado durante o build:
