@@ -3,6 +3,9 @@
 //
 // categoria: "programacao" | "dados" | "infra" | "seguranca" | "gestao" | "ingles" | "design"
 // acesso: "gratuito" | "freemium" | "pago"
+//
+// Links e condições de acesso verificados em 31/10/2026 nas páginas oficiais.
+// Plataformas podem mudar planos e catálogos; revise esta lista periodicamente.
 
 const cursosComplementaresDados = [
     // ── Programação ──────────────────────────────────────────────────────
@@ -151,6 +154,67 @@ const cursosComplementaresDados = [
         tags: ["Cursos", "Carreira"]
     },
 
+    {
+        titulo: "Cursos livres com certificado",
+        plataforma: "Prime Cursos",
+        categoria: "programacao",
+        descricao: "Cursos gratuitos de informática, programação, administração e outras áreas; o certificado é opcional e pago.",
+        nivel: "Iniciante",
+        duracao: "Autoestudo",
+        acesso: "freemium",
+        idioma: "Português",
+        url: "https://www.primecursos.com.br/cursos/",
+        tags: ["Cursos livres", "Certificado", "Informática"]
+    },
+    {
+        titulo: "Cursos livres MOOC",
+        plataforma: "Centro Paula Souza",
+        categoria: "programacao",
+        descricao: "Cursos gratuitos na modalidade MOOC, com certificado e opções em tecnologia, comunicação e áreas aplicadas.",
+        nivel: "Iniciante",
+        duracao: "6 a 40h",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://cursosmooc.cps.sp.gov.br/",
+        tags: ["MOOC", "Tecnologia", "Certificado"]
+    },
+    {
+        titulo: "Programa Senac de Gratuidade",
+        plataforma: "Senac EAD",
+        categoria: "programacao",
+        descricao: "Cursos livres e técnicos gratuitos, incluindo JavaScript, estrutura de dados com Python e LGPD, com certificação.",
+        nivel: "Todos os níveis",
+        duracao: "Autoestudo",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://www.ead.senac.br/gratuito/",
+        tags: ["Programação", "Python", "Certificado"]
+    },
+    {
+        titulo: "Cursos de universidades",
+        plataforma: "edX",
+        categoria: "programacao",
+        descricao: "Cursos online de universidades como Harvard, MIT e Berkeley; a auditoria é gratuita e o certificado é pago.",
+        nivel: "Todos os níveis",
+        duracao: "Autoestudo",
+        acesso: "freemium",
+        idioma: "Inglês",
+        url: "https://www.edx.org/",
+        tags: ["Universidades", "Ciência da Computação", "Certificado"]
+    },
+    {
+        titulo: "Cursos gratuitos",
+        plataforma: "Udemy",
+        categoria: "programacao",
+        descricao: "Catálogo de cursos gratuitos de programação, dados, design e gestão, com opção de comprar cursos pagos.",
+        nivel: "Todos os níveis",
+        duracao: "Autoestudo",
+        acesso: "freemium",
+        idioma: "Português e inglês",
+        url: "https://www.udemy.com/courses/free/",
+        tags: ["Cursos livres", "Programação", "Online"]
+    },
+
     // ── Dados & IA ───────────────────────────────────────────────────────
     {
         titulo: "Micro-cursos de dados e machine learning",
@@ -247,6 +311,19 @@ const cursosComplementaresDados = [
         idioma: "Inglês",
         url: "https://academy.openai.com/",
         tags: ["IA generativa", "Prompt"]
+    },
+
+    {
+        titulo: "Inteligência Artificial: impactos nos negócios e na sociedade",
+        plataforma: "Insper",
+        categoria: "dados",
+        descricao: "Curso online gratuito do Insper com a AWS sobre fundamentos de IA, aplicações nos negócios e impacto social, com certificado.",
+        nivel: "Iniciante",
+        duracao: "22h",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://ee.insper.edu.br/cursos/tecnologia-data-science/inteligencia-artificial-e-seus-impactos-nos-negocios-e-na-sociedade/",
+        tags: ["IA", "AWS", "Certificado"]
     },
 
     // ── Infraestrutura & Cloud ───────────────────────────────────────────
@@ -347,6 +424,19 @@ const cursosComplementaresDados = [
         tags: ["DevOps", "Trilha"]
     },
 
+    {
+        titulo: "Cursos EaD gratuitos",
+        plataforma: "SENAI Findes",
+        categoria: "infra",
+        descricao: "Cursos a distância gratuitos e pagos do SESI/SENAI Espírito Santo em tecnologia, indústria, gestão e segurança do trabalho.",
+        nivel: "Todos os níveis",
+        duracao: "Autoestudo",
+        acesso: "freemium",
+        idioma: "Português",
+        url: "https://eadsenaies.com.br/",
+        tags: ["Indústria", "Tecnologia", "EAD"]
+    },
+
     // ── Segurança ────────────────────────────────────────────────────────
     {
         titulo: "Laboratórios de cibersegurança",
@@ -395,6 +485,19 @@ const cursosComplementaresDados = [
         idioma: "Inglês",
         url: "https://www.coursera.org/professional-certificates/google-cybersecurity",
         tags: ["SOC", "Carreira", "Certificado"]
+    },
+
+    {
+        titulo: "Introdução ao Hacking e Pentest 3.0",
+        plataforma: "Solyd",
+        categoria: "seguranca",
+        descricao: "Curso gratuito de 16 horas com laboratórios práticos de reconhecimento, exploração web, Kali Linux e certificado.",
+        nivel: "Iniciante",
+        duracao: "16h",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://solyd.com.br/p/introducao-ao-hacking-e-pentest-3/",
+        tags: ["Pentest", "Kali Linux", "Certificado"]
     },
 
     // ── Gestão & Carreira ────────────────────────────────────────────────
@@ -457,6 +560,115 @@ const cursosComplementaresDados = [
         idioma: "Português",
         url: "https://www.escolavirtual.gov.br/",
         tags: ["Certificado", "Cursos livres"]
+    },
+
+    {
+        titulo: "Cursos gratuitos online",
+        plataforma: "FGV",
+        categoria: "gestao",
+        descricao: "Mais de 200 cursos gratuitos da FGV em administração, direito, economia, estratégia, tecnologia e outras áreas, com certificado.",
+        nivel: "Todos os níveis",
+        duracao: "Autoestudo",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://cursosgratuitos.fgv.br/",
+        tags: ["Gestão", "Certificado", "Online"]
+    },
+    {
+        titulo: "Cursos e pós-graduações",
+        plataforma: "Conquer",
+        categoria: "gestao",
+        descricao: "Cursos curtos, imersões e pós-graduações em gestão, liderança, marketing e tecnologia, com conteúdos gratuitos no blog.",
+        nivel: "Todos os níveis",
+        duracao: "Cursos curtos",
+        acesso: "pago",
+        idioma: "Português",
+        url: "https://escolaconquer.com.br/",
+        tags: ["Gestão", "Liderança", "Carreira"]
+    },
+    {
+        titulo: "Cursos gratuitos de gestão",
+        plataforma: "FM2S",
+        categoria: "gestao",
+        descricao: "Cursos gratuitos de Lean Six Sigma, qualidade, gestão de projetos e melhoria contínua, com certificação.",
+        nivel: "Iniciante",
+        duracao: "Autoestudo",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://www.fm2s.com.br/cursos/gratuitos",
+        tags: ["Lean Six Sigma", "Qualidade", "Certificado"]
+    },
+    {
+        titulo: "Cursos e imersões de negócios",
+        plataforma: "StartSe",
+        categoria: "gestao",
+        descricao: "Imersões, cursos e programas de educação executiva em negócios, liderança, inovação e IA aplicada.",
+        nivel: "Intermediário",
+        duracao: "Imersões e cursos",
+        acesso: "pago",
+        idioma: "Português",
+        url: "https://www.startse.com/vitrine/",
+        tags: ["Negócios", "Liderança", "IA"]
+    },
+    {
+        titulo: "Cursos abertos da UFRGS",
+        plataforma: "Lúmina",
+        categoria: "gestao",
+        descricao: "Mais de 100 MOOCs gratuitos da UFRGS em diversas áreas, com cronograma flexível e certificado da universidade.",
+        nivel: "Todos os níveis",
+        duracao: "20 a 40h",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://lumina.ufrgs.br/",
+        tags: ["UFRGS", "MOOC", "Certificado"]
+    },
+    {
+        titulo: "Cursos de gestão e melhoria contínua",
+        plataforma: "Voitto",
+        categoria: "gestao",
+        descricao: "Cursos de Lean Six Sigma, gestão de projetos e melhoria contínua, com opções gratuitas e certificação.",
+        nivel: "Todos os níveis",
+        duracao: "Autoestudo",
+        acesso: "freemium",
+        idioma: "Português",
+        url: "https://www.voitto.com.br/",
+        tags: ["Lean Six Sigma", "Projetos", "Certificado"]
+    },
+    {
+        titulo: "Cursos EAD gratuitos de logística",
+        plataforma: "SEST SENAT",
+        categoria: "gestao",
+        descricao: "Cursos a distância gratuitos com certificado em logística, transporte, gestão e desenvolvimento profissional.",
+        nivel: "Iniciante",
+        duracao: "Autoestudo",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://ead.sestsenat.org.br/",
+        tags: ["Logística", "Transporte", "Certificado"]
+    },
+    {
+        titulo: "Cursos gratuitos com professores da USP",
+        plataforma: "Veduca",
+        categoria: "gestao",
+        descricao: "Cursos online gratuitos de professores da USP e de outras instituições, com opção de certificado pago.",
+        nivel: "Todos os níveis",
+        duracao: "Autoestudo",
+        acesso: "freemium",
+        idioma: "Português",
+        url: "https://veduca.org/",
+        tags: ["USP", "Gestão", "Certificado"]
+    },
+    {
+        titulo: "Cursos gratuitos de carreira",
+        plataforma: "Nube",
+        categoria: "gestao",
+        descricao: "Cursos rápidos e gratuitos de administração do tempo, gestão de carreira, currículo e preparação para o mercado.",
+        nivel: "Iniciante",
+        duracao: "Autoestudo",
+        acesso: "gratuito",
+        idioma: "Português",
+        url: "https://www.nube.com.br/cursos-gratuitos",
+        tags: ["Carreira", "Currículo", "Mercado"]
     },
 
     // ── Inglês ───────────────────────────────────────────────────────────
