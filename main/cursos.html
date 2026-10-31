@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guia dos cursos de TI da Conexão TI: objetivos, duração, grade, áreas de atuação e como escolher entre ADS, Engenharia de Software, Ciência da Computação, Cibersegurança e mais." />
+  <title>Cursos de TI — Conexão TI</title>
+
+  <!-- Favicons -->
+  <link rel="icon" href="img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+
+  <!-- Bootstrap 5.3 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+  <!-- CSS Autoral & Design System -->
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/transitions.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+</head>
+
+<body>
+  <div class="bg-space" aria-hidden="true">
+    <div class="bg-space__stars bg-space__stars--far"></div>
+    <div class="bg-space__stars bg-space__stars--near"></div>
+    <div class="bg-space__horizon"></div>
+  </div>
+
+  <div class="position-relative" style="z-index: 1;">
+
+    <!-- Navbar Oficial -->
+    <nav class="nav-header py-3" aria-label="Navegação principal">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a class="d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+          <img src="img/logo-128.png" alt="Logo Conexão TI" width="34" height="34" style="border-radius: 50%; object-fit: contain;" />
+          <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão TI</span>
+        </a>
+
+        <div class="nav-links d-none d-xl-flex align-items-center gap-2">
+          <div class="dropdown">
+            <button class="nav-menu-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Comunidade
+            </button>
+            <ul class="dropdown-menu nav-dropdown">
+              <li><a class="dropdown-item" href="index.html#redes"><i class="bi bi-broadcast-pin" aria-hidden="true"></i>Nossas Redes</a></li>
+              <li><a class="dropdown-item" href="index.html#posts"><i class="bi bi-stars" aria-hidden="true"></i>Destaques &amp; Posts</a></li>
+              <li><a class="dropdown-item" href="adms.html"><i class="bi bi-people" aria-hidden="true"></i>ADMs</a></li>
+              <li><a class="dropdown-item" href="projetos.html"><i class="bi bi-diagram-3" aria-hidden="true"></i>Projetos</a></li>
+              <li><a class="dropdown-item" href="duvidas.html"><i class="bi bi-patch-question" aria-hidden="true"></i>Dúvidas</a></li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="nav-menu-btn dropdown-toggle active" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Estudos
+            </button>
+            <ul class="dropdown-menu nav-dropdown">
+              <li><a class="dropdown-item" href="biblioteca.html"><i class="bi bi-journal-bookmark" aria-hidden="true"></i>Biblioteca</a></li>
+              <li><a class="dropdown-item active" href="cursos.html" aria-current="page"><i class="bi bi-mortarboard" aria-hidden="true"></i>Cursos de graduação</a></li>
+              <li><a class="dropdown-item" href="cursos-complementares.html"><i class="bi bi-laptop" aria-hidden="true"></i>Cursos livres</a></li>
+              <li><a class="dropdown-item" href="calendario.html"><i class="bi bi-calendar3" aria-hidden="true"></i>Calendário</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
+            <i class="bi bi-discord"></i>
+          </a>
+          <a href="index.html#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;">
+            <span>Fazer Parte</span> <i class="bi bi-arrow-right-short"></i>
+          </a>
+          <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="collapse d-xl-none nav-mobile" id="navMenu">
+        <div class="container d-flex flex-column gap-2 pb-2">
+          <span class="nav-mobile__label">Comunidade</span>
+          <a href="index.html#redes" class="text-decoration-none text-secondary small fw-semibold py-1">Nossas Redes</a>
+          <a href="index.html#posts" class="text-decoration-none text-secondary small fw-semibold py-1">Destaques &amp; Posts</a>
+          <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold py-1">ADMs</a>
+          <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Projetos</a>
+          <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
+          <span class="nav-mobile__label">Estudos</span>
+          <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold py-1">Biblioteca</a>
+          <a href="cursos.html" class="text-decoration-none text-primary small fw-semibold py-1 active" aria-current="page">Cursos de graduação</a>
+          <a href="cursos-complementares.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos livres</a>
+          <a href="calendario.html" class="text-decoration-none text-secondary small fw-semibold py-1">Calendário</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="container py-5 text-center">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="section-eyebrow mb-3">
+            <span class="section-eyebrow__num">01</span>
+            <span class="section-eyebrow__line"></span>
+            <span>Guia de carreiras</span>
+          </div>
+          <h1 class="hero-title-gradient" style="font-size: clamp(2rem, 4.5vw, 3.4rem);">
+            Qual curso de TI combina com você?
+          </h1>
+          <p class="hero-subtitle mb-4">
+            Conheça os 12 caminhos mais comuns da área: o que cada curso ensina, quanto tempo dura, onde você pode trabalhar e qual é o ponto forte de cada formação. As durações são referências e podem variar conforme a instituição.
+          </p>
+
+          <div class="course-hero__stats">
+            <div class="course-stat">
+              <strong id="statCursos">12</strong>
+              <span>cursos mapeados</span>
+            </div>
+            <div class="course-stat">
+              <strong id="statAreas">5</strong>
+              <span>grandes áreas</span>
+            </div>
+            <div class="course-stat">
+              <strong id="statDuracao">2,5 a 5</strong>
+              <span>anos de formação</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container pb-5">
+      <section aria-labelledby="cursosHeading">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-3">
+          <div>
+            <h2 id="cursosHeading" class="section-eyebrow mb-0">
+              <span class="section-eyebrow__num">02</span>
+              <span class="section-eyebrow__line"></span>
+              <span>Cursos de graduação</span>
+            </h2>
+            <p class="text-muted small mb-0 mt-2">Use a busca ou filtre por área para encontrar o curso com a sua cara.</p>
+          </div>
+          <span id="coursesCount" class="results-count" aria-live="polite"></span>
+        </div>
+
+        <div class="quick-search-wrapper quick-search-wrapper--left mb-3">
+          <i class="bi bi-search quick-search-icon" aria-hidden="true"></i>
+          <input type="search" id="courseSearch" class="form-control quick-search-input"
+            placeholder="Buscar por curso, área ou assunto (ex.: Python, dados, redes...)"
+            aria-label="Buscar cursos por nome, área ou assunto" />
+        </div>
+
+        <div id="courseFilters" class="course-filters mb-4" role="group" aria-label="Filtrar cursos por área"></div>
+
+        <div class="row g-4" id="cursosGrid"></div>
+
+        <div id="cursosEmpty" class="empty-state d-none">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <h3>Nenhum curso encontrado</h3>
+          <p>Tente outra palavra-chave ou volte para todas as áreas.</p>
+          <button type="button" id="cursosReset" class="btn-cta-secondary">Limpar filtros</button>
+        </div>
+      </section>
+
+      <section class="card-surface p-4 p-md-5 mt-5" aria-labelledby="ctaCursosTitulo">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <div class="section-eyebrow mb-2">
+              <span class="section-eyebrow__num">03</span>
+              <span class="section-eyebrow__line"></span>
+              <span>Continue aprendendo</span>
+            </div>
+            <h2 id="ctaCursosTitulo" class="fw-bold text-light mb-2" style="font-family: var(--font-title);">
+              A graduação é o começo. Que tal estudar por fora?
+            </h2>
+            <p class="text-muted mb-0" style="max-width: 640px;">
+              Reunimos cursos livres, plataformas e materiais gratuitos para complementar a faculdade e montar seu portfólio.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a href="cursos-complementares.html" class="btn-cta-primary">
+              Ver cursos livres <i class="bi bi-arrow-right-short" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <p class="site-footer__message">Ninguém aprende tecnologia sozinho. Aqui, o conhecimento circula.</p>
+        <p class="site-footer__meta">Conexão TI · © 2026 · Feito de alunos para alunos</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modal de detalhes do curso -->
+  <div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content course-modal">
+        <div class="modal-header">
+          <div>
+            <span id="courseModalArea" class="course-modal__area"></span>
+            <h2 class="modal-title h4" id="courseModalTitle"></h2>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar detalhes do curso"></button>
+        </div>
+        <div class="modal-body" id="courseModalBody"></div>
+        <div class="modal-footer">
+          <span class="text-muted small">Duração de referência · confira a grade da sua instituição.</span>
+          <button type="button" class="btn-cta-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/cursos-dados.js"></script>
+  <script src="js/cursos.js"></script>
+</body>
+
+</html>
