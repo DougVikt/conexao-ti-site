@@ -42,7 +42,7 @@ Resumos, slides, provas anteriores, exercícios resolvidos e códigos de aula, o
 Os 12 cursos de TI mais comuns explicados sem enrolação: objetivo, duração de referência, principais assuntos da grade, um exemplo prático, onde você pode trabalhar e o ponto forte de cada formação. A página tem busca, filtros por área e detalhes completos em um modal.
 
 ### 🧩 Cursos Livres e Complementares
-Uma curadoria de plataformas e cursos para estudar por fora da graduação, organizada por área (programação, dados, infraestrutura, segurança, gestão, inglês e design). Dá para filtrar só o que tem acesso gratuito e ir direto para o site oficial de cada curso.
+Uma curadoria de plataformas e cursos para estudar por fora da graduação, organizada por área (programação, dados, infraestrutura, segurança, gestão, inglês e design). Inclui iniciativas de instituições como FGV, Insper, Senac, Centro Paula Souza, SENAI, UFRGS, SEST SENAT e Veduca. Dá para filtrar só o que tem acesso gratuito e ir direto para o site oficial de cada curso.
 
 ### 🗓️ Calendário de Provas e Entregas
 Um calendário mensal com as datas oficiais publicadas pela coordenação e a opção de adicionar seus próprios prazos. Os prazos pessoais ficam salvos apenas no seu navegador e podem ser exportados em `.ics` ou enviados para o Google Agenda.
@@ -102,7 +102,7 @@ Os conteúdos editáveis ficam em arquivos de dados separados, sem precisar mexe
 | O que atualizar | Arquivo | Observações |
 |---|---|---|
 | Guia de cursos | `main/js/cursos-dados.js` | Cada curso tem objetivo, grade, exemplo prático, áreas de atuação e ponto forte. `duracao` é uma referência e pode variar por instituição. |
-| Cursos livres | `main/js/cursos-complementares-dados.js` | Cada item tem plataforma, categoria, nível, duração, acesso (`gratuito`, `freemium` ou `pago`), idioma e link oficial. |
+| Cursos livres | `main/js/cursos-complementares-dados.js` | Cada item tem plataforma, categoria, nível, duração, acesso (`gratuito`, `freemium` ou `pago`), idioma e link oficial. Links e condições de acesso foram verificados em 31/10/2026; revise periodicamente. |
 | Datas oficiais | `main/js/calendario-dados.js` | Array `calendarioDados`. Use `data: "AAAA-MM-DD"` e, se quiser, `hora: "HH:MM"`. O arquivo já traz um exemplo comentado. |
 
 O calendário começa **vazio de datas oficiais** de propósito: a coordenação deve cadastrar apenas provas, entregas e eventos confirmados. Os prazos pessoais de cada aluno usam a chave `conexao-ti:prazos:v1` no `localStorage` e nunca são enviados para servidores.
