@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Biblioteca de materiais da Conexão TI: resumos, slides, provas e exercícios organizados por matéria no Google Drive." />
+    <meta name="description"
+        content="Biblioteca de materiais da Conexão TI: resumos, slides, provas e exercícios organizados por matéria no Google Drive." />
     <title>Biblioteca de Arquivos — Conexão TI</title>
 
     <!-- Favicons -->
@@ -18,8 +19,8 @@
 
     <!-- CSS Moderno High-End -->
     <link href="css/style.css" rel="stylesheet">
-    <script src="js/transitions.js" defer></script>
-    <script src="js/cursor.js" defer></script>
+    <script src="js/scripts/transitions.js" defer></script>
+    <script src="js/scripts/cursor.js" defer></script>
 </head>
 
 <body>
@@ -36,50 +37,73 @@
         <nav class="nav-header py-3" aria-label="Navegação principal">
             <div class="container d-flex align-items-center justify-content-between">
                 <a class="d-flex align-items-center gap-2 text-decoration-none" href="index.html">
-                    <img src="img/logo-128.png" alt="Logo Conexão TI" width="34" height="34" style="border-radius: 50%; object-fit: contain;" />
-                    <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão TI</span>
+                    <img src="img/logo-128.png" alt="Logo Conexão TI" width="34" height="34"
+                        style="border-radius: 50%; object-fit: contain;" />
+                    <span
+                        style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão
+                        TI</span>
                 </a>
 
                 <div class="nav-links d-none d-xl-flex align-items-center gap-2">
                     <div class="dropdown">
-                        <button class="nav-menu-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="nav-menu-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Comunidade
                         </button>
                         <ul class="dropdown-menu nav-dropdown">
-                            <li><a class="dropdown-item" href="index.html#redes"><i class="bi bi-broadcast-pin" aria-hidden="true"></i>Nossas Redes</a></li>
-                            <li><a class="dropdown-item" href="index.html#posts"><i class="bi bi-stars" aria-hidden="true"></i>Destaques &amp; Posts</a></li>
-                            <li><a class="dropdown-item" href="adms.html"><i class="bi bi-people" aria-hidden="true"></i>ADMs</a></li>
-                            <li><a class="dropdown-item" href="projetos.html"><i class="bi bi-diagram-3" aria-hidden="true"></i>Projetos</a></li>
-                            <li><a class="dropdown-item" href="duvidas.html"><i class="bi bi-patch-question" aria-hidden="true"></i>Dúvidas</a></li>
+                            <li><a class="dropdown-item" href="index.html#redes"><i class="bi bi-broadcast-pin"
+                                        aria-hidden="true"></i>Nossas Redes</a></li>
+                            <li><a class="dropdown-item" href="index.html#posts"><i class="bi bi-stars"
+                                        aria-hidden="true"></i>Destaques &amp; Posts</a></li>
+                            <li><a class="dropdown-item" href="adms.html"><i class="bi bi-people"
+                                        aria-hidden="true"></i>ADMs</a></li>
+                            <li><a class="dropdown-item" href="projetos.html"><i class="bi bi-diagram-3"
+                                        aria-hidden="true"></i>Projetos</a></li>
+                            <li><a class="dropdown-item" href="duvidas.html"><i class="bi bi-patch-question"
+                                        aria-hidden="true"></i>Dúvidas</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">
-                        <button class="nav-menu-btn dropdown-toggle active" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="nav-menu-btn dropdown-toggle active" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Estudos
                         </button>
                         <ul class="dropdown-menu nav-dropdown">
-                            <li><a class="dropdown-item active" href="biblioteca.html" aria-current="page"><i class="bi bi-journal-bookmark" aria-hidden="true"></i>Biblioteca</a></li>
-                            <li><a class="dropdown-item" href="cursos.html"><i class="bi bi-mortarboard" aria-hidden="true"></i>Cursos de graduação</a></li>
-                            <li><a class="dropdown-item" href="cursos-complementares.html"><i class="bi bi-laptop" aria-hidden="true"></i>Cursos livres</a></li>
-                            <li><a class="dropdown-item" href="calendario.html"><i class="bi bi-calendar3" aria-hidden="true"></i>Calendário</a></li>
+                            <li><a class="dropdown-item active" href="biblioteca.html" aria-current="page"><i
+                                        class="bi bi-journal-bookmark" aria-hidden="true"></i>Biblioteca</a></li>
+                            <li><a class="dropdown-item" href="cursos.html"><i class="bi bi-mortarboard"
+                                        aria-hidden="true"></i>Cursos de graduação</a></li>
+                            <li><a class="dropdown-item" href="cursos-complementares.html"><i class="bi bi-laptop"
+                                        aria-hidden="true"></i>Cursos livres</a></li>
+                            <li><a class="dropdown-item" href="calendario.html"><i class="bi bi-calendar3"
+                                        aria-hidden="true"></i>Calendário</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="d-flex align-items-center gap-2">
-                    <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
+                    <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener"
+                        class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;"
+                        aria-label="Instagram oficial da Conexão TI">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
+                    <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener"
+                        class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;"
+                        aria-label="LinkedIn oficial da Conexão TI">
                         <i class="bi bi-linkedin"></i>
                     </a>
-                    <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
+                    <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener"
+                        class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;"
+                        aria-label="Discord da comunidade Conexão TI">
                         <i class="bi bi-discord"></i>
                     </a>
-                    <a href="index.html#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;">
+                    <a href="index.html#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex"
+                        style="font-size: 0.85rem;">
                         <span>Fazer Parte</span> <i class="bi bi-arrow-right-short"></i>
                     </a>
-                    <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+                    <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false"
+                        aria-label="Abrir menu de navegação">
                         <i class="bi bi-list"></i>
                     </button>
                 </div>
@@ -88,16 +112,24 @@
             <div class="collapse d-xl-none nav-mobile" id="navMenu">
                 <div class="container d-flex flex-column gap-2 pb-2">
                     <span class="nav-mobile__label">Comunidade</span>
-                    <a href="index.html#redes" class="text-decoration-none text-secondary small fw-semibold py-1">Nossas Redes</a>
-                    <a href="index.html#posts" class="text-decoration-none text-secondary small fw-semibold py-1">Destaques &amp; Posts</a>
+                    <a href="index.html#redes" class="text-decoration-none text-secondary small fw-semibold py-1">Nossas
+                        Redes</a>
+                    <a href="index.html#posts"
+                        class="text-decoration-none text-secondary small fw-semibold py-1">Destaques &amp; Posts</a>
                     <a href="adms.html" class="text-decoration-none text-secondary small fw-semibold py-1">ADMs</a>
-                    <a href="projetos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Projetos</a>
-                    <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
+                    <a href="projetos.html"
+                        class="text-decoration-none text-secondary small fw-semibold py-1">Projetos</a>
+                    <a href="duvidas.html"
+                        class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
                     <span class="nav-mobile__label">Estudos</span>
-                    <a href="biblioteca.html" class="text-decoration-none text-primary small fw-semibold py-1 active" aria-current="page">Biblioteca</a>
-                    <a href="cursos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos de graduação</a>
-                    <a href="cursos-complementares.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos livres</a>
-                    <a href="calendario.html" class="text-decoration-none text-secondary small fw-semibold py-1">Calendário</a>
+                    <a href="biblioteca.html" class="text-decoration-none text-primary small fw-semibold py-1 active"
+                        aria-current="page">Biblioteca</a>
+                    <a href="cursos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos de
+                        graduação</a>
+                    <a href="cursos-complementares.html"
+                        class="text-decoration-none text-secondary small fw-semibold py-1">Cursos livres</a>
+                    <a href="calendario.html"
+                        class="text-decoration-none text-secondary small fw-semibold py-1">Calendário</a>
                 </div>
             </div>
         </nav>
@@ -115,13 +147,15 @@
                         Biblioteca de Materiais & Aulas
                     </h1>
                     <p class="hero-subtitle mb-4">
-                        Acesse as pastas organizadas por matéria com resumos, slides, provas anteriores e códigos de aula salvos no Google Drive.
+                        Acesse as pastas organizadas por matéria com resumos, slides, provas anteriores e códigos de
+                        aula salvos no Google Drive.
                     </p>
 
                     <!-- Barra de Busca -->
                     <div class="quick-search-wrapper mb-4">
                         <i class="bi bi-search quick-search-icon"></i>
-                        <input type="search" id="filterInput" class="form-control quick-search-input" placeholder="Filtrar por matéria (Ex: Python, Redes, SQL...)" />
+                        <input type="search" id="filterInput" class="form-control quick-search-input"
+                            placeholder="Filtrar por matéria (Ex: Python, Redes, SQL...)" />
                     </div>
 
                     <!-- Botão de Atualização -->
@@ -325,11 +359,11 @@
     </script>
 
     <!-- Configuração local (apiKey do Drive). O arquivo é opcional e não versionado. -->
-    <script src="js/config.js"></script>
+    <script src="js/scripts/config.js"></script>
     <!-- Dados editáveis da biblioteca (fallback com os links reais do Drive) -->
-    <script src="js/biblioteca-dados.js"></script>
+    <script src="js/dados/biblioteca-dados.js"></script>
     <!-- Carrega os dados depois do listener para não perder o evento inicial -->
-    <script src="js/data.js"></script>
+    <script src="js/scripts/data.js"></script>
 </body>
 
 </html>

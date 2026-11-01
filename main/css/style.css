@@ -159,7 +159,7 @@ body.page-leaving {
   animation: stars-breathe 22s ease-in-out infinite reverse;
 }
 
-/* Luz ambiente que acompanha o ponteiro (ver js/cursor.js).
+/* Luz ambiente que acompanha o ponteiro (ver js/scripts/cursor.js).
    Fica atrás do conteúdo e apenas clareia de leve as estrelas por perto. */
 .bg-space__spotlight {
   --x: 50vw;
@@ -1418,7 +1418,7 @@ body.page-leaving {
 }
 
 /* ============================================================
-   Cursor personalizado (ver js/cursor.js)
+   Cursor personalizado (ver js/scripts/cursor.js)
    Só entra em ação quando o script ativa .has-custom-cursor,
    ou seja, em dispositivos com mouse/trackpad.
    ============================================================ */

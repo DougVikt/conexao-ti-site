@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Comunidade Conexão TI: avisos, projetos, dúvidas e biblioteca de materiais para alunos de ADS, Sistemas e Redes." />
+  <meta name="description"
+    content="Comunidade Conexão TI: avisos, projetos, dúvidas e biblioteca de materiais para alunos de ADS, Sistemas e Redes." />
   <title>Conexão TI – Comunidade Oficial de Tecnologia</title>
 
   <!-- Favicons -->
@@ -18,13 +19,13 @@
 
   <!-- CSS Autoral & Design System -->
   <link href="css/style.css" rel="stylesheet">
-  <script src="js/transitions.js" defer></script>
-  <script src="js/cursor.js" defer></script>
+  <script src="js/scripts/transitions.js" defer></script>
+  <script src="js/scripts/cursor.js" defer></script>
 
   <!-- Scripts (clássicos + defer: funcionam também via file://) -->
-  <script src="js/data.js" defer></script>
-  <script src="js/script.js" defer></script>
-  <script src="js/nav.js" defer></script>
+  <script src="js/scripts/data.js" defer></script>
+  <script src="js/scripts/script.js" defer></script>
+  <script src="js/componentes/nav.js" defer></script>
 </head>
 
 <body>
@@ -41,8 +42,10 @@
     <nav class="nav-header py-3" aria-label="Navegação principal">
       <div class="container d-flex align-items-center justify-content-between">
         <a class="d-flex align-items-center gap-2 text-decoration-none" href="#inicio">
-          <img src="img/logo-128.png" alt="Logo Conexão TI" width="34" height="34" style="border-radius: 50%; object-fit: contain;" />
-          <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão TI</span>
+          <img src="img/logo-128.png" alt="Logo Conexão TI" width="34" height="34"
+            style="border-radius: 50%; object-fit: contain;" />
+          <span style="font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; color: #fff;">Conexão
+            TI</span>
         </a>
 
         <div class="nav-links d-none d-xl-flex align-items-center gap-2">
@@ -51,11 +54,15 @@
               Comunidade
             </button>
             <ul class="dropdown-menu nav-dropdown">
-              <li><a class="dropdown-item" href="#redes"><i class="bi bi-broadcast-pin" aria-hidden="true"></i>Nossas Redes</a></li>
-              <li><a class="dropdown-item" href="#posts"><i class="bi bi-stars" aria-hidden="true"></i>Destaques &amp; Posts</a></li>
+              <li><a class="dropdown-item" href="#redes"><i class="bi bi-broadcast-pin" aria-hidden="true"></i>Nossas
+                  Redes</a></li>
+              <li><a class="dropdown-item" href="#posts"><i class="bi bi-stars" aria-hidden="true"></i>Destaques &amp;
+                  Posts</a></li>
               <li><a class="dropdown-item" href="adms.html"><i class="bi bi-people" aria-hidden="true"></i>ADMs</a></li>
-              <li><a class="dropdown-item" href="projetos.html"><i class="bi bi-diagram-3" aria-hidden="true"></i>Projetos</a></li>
-              <li><a class="dropdown-item" href="duvidas.html"><i class="bi bi-patch-question" aria-hidden="true"></i>Dúvidas</a></li>
+              <li><a class="dropdown-item" href="projetos.html"><i class="bi bi-diagram-3"
+                    aria-hidden="true"></i>Projetos</a></li>
+              <li><a class="dropdown-item" href="duvidas.html"><i class="bi bi-patch-question"
+                    aria-hidden="true"></i>Dúvidas</a></li>
             </ul>
           </div>
           <div class="dropdown">
@@ -63,28 +70,40 @@
               Estudos
             </button>
             <ul class="dropdown-menu nav-dropdown">
-              <li><a class="dropdown-item" href="biblioteca.html"><i class="bi bi-journal-bookmark" aria-hidden="true"></i>Biblioteca</a></li>
-              <li><a class="dropdown-item" href="cursos.html"><i class="bi bi-mortarboard" aria-hidden="true"></i>Cursos de graduação</a></li>
-              <li><a class="dropdown-item" href="cursos-complementares.html"><i class="bi bi-laptop" aria-hidden="true"></i>Cursos livres</a></li>
-              <li><a class="dropdown-item" href="calendario.html"><i class="bi bi-calendar3" aria-hidden="true"></i>Calendário</a></li>
+              <li><a class="dropdown-item" href="biblioteca.html"><i class="bi bi-journal-bookmark"
+                    aria-hidden="true"></i>Biblioteca</a></li>
+              <li><a class="dropdown-item" href="cursos.html"><i class="bi bi-mortarboard" aria-hidden="true"></i>Cursos
+                  de graduação</a></li>
+              <li><a class="dropdown-item" href="cursos-complementares.html"><i class="bi bi-laptop"
+                    aria-hidden="true"></i>Cursos livres</a></li>
+              <li><a class="dropdown-item" href="calendario.html"><i class="bi bi-calendar3"
+                    aria-hidden="true"></i>Calendário</a></li>
             </ul>
           </div>
         </div>
 
         <div class="d-flex align-items-center gap-2">
-          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Instagram oficial da Conexão TI">
+          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener"
+            class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;"
+            aria-label="Instagram oficial da Conexão TI">
             <i class="bi bi-instagram"></i>
           </a>
-          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="LinkedIn oficial da Conexão TI">
+          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener"
+            class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;"
+            aria-label="LinkedIn oficial da Conexão TI">
             <i class="bi bi-linkedin"></i>
           </a>
-          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;" aria-label="Discord da comunidade Conexão TI">
+          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener"
+            class="btn-cta-secondary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;"
+            aria-label="Discord da comunidade Conexão TI">
             <i class="bi bi-discord"></i>
           </a>
           <a href="#redes" class="btn-cta-primary py-2 px-3 d-none d-sm-inline-flex" style="font-size: 0.85rem;">
             <span>Fazer Parte</span> <i class="bi bi-arrow-right-short"></i>
           </a>
-          <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+          <button class="btn-cta-secondary py-2 px-3 d-xl-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false"
+            aria-label="Abrir menu de navegação">
             <i class="bi bi-list"></i>
           </button>
         </div>
@@ -100,8 +119,10 @@
           <a href="duvidas.html" class="text-decoration-none text-secondary small fw-semibold py-1">Dúvidas</a>
           <span class="nav-mobile__label">Estudos</span>
           <a href="biblioteca.html" class="text-decoration-none text-secondary small fw-semibold py-1">Biblioteca</a>
-          <a href="cursos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos de graduação</a>
-          <a href="cursos-complementares.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos livres</a>
+          <a href="cursos.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos de
+            graduação</a>
+          <a href="cursos-complementares.html" class="text-decoration-none text-secondary small fw-semibold py-1">Cursos
+            livres</a>
           <a href="calendario.html" class="text-decoration-none text-secondary small fw-semibold py-1">Calendário</a>
         </div>
       </div>
@@ -109,7 +130,8 @@
 
     <!-- Hero Section com Prova Social Imediata -->
     <header id="inicio" class="container py-5 text-center my-lg-4 hero-constellation-host">
-      <svg class="hero-constellation" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <svg class="hero-constellation" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
+        focusable="false">
         <g stroke-linecap="round">
           <line x1="70" y1="140" x2="190" y2="60" />
           <line x1="70" y1="140" x2="240" y2="220" />
@@ -181,7 +203,8 @@
           </h1>
 
           <p class="hero-desc mb-4">
-Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn e acesse o Drive coletivo. Aqui, cada canal tem um jeito prático de fazer você evoluir em TI.
+            Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn e acesse o Drive coletivo.
+            Aqui, cada canal tem um jeito prático de fazer você evoluir em TI.
           </p>
 
           <div class="d-flex flex-wrap justify-content-center gap-3">
@@ -197,7 +220,8 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
           </div>
 
           <!-- MÉTRICAS DE ENGAJAMENTO REAL -->
-          <div class="row g-3 justify-content-center mt-5 pt-3 border-top" style="border-color: var(--border-subtle) !important;">
+          <div class="row g-3 justify-content-center mt-5 pt-3 border-top"
+            style="border-color: var(--border-subtle) !important;">
             <div class="col-4 col-md-3">
               <div class="h3 fw-bold text-light mb-0" style="font-family: var(--font-title);">@conexaoti_</div>
               <div class="text-muted small">Conteúdo no Instagram</div>
@@ -218,89 +242,101 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
 
     <main>
 
-    <!-- Seção: Todas as Nossas Redes e Canais -->
-    <section class="container py-5" id="redes">
-      <div class="text-center mb-5">
-        <div class="section-eyebrow mb-2">
-          <span class="section-eyebrow__num">01</span>
-          <span class="section-eyebrow__line"></span>
-          <span>Onde nos encontrar</span>
-        </div>
-        <h2 class="fw-bold text-light" style="font-family: var(--font-title); font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
-          Escolha seu canal favorito para interagir
-        </h2>
-        <p class="text-muted mx-auto" style="max-width: 580px;">
-          Estamos presentes nas principais plataformas para que você receba avisos, estude em grupo e mostre seus projetos para o mercado.
-        </p>
-      </div>
-
-      <div class="row g-4" id="socialChannelsGrid"></div>
-    </section>
-
-    <!-- Seção: Posts Recentes e de Alto Engajamento -->
-    <section class="container py-5" id="posts">
-      <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
-        <div>
+      <!-- Seção: Todas as Nossas Redes e Canais -->
+      <section class="container py-5" id="redes">
+        <div class="text-center mb-5">
           <div class="section-eyebrow mb-2">
-            <span class="section-eyebrow__num">02</span>
+            <span class="section-eyebrow__num">01</span>
             <span class="section-eyebrow__line"></span>
-            <span>Conteúdo recente</span>
+            <span>Onde nos encontrar</span>
           </div>
-          <h2 class="fw-bold text-light m-0" style="font-family: var(--font-title);">Publicações que movimentaram a comunidade</h2>
-          <p class="text-muted small mt-1 mb-0">Veja o que estamos debatendo, aprendendo e comemorando esta semana.</p>
+          <h2 class="fw-bold text-light"
+            style="font-family: var(--font-title); font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
+            Escolha seu canal favorito para interagir
+          </h2>
+          <p class="text-muted mx-auto" style="max-width: 580px;">
+            Estamos presentes nas principais plataformas para que você receba avisos, estude em grupo e mostre seus
+            projetos para o mercado.
+          </p>
         </div>
 
-        <!-- Filtro Rápido de Plataforma -->
-        <div class="d-flex flex-wrap gap-2">
-          <button class="post-filter-btn btn-cta-primary py-1 px-3" data-platform="all" style="font-size: 0.8rem;">Todas</button>
-          <button class="post-filter-btn btn-cta-secondary py-1 px-3" data-platform="instagram" style="font-size: 0.8rem;"><i class="bi bi-instagram me-1"></i> Instagram</button>
-          <button class="post-filter-btn btn-cta-secondary py-1 px-3" data-platform="linkedin" style="font-size: 0.8rem;"><i class="bi bi-linkedin me-1"></i> LinkedIn</button>
+        <div class="row g-4" id="socialChannelsGrid"></div>
+      </section>
+
+      <!-- Seção: Posts Recentes e de Alto Engajamento -->
+      <section class="container py-5" id="posts">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
+          <div>
+            <div class="section-eyebrow mb-2">
+              <span class="section-eyebrow__num">02</span>
+              <span class="section-eyebrow__line"></span>
+              <span>Conteúdo recente</span>
+            </div>
+            <h2 class="fw-bold text-light m-0" style="font-family: var(--font-title);">Publicações que movimentaram a
+              comunidade</h2>
+            <p class="text-muted small mt-1 mb-0">Veja o que estamos debatendo, aprendendo e comemorando esta semana.
+            </p>
+          </div>
+
+          <!-- Filtro Rápido de Plataforma -->
+          <div class="d-flex flex-wrap gap-2">
+            <button class="post-filter-btn btn-cta-primary py-1 px-3" data-platform="all"
+              style="font-size: 0.8rem;">Todas</button>
+            <button class="post-filter-btn btn-cta-secondary py-1 px-3" data-platform="instagram"
+              style="font-size: 0.8rem;"><i class="bi bi-instagram me-1"></i> Instagram</button>
+            <button class="post-filter-btn btn-cta-secondary py-1 px-3" data-platform="linkedin"
+              style="font-size: 0.8rem;"><i class="bi bi-linkedin me-1"></i> LinkedIn</button>
+          </div>
         </div>
-      </div>
 
-      <div class="row g-4" id="featuredPostsGrid"></div>
-    </section>
+        <div class="row g-4" id="featuredPostsGrid"></div>
+      </section>
 
-    <!-- Seção: Por que entrar na Conexão TI -->
-    <section class="container py-5 my-3">
-      <div class="p-4 p-md-5 rounded-4" style="background: var(--bg-card); border: 1px solid var(--border-subtle);">
-        <div class="text-center mb-4">
+      <!-- Seção: Por que entrar na Conexão TI -->
+      <section class="container py-5 my-3">
+        <div class="p-4 p-md-5 rounded-4" style="background: var(--bg-card); border: 1px solid var(--border-subtle);">
+          <div class="text-center mb-4">
+            <div class="section-eyebrow mb-3">
+              <span class="section-eyebrow__num">03</span>
+              <span class="section-eyebrow__line"></span>
+              <span>Por que participar</span>
+            </div>
+            <h2 class="fw-bold text-light h3" style="font-family: var(--font-title);">O que você ganha fazendo parte
+            </h2>
+          </div>
+          <div class="row g-3" id="perksGrid"></div>
+        </div>
+      </section>
+
+      <!-- Banner Chamada Final -->
+      <section class="container py-5 text-center">
+        <div class="p-5 rounded-4 position-relative overflow-hidden"
+          style="background: radial-gradient(ellipse at center, rgba(0,229,255,0.14) 0%, rgba(124,108,255,0.10) 38%, rgba(7,9,14,0.95) 72%); border: 1px solid var(--border-active);">
           <div class="section-eyebrow mb-3">
-            <span class="section-eyebrow__num">03</span>
+            <span class="section-eyebrow__num">04</span>
             <span class="section-eyebrow__line"></span>
-            <span>Por que participar</span>
+            <span>Faça parte</span>
           </div>
-          <h2 class="fw-bold text-light h3" style="font-family: var(--font-title);">O que você ganha fazendo parte</h2>
+          <h2 class="fw-bold text-light mb-3" style="font-family: var(--font-title);">Não fique de fora dos grupos da
+            sua turma</h2>
+          <p class="text-muted mx-auto mb-4" style="max-width: 500px;">
+            Siga nosso Instagram e LinkedIn para ficar por dentro de workshops, oportunidades de estágio e materiais
+            atualizados.
+          </p>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-primary">
+              <i class="bi bi-instagram"></i> Seguir @conexaoti_
+            </a>
+            <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary">
+              <i class="bi bi-discord"></i> Entrar no Discord
+            </a>
+            <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener"
+              class="btn-cta-secondary">
+              <i class="bi bi-linkedin"></i> Página Oficial
+            </a>
+          </div>
         </div>
-        <div class="row g-3" id="perksGrid"></div>
-      </div>
-    </section>
-
-    <!-- Banner Chamada Final -->
-    <section class="container py-5 text-center">
-      <div class="p-5 rounded-4 position-relative overflow-hidden" style="background: radial-gradient(ellipse at center, rgba(0,229,255,0.14) 0%, rgba(124,108,255,0.10) 38%, rgba(7,9,14,0.95) 72%); border: 1px solid var(--border-active);">
-        <div class="section-eyebrow mb-3">
-          <span class="section-eyebrow__num">04</span>
-          <span class="section-eyebrow__line"></span>
-          <span>Faça parte</span>
-        </div>
-        <h2 class="fw-bold text-light mb-3" style="font-family: var(--font-title);">Não fique de fora dos grupos da sua turma</h2>
-        <p class="text-muted mx-auto mb-4" style="max-width: 500px;">
-          Siga nosso Instagram e LinkedIn para ficar por dentro de workshops, oportunidades de estágio e materiais atualizados.
-        </p>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <a href="https://www.instagram.com/conexaoti_/" target="_blank" rel="noopener" class="btn-cta-primary">
-            <i class="bi bi-instagram"></i> Seguir @conexaoti_
-          </a>
-          <a href="https://discord.gg/K5qquv4TfA" target="_blank" rel="noopener" class="btn-cta-secondary">
-            <i class="bi bi-discord"></i> Entrar no Discord
-          </a>
-          <a href="https://www.linkedin.com/company/conex%C3%A3o-ti/home/" target="_blank" rel="noopener" class="btn-cta-secondary">
-            <i class="bi bi-linkedin"></i> Página Oficial
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
 
     </main>
 
@@ -318,5 +354,3 @@ Siga <strong>@conexaoti_</strong>, entre no nosso Discord, acompanhe o LinkedIn 
 </body>
 
 </html>
-
-
