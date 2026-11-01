@@ -88,5 +88,22 @@ const duvidasDados = [
         resposta: "Na area do aluno clica em 'Vida Acadêmica' depois 'Plataforma de prova' .",
         autor: "Coordenação",
         data: "29/10/2026"
+    },
+     {
+        id: "12",
+        categoria: "Complementares",
+        pergunta: "Fazer a pesquisa de satisfação da certificado para 3h complementares ?",
+        resposta: "Sim , Talvez não sera todos, mas pode ficar de olho para quando liberarem.",
+        autor: "Italo",
+        data: "30/10/2026"
+    },
+     {
+        id: "13",
+        categoria: "Complementares",
+        pergunta: "Onde retiro o certificado da pesquisa de satisfação ?",
+        resposta: "Em vida acadêmica -> certificados CPA , vai ter o que ainda esta possivel recuperar , so baixar e colocar como avaliação institucional .",
+        autor: "Duda",
+        data: "30/10/2026"
     }
+
 ];
